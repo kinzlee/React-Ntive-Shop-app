@@ -1,12 +1,18 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 
-const ShopHomeScreen = () => {
+const ShopHomeScreen = ({ navigation }) => {
   return (
     <View style={styles.screen}>
       <Text style={styles.textStyle}>
         This is the Shop Application Home Screen
       </Text>
+      <Button
+        title="go to product title"
+        onPress={() => {
+          navigation.navigate("Product Title");
+        }}
+      />
     </View>
   );
 };
