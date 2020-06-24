@@ -2,7 +2,7 @@ import React from "react";
 import { Platform } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-// import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import ShopHomeScreen from "../screens/ShopHomeScreen";
 import ProductCartScreen from "../screens/ProductCartScreen";
 import ProductManagerScreen from "../screens/ProductManagerScreen";
@@ -22,16 +22,48 @@ ShopNavigation = () => {
           options={{ title: "Shop" }}
         />
         <Stack.Screen
-          name="Produt Title"
+          name="Product Title"
           component={ProductTitleScreen}
           options={{ title: "Product Title" }}
         />
         <Stack.Screen
           name="Cart"
           component={ProductCartScreen}
-          options={{ title: "cart" }}
+          options={{ title: "Cart" }}
         />
       </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+const Drawer = createDrawerNavigator();
+
+const MyDrawer = () => {
+  return (
+    <NavigationContainer>
+      <Drawer.Navigator>
+        <Drawer.Screen
+          name="Shop"
+          component={ShopNavigation}
+          options={{
+            drawerLabel: "Shop"
+          }}
+        />
+        <Drawer.Screen
+          name="ProductOrders"
+          component={ProductOrdersScreen}
+          options={{
+            drawerLabel: "Orders"
+          }}
+        />
+        <Drawer.Screen
+          name="Product Manager"
+          component={ProductManagerScreen}
+          options={{
+            drawerLabel: "Manage Product"
+          }}
+        />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 };

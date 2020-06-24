@@ -1,10 +1,16 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Button } from "react-native";
 
-const ProductTitleScreen = () => {
+const ProductTitleScreen = ({ navigation }) => {
   return (
     <View style={styles.screen}>
       <Text>This is the Product title Screen</Text>
+      <Button
+        title="Go to Cart"
+        onPress={() => {
+          navigation.navigate("Cart");
+        }}
+      />
     </View>
   );
 };
