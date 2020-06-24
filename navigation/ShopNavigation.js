@@ -3,6 +3,7 @@ import { Platform } from "react-native";
 import { NavigationContainer, DrawerActions } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
+import { Ionicons } from "@expo/vector-icons";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import HeaderButton from "../components/HeaderButtton";
 import ShopHomeScreen from "../screens/ShopHomeScreen";
@@ -25,7 +26,7 @@ ShopNavigation = () => {
           return {
             title: "Shop",
             headerLeft: () => (
-              <HeaderButtons>
+              <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item
                   title="menu"
                   iconName="ios-menu"
@@ -62,7 +63,7 @@ const OrderNavigator = () => {
           return {
             title: "Orders",
             headerLeft: () => (
-              <HeaderButtons>
+              <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item
                   title="menu"
                   iconName="ios-menu"
@@ -87,9 +88,9 @@ const ManagerNavigator = () => {
         component={ProductManagerScreen}
         options={({ navigation }) => {
           return {
-            title: "Manage Product",
+            title: "Your Products",
             headerLeft: () => (
-              <HeaderButtons>
+              <HeaderButtons HeaderButtonComponent={HeaderButton}>
                 <Item
                   title="menu"
                   iconName="ios-menu"
@@ -100,6 +101,13 @@ const ManagerNavigator = () => {
               </HeaderButtons>
             )
           };
+        }}
+      />
+      <Stack.Screen
+        name="EditProduct"
+        component={EditProductScreen}
+        options={{
+          title: "Edit Product"
         }}
       />
     </Stack.Navigator>
