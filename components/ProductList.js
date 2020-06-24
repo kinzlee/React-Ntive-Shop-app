@@ -5,7 +5,19 @@ import PRODUCTS from "../data/dummy-data";
 
 const ProductList = ({ navigation, listData }) => {
   const renderProductItem = itemData => {
-    return <ProductItem productName={itemData.item.productName} />;
+    return (
+      <ProductItem
+        productName={itemData.item.productName}
+        onSelectProduct={() => {
+          navigation.navigate("Cart", {
+            productId: itemData.item.id,
+            userId: itemData.item.userId,
+            productName: itemData.item.productName
+          });
+        }}
+        image={itemData.item.imageUrl}
+      />
+    );
   };
 
   return (
@@ -22,7 +34,7 @@ const ProductList = ({ navigation, listData }) => {
 const styles = StyleSheet.create({
   list: {
     flex: 1,
-    padding: 13,
+    padding: 15,
     alignItems: "center",
     justifyContent: "center"
   }

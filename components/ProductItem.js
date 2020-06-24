@@ -27,7 +27,7 @@ const ProductItem = ({ image, onSelectProduct, productName }) => {
 
 const styles = StyleSheet.create({
   productItem: {
-    height: 230,
+    height: 220,
     width: "100%",
     backgroundColor: "#ccc",
     overflow: "hidden",
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   bgImage: {
     width: "100%",
-    height: "100%",
+    height: 220,
     justifyContent: "flex-end"
   }
 });
