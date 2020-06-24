@@ -10,7 +10,7 @@ import ShopHomeScreen from "../screens/ShopHomeScreen";
 import ProductCartScreen from "../screens/ProductCartScreen";
 import ProductManagerScreen from "../screens/ProductManagerScreen";
 import ProductOrdersScreen from "../screens/ProductOrdersScreen";
-import ProductTitleScreen from "../screens/ProductTitleScreen";
+import ProductDetailScreen from "../screens/ProductDetailScreen";
 import EditProductScreen from "../screens/EditProductScreen";
 import { RectButton } from "react-native-gesture-handler";
 
@@ -40,9 +40,9 @@ ShopNavigation = () => {
         }}
       />
       <Stack.Screen
-        name="Product Title"
-        component={ProductTitleScreen}
-        options={{ title: "Product Title" }}
+        name="Product Detail"
+        component={ProductDetailScreen}
+        options={{ title: "Product Detail" }}
       />
       <Stack.Screen
         name="Cart"

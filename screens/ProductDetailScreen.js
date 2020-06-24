@@ -1,10 +1,10 @@
 import React from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 
-const ProductTitleScreen = ({ navigation }) => {
+const ProductDetailScreen = ({ navigation }) => {
   return (
     <View style={styles.screen}>
-      <Text>This is the Product title Screen</Text>
+      <Text>This is the Product Detail Screen</Text>
       <Button
         title="Go to Cart"
         onPress={() => {
@@ -23,4 +23,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ProductTitleScreen;
+export default ProductDetailScreen;

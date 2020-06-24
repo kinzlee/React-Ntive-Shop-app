@@ -9,13 +9,21 @@ const ProductList = ({ navigation, listData }) => {
       <ProductItem
         productName={itemData.item.productName}
         onSelectProduct={() => {
-          navigation.navigate("Cart", {
+          navigation.navigate("Product Detail", {
+            productId: itemData.item.id,
+            userId: itemData.item.userId,
+            productName: itemData.item.productName
+          });
+        }}
+        onSwitchScreen={() => {
+          navigation.navigate("Product Detail", {
             productId: itemData.item.id,
             userId: itemData.item.userId,
             productName: itemData.item.productName
           });
         }}
         image={itemData.item.imageUrl}
+        price={itemData.item.price}
       />
     );
   };
