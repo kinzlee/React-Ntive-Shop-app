@@ -1,20 +1,16 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, Button, FlatList } from "react-native";
+import ProductList from "../components/ProductList";
+import PRODUCTS from "../data/dummy-data";
 
-const ShopHomeScreen = ({ navigation }) => {
-  return (
-    <View style={styles.screen}>
-      <Text style={styles.textStyle}>
-        This is the Shop Application Home Screen
-      </Text>
-      <Button
-        title="go to product title"
-        onPress={() => {
-          navigation.navigate("Product Title");
-        }}
-      />
-    </View>
-  );
+const ShopHomeScreen = ({ navigation, route }) => {
+  // const { id } = route.params;
+
+  // const selectedProducts = PRODUCTS.filter(
+  //   product => product.ids.indexOf(id) >= 0
+  // );
+
+  return <ProductList listData={PRODUCTS} navigation={navigation} />;
 };
 
 const styles = StyleSheet.create({
