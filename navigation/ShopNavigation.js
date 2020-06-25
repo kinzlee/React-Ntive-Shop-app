@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { Ionicons } from "@expo/vector-icons";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import PRODUCTS from "../data/dummy-data";
 import HeaderButton from "../components/HeaderButtton";
 import ShopHomeScreen from "../screens/ShopHomeScreen";
 import ProductCartScreen from "../screens/ProductCartScreen";
@@ -42,7 +43,15 @@ ShopNavigation = () => {
       <Stack.Screen
         name="Product Detail"
         component={ProductDetailScreen}
-        options={{ title: "Product Detail" }}
+        options={({ route }) => {
+          const { productId } = route.params;
+          const selectedProduct = PRODUCTS.find(
+            product => product.id === productId
+          );
+          return {
+            title: selectedProduct.productName
+          };
+        }}
       />
       <Stack.Screen
         name="Cart"

@@ -18,16 +18,24 @@ const ProductDetailScreen = ({ navigation, route }) => {
   return (
     <ScrollView>
       <Image source={{ uri: selectedProducts.imageUrl }} style={styles.image} />
-      <View style={styles.details}>
-        <CustomText>{selectedProducts.price}</CustomText>
-        <CustomText>{selectedProducts.productDescription}</CustomText>
-        <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("Cart");
-          }}
-        >
-          <Text>Go To Cart</Text>
-        </TouchableOpacity>
+      <View style={styles.detailsContainer}>
+        <View style={styles.details}>
+          <CustomText>{selectedProducts.price}</CustomText>
+        </View>
+        <View style={styles.details}>
+          <CustomText>{selectedProducts.productDescription}</CustomText>
+        </View>
+        <View style={styles.details}>
+          <TouchableOpacity
+            onPress={itemData => {
+              navigation.navigate("Cart", {
+                productId: itemData.item.id
+              });
+            }}
+          >
+            <Text>Go To Cart</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </ScrollView>
   );
@@ -38,6 +46,25 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center"
+  },
+  image: {
+    width: "100%",
+    height: 220
+  },
+  detailsContainer: {
+    marginVertical: 10,
+    flexDirection: "column"
+  },
+  details: {
+    padding: 15,
+    paddingVertical: 15,
+    justifyContent: "center",
+    alignItems: "center",
+    marginVertical: 10,
+    marginHorizontal: 20,
+    borderColor: "#ccc",
+    borderWidth: 2,
+    elevation: 0.5
   }
 });
 

@@ -1,10 +1,24 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import CustomText from "../components/CustomText";
+import PRODUCTS from "../data/dummy-data";
 
-const ProductCartScreen = () => {
+const ProductCartScreen = ({ navigation, route }) => {
+  const { productId } = route.params;
+  const selectedProduct = PRODUCTS.find(product => product.id === productId);
   return (
     <View style={styles.screen}>
-      <Text>This is the Product Cart Screen</Text>
+      <View style={styles.item}>
+        <CustomText>Total sum ${selectedProduct.price}</CustomText>
+        <View>
+          <TouchableOpacity></TouchableOpacity>
+        </View>
+      </View>
+      <View style={styles.item}>
+        <CustomText>
+          {selectedProduct.productName} ${}
+        </CustomText>
+      </View>
     </View>
   );
 };
@@ -14,6 +28,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center"
+  },
+  item: {
+    paddingHorizontal: 10,
+    paddingHorizontal: 5,
+    borderBottomColor: "#ccc",
+    borderBottomWidth: 1
   }
 });
 
