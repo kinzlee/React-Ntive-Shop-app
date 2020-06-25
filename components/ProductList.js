@@ -26,6 +26,8 @@ const ProductList = ({ navigation, listData }) => {
         }}
         image={itemData.item.imageUrl}
         price={itemData.item.price}
+        firstFill={"Details"}
+        lastFill={"Cart"}
       />
     );
   };
