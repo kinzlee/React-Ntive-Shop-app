@@ -16,7 +16,7 @@ const ProductDetailScreen = ({ navigation, route }) => {
   const selectedProducts = PRODUCTS.find(product => product.id === productId);
 
   return (
-    <ScrollView>
+    <View>
       <Image source={{ uri: selectedProducts.imageUrl }} style={styles.image} />
       <View style={styles.detailsContainer}>
         <View style={styles.details}>
@@ -27,9 +27,9 @@ const ProductDetailScreen = ({ navigation, route }) => {
         </View>
         <View style={styles.details}>
           <TouchableOpacity
-            onPress={itemData => {
+            onPress={() => {
               navigation.navigate("Cart", {
-                productId: itemData.item.id
+                productId: selectedProducts.id
               });
             }}
           >
@@ -37,7 +37,7 @@ const ProductDetailScreen = ({ navigation, route }) => {
           </TouchableOpacity>
         </View>
       </View>
-    </ScrollView>
+    </View>
   );
 };
 

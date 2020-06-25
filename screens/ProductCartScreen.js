@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import CustomText from "../components/CustomText";
 import PRODUCTS from "../data/dummy-data";
+// import { RenderItem } from "../screens/ProductDetailScreen";
 
 const ProductCartScreen = ({ navigation, route }) => {
   const { productId } = route.params;
@@ -26,14 +27,16 @@ const ProductCartScreen = ({ navigation, route }) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
+    justifyContent: "flex-start",
+    alignItems: "center",
+    marginVertical: 20
   },
   item: {
-    paddingHorizontal: 10,
+    paddingVertical: 12,
     paddingHorizontal: 5,
     borderBottomColor: "#ccc",
-    borderBottomWidth: 1
+    borderBottomWidth: 2,
+    marginVertical: 20
   }
 });
 
