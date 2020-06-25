@@ -47,7 +47,7 @@ const ProductItem = ({
 
 const styles = StyleSheet.create({
   productItem: {
-    height: 220,
+    height: 230,
     width: "100%",
     backgroundColor: "#ccc",
     overflow: "hidden",
@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
   },
   productDetail: {
     paddingHorizontal: 10,
+    paddingVertical: 4,
     justifyContent: "space-between",
     height: 10,
     alignItems: "center"
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
   },
   bgImage: {
     width: "100%",
-    height: 220,
+    height: 200,
     justifyContent: "flex-end"
   }
 });

@@ -1,17 +1,35 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Image,
+  TouchableOpacity
+} from "react-native";
+import CustomText from "../components/CustomText";
+import PRODUCTS from "../data/dummy-data";
 
-const ProductDetailScreen = ({ navigation }) => {
+const ProductDetailScreen = ({ navigation, route }) => {
+  const { productId } = route.params;
+
+  const selectedProducts = PRODUCTS.find(product => product.id === productId);
+
   return (
-    <View style={styles.screen}>
-      <Text>This is the Product Detail Screen</Text>
-      <Button
-        title="Go to Cart"
-        onPress={() => {
-          navigation.navigate("Cart");
-        }}
-      />
-    </View>
+    <ScrollView>
+      <Image source={{ uri: selectedProducts.imageUrl }} style={styles.image} />
+      <View style={styles.details}>
+        <CustomText>{selectedProducts.price}</CustomText>
+        <CustomText>{selectedProducts.productDescription}</CustomText>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Cart");
+          }}
+        >
+          <Text>Go To Cart</Text>
+        </TouchableOpacity>
+      </View>
+    </ScrollView>
   );
 };
 

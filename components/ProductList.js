@@ -12,14 +12,16 @@ const ProductList = ({ navigation, listData }) => {
           navigation.navigate("Product Detail", {
             productId: itemData.item.id,
             userId: itemData.item.userId,
-            productName: itemData.item.productName
+            productName: itemData.item.productName,
+            porductDescription: itemData.item.porductDescription
           });
         }}
         onSwitchScreen={() => {
           navigation.navigate("Product Detail", {
             productId: itemData.item.id,
             userId: itemData.item.userId,
-            productName: itemData.item.productName
+            productName: itemData.item.productName,
+            porductDescription: itemData.item.porductDescription
           });
         }}
         image={itemData.item.imageUrl}
