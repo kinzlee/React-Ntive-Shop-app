@@ -2,7 +2,6 @@ import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import CustomText from "../components/CustomText";
 import PRODUCTS from "../data/dummy-data";
-// import { RenderItem } from "../screens/ProductDetailScreen";
 
 const ProductCartScreen = ({ navigation, route }) => {
   const { productId } = route.params;
