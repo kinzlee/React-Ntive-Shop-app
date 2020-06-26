@@ -9,23 +9,6 @@ import Product from "../models/Product";
 const ProductManagerScreen = ({ navigation, route }, take) => {
   // const { productId } = route.params;
   // const selectedProduct = PRODUCTS.find(product => product.id === productId);
-  React.useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <HeaderButtons HeaderButtonComponent={HeaderButton}>
-          <Item
-            title="add"
-            iconName="ios-add-circle"
-            onPress={() => {
-              navigation.navigate("EditProduct", {
-                productId: take.id
-              });
-            }}
-          />
-        </HeaderButtons>
-      )
-    });
-  }, [navigation]);
 
   return <ProductManagerList listData={PRODUCTS} navigation={navigation} />;
 };
