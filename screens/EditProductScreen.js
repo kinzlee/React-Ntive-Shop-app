@@ -13,20 +13,20 @@ const EditProductScreen = ({ naqvigation, route }) => {
       <View style={styles.itemContainer}>
         <Text style={styles.headerText}>Title: </Text>
         <View style={styles.item}>
-          <CustomText>{selectedProduct.productName}</CustomText>
+          <CustomText>{PRODUCTS.productName}</CustomText>
         </View>
       </View>
       <View style={styles.itemContainer}>
         <Text style={styles.headerText}>Price: </Text>
         <View style={styles.item}>
-          <CustomText>{selectedProduct.price}</CustomText>
+          <CustomText>{PRODUCTS.price}</CustomText>
         </View>
       </View>
       <View style={styles.description}>
-        <CustomText>{selectedProduct.productDescription}</CustomText>
+        <CustomText>{PRODUCTS.productDescription}</CustomText>
       </View>
       <View style={styles.uri}>
-        <CustomText>{selectedProduct.ImageUrl}</CustomText>
+        <CustomText>{PRODUCTS.ImageUrl}</CustomText>
       </View>
     </View>
   );

@@ -6,9 +6,29 @@ import HeaderButton from "../components/HeaderButtton";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import Product from "../models/Product";
 
-const ProductManagerScreen = ({ navigation, route }, take) => {
-  // const { productId } = route.params;
-  // const selectedProduct = PRODUCTS.find(product => product.id === productId);
+const ProductManagerScreen = ({ navigation, route }, here) => {
+  const productId = here.id;
+  const selectedProducte = PRODUCTS.find(product => product.id === productId);
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item
+            title="add"
+            iconName="ios-add-circle"
+            onPress={() => {
+              navigation.navigate("EditProduct", {
+                productName: here.productName,
+                price: here.price,
+                productDescription: here.productDescription,
+                imageUrl: here.imageUrl
+              });
+            }}
+          />
+        </HeaderButtons>
+      )
+    });
+  }, [navigation]);
 
   return <ProductManagerList listData={PRODUCTS} navigation={navigation} />;
 };

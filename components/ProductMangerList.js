@@ -4,28 +4,6 @@ import ProductItem from "../components/ProductItem";
 
 const ProductManagerList = ({ navigation, listData }) => {
   const renderProductManagerItem = itemData => {
-    React.useLayoutEffect(() => {
-      navigation.setOptions({
-        headerRight: () => (
-          <HeaderButtons HeaderButtonComponent={HeaderButton}>
-            <Item
-              title="add"
-              iconName="ios-add-circle"
-              onPress={() => {
-                navigation.navigate("EditProduct", {
-                  productId: itemData.item.id,
-                  productName: itemData.item.productName,
-                  price: itemData.item.price,
-                  productDescription: itemData.item.productDescription,
-                  imageUrl: itemData.item.imageUrl
-                });
-              }}
-            />
-          </HeaderButtons>
-        )
-      });
-    }, [navigation]);
-
     return (
       <ProductItem
         productName={itemData.item.productName}
