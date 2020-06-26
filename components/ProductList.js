@@ -1,7 +1,6 @@
 import React from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import ProductItem from "../components/ProductItem";
-import PRODUCTS from "../data/dummy-data";
 
 const ProductList = ({ navigation, listData }) => {
   const renderProductItem = itemData => {

@@ -1,16 +1,28 @@
 import React from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
+import PRODUCTS from "../data/dummy-data";
+import ProductManagerList from "../components/ProductMangerList";
+import HeaderButton from "../components/HeaderButtton";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 const ProductManagerScreen = ({ navigation }) => {
-  return (
-    <View style={styles.screen}>
-      <Text> This is the screen where the product is being managed</Text>
-      <Button
-        title="Go to editProduct"
-        onPress={() => navigation.navigate("EditProduct")}
-      />
-    </View>
-  );
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item
+            title="add"
+            iconName="ios-add-circle"
+            onPress={() => {
+              navigation.navigate("EditProduct");
+            }}
+          />
+        </HeaderButtons>
+      )
+    });
+  }, [navigation]);
+
+  return <ProductManagerList listData={PRODUCTS} navigation={navigation} />;
 };
 
 const styles = StyleSheet.create({
