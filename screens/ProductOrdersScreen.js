@@ -35,9 +35,15 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start"
   },
-  itemsContainer: {},
-  textItem: {},
-  extendedContainer: {},
+  itemsContainer: {
+    flexDirection: 'row'
+  },
+  textItem: {
+    flexDirection: 'column'
+  },
+  extendedContainer: {
+    flexDirection: 
+  },
   inExtContain: {},
   textStyle: {}
 });
