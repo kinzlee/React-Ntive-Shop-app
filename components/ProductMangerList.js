@@ -10,17 +10,19 @@ const ProductManagerList = ({ navigation, listData }) => {
         onSelectProduct={() => {
           navigation.navigate("EditProduct", {
             productId: itemData.item.id,
+            productName: itemData.item.productName,
             price: itemData.item.price,
             productDescription: itemData.item.productDescription,
-            imageUri: itemData.item.imageUri
+            imageUrl: itemData.item.imageUrl
           });
         }}
         onSwitchScreen={() => {
           navigation.navigate("EditProduct", {
             productId: itemData.item.id,
+            productName: itemData.item.productName,
             price: itemData.item.price,
             productDescription: itemData.item.productDescription,
-            imageUri: itemData.item.imageUri
+            imageUrl: itemData.item.imageUrl
           });
         }}
         image={itemData.item.imageUrl}
