@@ -7,7 +7,7 @@ const ProductOrdersScreen = () => {
   const [toggleView, setToggleView] = useState(false);
 
   const showHideComponent = () => {
-    if (toggleView == false) {
+    if (toggleView === false) {
       setToggleView(true);
     } else {
       setToggleView(false);
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     marginHorizontal: 10,
     justifyContent: "space-between",
-    paddingHorizontal: 20
+    paddingHorizontal: 28
   },
   textItem: {
     flexDirection: "row",
@@ -70,8 +70,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     borderRightWidth: 2,
     borderLeftWidth: 2,
-    paddingHorizontal: 20,
-    paddingVertical: 15
+    paddingHorizontal: 30,
+    paddingVertical: 20,
+    elevation: 3
   },
   inExtContain: {},
   textStyle: {},
