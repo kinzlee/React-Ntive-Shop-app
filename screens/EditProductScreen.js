@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TextInput } from "react-native";
 import CustomText from "../components/CustomText";
 import PRODUCTS from "../data/dummy-data";
 
@@ -13,20 +13,32 @@ const EditProductScreen = ({ naqvigation, route }) => {
       <View style={styles.itemContainer}>
         <Text style={styles.headerText}>Title: </Text>
         <View style={styles.item}>
-          <CustomText>{PRODUCTS.productName}</CustomText>
+          <TextInput
+            placeholder="Title"
+            style={styles.textStyle}
+            defaultValue={selectedProduct.productName}
+          />
         </View>
       </View>
       <View style={styles.itemContainer}>
         <Text style={styles.headerText}>Price: </Text>
         <View style={styles.item}>
-          <CustomText>{PRODUCTS.price}</CustomText>
+          <CustomText>{selectedProduct.price}</CustomText>
         </View>
       </View>
       <View style={styles.description}>
-        <CustomText>{PRODUCTS.productDescription}</CustomText>
+        <TextInput
+          placeholder="Description"
+          style={styles.textStyle}
+          defaultValue={selectedProduct.productDescription}
+        />
       </View>
       <View style={styles.uri}>
-        <CustomText>{PRODUCTS.ImageUrl}</CustomText>
+        <TextInput
+          placeholder="Image Url"
+          style={styles.textStyle}
+          defaultValue={selectedProduct.imageUrl}
+        />
       </View>
     </View>
   );
@@ -62,7 +74,13 @@ const styles = StyleSheet.create({
   uri: {
     borderColor: "#ccc",
     borderWidth: 3,
-    paddingVertical: 15
+    paddingVertical: 20,
+    marginVertical: 20,
+    marginHorizontal: 10,
+    elevation: 1
+  },
+  textStyle: {
+    fontFamily: "Open-Sans"
   }
 });
 
