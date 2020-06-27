@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import CustomText from "../components/CustomText";
 import PRODUCTS from "../data/dummy-data";
+import Product from "../models/Product";
 
 const ProductOrdersScreen = () => {
   const [toggleView, setToggleView] = useState(false);
+
+  const selectedProduct = PRODUCTS.find(Product => Product.id === "p1");
 
   const showHideComponent = () => {
     if (toggleView === false) {
@@ -18,7 +21,7 @@ const ProductOrdersScreen = () => {
     <View style={styles.screen}>
       <View style={styles.itemsContainer}>
         <View style={styles.textItem}>
-          <CustomText>Price: {}</CustomText>
+          <CustomText>Price: {selectedProduct.price}</CustomText>
           <CustomText>Date: 9999</CustomText>
         </View>
         <View style={styles.btn}>
