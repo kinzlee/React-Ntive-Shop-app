@@ -21,8 +21,8 @@ const ProductOrdersScreen = () => {
     <View style={styles.screen}>
       <View style={styles.itemsContainer}>
         <View style={styles.textItem}>
-          <CustomText>Price: {selectedProduct.price}</CustomText>
-          <CustomText>Date: 9999</CustomText>
+          <CustomText>Price: ${selectedProduct.price}</CustomText>
+          <CustomText> Date: 9999</CustomText>
         </View>
         <View style={styles.btn}>
           <TouchableOpacity onPress={set => showHideComponent(set)}>
@@ -32,10 +32,10 @@ const ProductOrdersScreen = () => {
       </View>
       {toggleView ? (
         <View style={styles.extendedContainer}>
-          <Text style={styles.textStyle}>Item</Text>
+          <Text style={styles.textStyle}>{selectedProduct.productName}</Text>
           <View style={styles.inExtContain}>
-            <CustomText>productName</CustomText>
-            <CustomText>productPrice</CustomText>
+            <CustomText>{selectedProduct.productName}</CustomText>
+            <CustomText> ${selectedProduct.price}</CustomText>
           </View>
         </View>
       ) : null}
@@ -63,22 +63,34 @@ const styles = StyleSheet.create({
   textItem: {
     flexDirection: "row",
     borderBottomColor: "#ccc",
-    borderBottomWidth: 1
+    borderBottomWidth: 1,
+    padding: 5,
+    paddingHorizontal: 10
   },
   extendedContainer: {
-    flexDirection: "row",
+    flexDirection: "column",
     borderBottomColor: "#000",
     borderLeftColor: "#000",
     borderRightColor: "#000",
     borderBottomWidth: 2,
     borderRightWidth: 2,
     borderLeftWidth: 2,
-    paddingHorizontal: 30,
+    paddingHorizontal: 40,
     paddingVertical: 20,
-    elevation: 3
+    elevation: 3,
+    justifyContent: "space-between"
   },
-  inExtContain: {},
-  textStyle: {},
+  inExtContain: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginHorizontal: 30
+  },
+  textStyle: {
+    fontFamily: "Open-Sans-Bold",
+    fontSize: 20,
+    color: "red",
+    textAlign: "center"
+  },
   btn: {
     alignItems: "center",
     justifyContent: "center"
