@@ -8,6 +8,22 @@ const EditProductScreen = ({ naqvigation, route }) => {
 
   const selectedProduct = PRODUCTS.find(product => product.id === productId);
 
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item
+            title="add"
+            iconName="ios-checkmark-circle"
+            onPress={() => {
+              console.log("this works");
+            }}
+          />
+        </HeaderButtons>
+      )
+    });
+  }, [navigation]);
+
   return (
     <View style={styles.screen}>
       <View style={styles.itemContainer}>
