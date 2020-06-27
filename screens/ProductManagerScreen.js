@@ -6,9 +6,8 @@ import HeaderButton from "../components/HeaderButtton";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import Product from "../models/Product";
 
-const ProductManagerScreen = ({ navigation, route }, here) => {
-  const productId = here.id;
-  const selectedProducte = PRODUCTS.find(product => product.id === productId);
+const ProductManagerScreen = ({ navigation, route }) => {
+  // const selectedProducte = PRODUCTS.find(product => product.id === productId);
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -18,10 +17,10 @@ const ProductManagerScreen = ({ navigation, route }, here) => {
             iconName="ios-add-circle"
             onPress={() => {
               navigation.navigate("EditProduct", {
-                productName: here.productName,
-                price: here.price,
-                productDescription: here.productDescription,
-                imageUrl: here.imageUrl
+                productName: id.productName,
+                price: id.price,
+                productDescription: id.productDescription,
+                imageUrl: id.imageUrl
               });
             }}
           />
