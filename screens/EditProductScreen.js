@@ -2,8 +2,10 @@ import React from "react";
 import { View, Text, StyleSheet, TextInput } from "react-native";
 import CustomText from "../components/CustomText";
 import PRODUCTS from "../data/dummy-data";
+import HeaderButton from "../components/HeaderButtton";
+import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
-const EditProductScreen = ({ naqvigation, route }) => {
+const EditProductScreen = ({ navigation, route }) => {
   const { productId } = route.params;
 
   const selectedProduct = PRODUCTS.find(product => product.id === productId);
@@ -14,7 +16,7 @@ const EditProductScreen = ({ naqvigation, route }) => {
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
           <Item
             title="add"
-            iconName="ios-checkmark-circle"
+            iconName="md-checkbox-outline"
             onPress={() => {
               console.log("this works");
             }}
@@ -27,8 +29,8 @@ const EditProductScreen = ({ naqvigation, route }) => {
   return (
     <View style={styles.screen}>
       <View style={styles.itemContainer}>
-        <Text style={styles.headerText}>Title: </Text>
-        <View style={styles.item}>
+        <Text style={styles.headerInputText}>Title: </Text>
+        <View style={styles.itemInput}>
           <TextInput
             placeholder="Title"
             style={styles.textStyle}
@@ -69,17 +71,27 @@ const styles = StyleSheet.create({
     marginHorizontal: 3,
     paddingVertical: 10
   },
+  headerInputText: {
+    fontFamily: "Open-Sans-Bold",
+    fontSize: 14,
+    paddingVertical: 5
+  },
   headerText: {
     fontFamily: "Open-Sans-Bold",
     fontSize: 14
   },
+  itemInput: {
+    borderBottomColor: "#ccc",
+    borderBottomWidth: 1,
+    paddingVertical: -5
+  },
   item: {
     borderBottomColor: "#ccc",
-    borderBottomWidth: 2
+    borderBottomWidth: 1
   },
   itemContainer: {
     flexDirection: "row",
-    paddingVertical: 15,
+    paddingVertical: 20,
     justifyContent: "space-between"
   },
   description: {
