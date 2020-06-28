@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import CustomText from "../components/CustomText";
 import PRODUCTS from "../data/dummy-data";
-import Product from "../models/Product";
 
 const ProductOrdersScreen = () => {
   const [toggleView, setToggleView] = useState(false);
