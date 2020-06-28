@@ -18,7 +18,7 @@ const ShopHomeScreen = ({ navigation, route }) => {
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
           <Item
             title="add"
-            iconName=" md-cart"
+            iconName="ios-cart"
             onPress={() => {
               console.log("this works");
             }}
