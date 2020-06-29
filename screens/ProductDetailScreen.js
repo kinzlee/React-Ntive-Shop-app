@@ -13,7 +13,7 @@ const ProductDetailScreen = ({ navigation, route }) => {
   return (
     <View>
       <Image source={{ uri: selectedProducts.imageUrl }} style={styles.image} />
-      <Card>
+      <Card style={{ padding: 10, marginVertical: -5, width: 400 }}>
         <View style={styles.detailsContainer}>
           <View style={styles.details}>
             <CustomText>{selectedProducts.price}</CustomText>
