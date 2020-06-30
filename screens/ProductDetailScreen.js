@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import CustomText from "../components/CustomText";
 import PRODUCTS from "../data/dummy-data";
 import { Card } from "react-native-shadow-cards";
+import colors from "../constants/colors";
 // import CardView from "react-native-cardview";
 
 const ProductDetailScreen = ({ navigation, route }) => {
@@ -13,15 +14,30 @@ const ProductDetailScreen = ({ navigation, route }) => {
   return (
     <View>
       <Image source={{ uri: selectedProducts.imageUrl }} style={styles.image} />
-      <Card style={{ padding: 10, marginVertical: -5, width: 400 }}>
+      <Card
+        style={{
+          padding: 10,
+          marginVertical: -5,
+          marginLeft: -1,
+          backgroundColor: colors.secondaryColor,
+          width: 415,
+          height: "65%",
+          borderTopStartRadius: 20,
+          borderTopEndRadius: 20
+        }}
+      >
         <View style={styles.detailsContainer}>
           <View style={styles.details}>
-            <CustomText>{selectedProducts.price}</CustomText>
+            <Text style={styles.textStyle}>
+              Price : $ {selectedProducts.price}
+            </Text>
           </View>
           <View style={styles.details}>
-            <CustomText>{selectedProducts.productDescription}</CustomText>
+            <Text style={styles.textStyle}>
+              {selectedProducts.productDescription}
+            </Text>
           </View>
-          <View style={styles.details}>
+          <View style={styles.btnStyle}>
             <TouchableOpacity
               onPress={() => {
                 navigation.navigate("Cart", {
@@ -29,7 +45,7 @@ const ProductDetailScreen = ({ navigation, route }) => {
                 });
               }}
             >
-              <Text>Go To Cart</Text>
+              <Text style={styles.textStyle}>Go To Cart</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -46,22 +62,40 @@ const styles = StyleSheet.create({
   },
   image: {
     width: "100%",
-    height: 230
+    height: 280
   },
   detailsContainer: {
     marginVertical: 10,
     flexDirection: "column"
   },
   details: {
-    padding: 15,
+    padding: 10,
     paddingVertical: 15,
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: 10,
+    marginVertical: 25,
     marginHorizontal: 20,
-    borderColor: "#ccc",
-    borderWidth: 2,
+    borderBottomColor: "#ccc",
+    borderBottomWidth: 2,
     elevation: 0.5
+  },
+  textStyle: {
+    color: "#fff",
+    fontFamily: "Open-Sans",
+    fontSize: 18
+  },
+  btnStyle: {
+    borderRadius: 15,
+    backgroundColor: colors.primaryColor,
+    borderWidth: 2,
+    borderColor: colors.surroundColor,
+    shadowRadius: 2,
+    shadowColor: "#000",
+    alignItems: "center",
+    paddingVertical: 13,
+    marginVertical: 10,
+    width: 370,
+    marginLeft: 15
   }
 });
 

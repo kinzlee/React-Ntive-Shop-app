@@ -14,12 +14,21 @@ import ProductOrdersScreen from "../screens/ProductOrdersScreen";
 import ProductDetailScreen from "../screens/ProductDetailScreen";
 import EditProductScreen from "../screens/EditProductScreen";
 import { RectButton } from "react-native-gesture-handler";
+import colors from "../constants/colors";
 
 const Stack = createStackNavigator();
 
 ShopNavigation = () => {
   return (
-    <Stack.Navigator initialRouteName="Shop">
+    <Stack.Navigator
+      initialRouteName="Shop"
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: colors.secondaryColor
+        },
+        headerTintColor: "#fff"
+      }}
+    >
       <Stack.Screen
         name="Shop"
         component={ShopHomeScreen}
