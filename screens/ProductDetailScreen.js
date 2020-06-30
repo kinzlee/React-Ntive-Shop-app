@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {},
   btnStyle: {
-    borderRadius: 15,
+    borderRadius: 18,
     backgroundColor: colors.primaryColor,
     borderWidth: 2,
     borderColor: colors.surroundColor,
