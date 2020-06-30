@@ -7,6 +7,7 @@ import {
   ImageBackground
 } from "react-native";
 import CustomText from "../components/CustomText";
+import colors from "../constants/colors";
 
 const ProductItem = ({
   image,
@@ -33,13 +34,13 @@ const ProductItem = ({
       <View style={{ ...styles.productRow, ...styles.productDetail }}>
         <View>
           <TouchableOpacity onPress={onSwitchScreen}>
-            <Text>{firstFill}</Text>
+            <CustomText>{firstFill}</CustomText>
           </TouchableOpacity>
         </View>
         <CustomText>{price}</CustomText>
         <View>
           <TouchableOpacity onPress={() => console.log("it works")}>
-            <Text>{lastFill}</Text>
+            <CustomText>{lastFill}</CustomText>
           </TouchableOpacity>
         </View>
       </View>
@@ -51,7 +52,7 @@ const styles = StyleSheet.create({
   productItem: {
     height: 230,
     width: "100%",
-    backgroundColor: "#ccc",
+    backgroundColor: colors.secondaryColor,
     overflow: "hidden",
     marginVertical: 10,
     borderRadius: 10

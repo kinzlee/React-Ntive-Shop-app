@@ -27,7 +27,7 @@ const ProductCartScreen = ({ navigation, route }) => {
                 console.log("this orders the item");
               }}
             >
-              <Text>Order</Text>
+              <Text style={{ color: "#fff" }}>Order</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -41,7 +41,11 @@ const ProductCartScreen = ({ navigation, route }) => {
                 console.log("this deletes the item");
               }}
             >
-              <Ionicons name="ios-trash" size={20}></Ionicons>
+              <Ionicons
+                name="ios-trash"
+                size={25}
+                color={colors.primaryColor}
+              ></Ionicons>
             </TouchableOpacity>
           </View>
         </View>
@@ -67,8 +71,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   btn: {
-    paddingHorizontal: 8,
-    marginHorizontal: 5
+    paddingHorizontal: 5,
+    marginHorizontal: 5,
+    backgroundColor: colors.primaryColor,
+    borderWidth: 3,
+    borderColor: colors.surroundColor,
+    borderRadius: 15
   },
   icon: {
     paddingHorizontal: 8,

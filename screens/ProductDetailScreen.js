@@ -17,11 +17,11 @@ const ProductDetailScreen = ({ navigation, route }) => {
       <Card
         style={{
           padding: 10,
-          marginVertical: -5,
-          marginLeft: -1,
+          marginVertical: -10.5,
+          marginLeft: -1.7,
           backgroundColor: colors.secondaryColor,
           width: 415,
-          height: "65%",
+          height: "75%",
           borderTopStartRadius: 20,
           borderTopEndRadius: 20
         }}
