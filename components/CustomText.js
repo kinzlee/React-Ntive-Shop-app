@@ -7,7 +7,9 @@ const CustomText = ({ children }) => {
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: "Open-Sans"
+    color: "#fff",
+    fontFamily: "Open-Sans",
+    fontSize: 18
   }
 });
 

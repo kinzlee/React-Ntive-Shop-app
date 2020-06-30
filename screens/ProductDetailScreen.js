@@ -28,14 +28,10 @@ const ProductDetailScreen = ({ navigation, route }) => {
       >
         <View style={styles.detailsContainer}>
           <View style={styles.details}>
-            <Text style={styles.textStyle}>
-              Price : $ {selectedProducts.price}
-            </Text>
+            <CustomText>Price : $ {selectedProducts.price}</CustomText>
           </View>
           <View style={styles.details}>
-            <Text style={styles.textStyle}>
-              {selectedProducts.productDescription}
-            </Text>
+            <CustomText>{selectedProducts.productDescription}</CustomText>
           </View>
           <View style={styles.btnStyle}>
             <TouchableOpacity
@@ -45,7 +41,7 @@ const ProductDetailScreen = ({ navigation, route }) => {
                 });
               }}
             >
-              <Text style={styles.textStyle}>Go To Cart</Text>
+              <CustomText>Go To Cart</CustomText>
             </TouchableOpacity>
           </View>
         </View>
@@ -79,11 +75,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     elevation: 0.5
   },
-  textStyle: {
-    color: "#fff",
-    fontFamily: "Open-Sans",
-    fontSize: 18
-  },
+  textStyle: {},
   btnStyle: {
     borderRadius: 15,
     backgroundColor: colors.primaryColor,
