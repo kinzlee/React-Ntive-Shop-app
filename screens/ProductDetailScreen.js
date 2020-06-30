@@ -46,10 +46,10 @@ const ProductDetailScreen = ({ navigation, route }) => {
           <View style={styles.btnStyle}>
             <TouchableOpacity
               onPress={() => {
-                addToCart();
                 navigation.navigate("Cart", {
                   productId: selectedProducts.id
                 });
+                console.log(addToCart());
               }}
             >
               <CustomText>Go To Cart</CustomText>
