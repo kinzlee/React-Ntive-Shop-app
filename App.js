@@ -3,6 +3,15 @@ import { Text, View } from "react-native";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import ShopNavigation from "./navigation/ShopNavigation";
+import { combineReducers, createStore } from "redux";
+import productReducer from "./store/reducers/shopper";
+import { Provider } from "react-redux";
+
+const rootReducer = combineReducers({
+  products: productReducer
+});
+
+const store = createStore(rootReducer);
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -23,5 +32,9 @@ export default function App() {
     );
   }
 
-  return <ShopNavigation />;
+  return (
+    <Provider store={store}>
+      <ShopNavigation />
+    </Provider>
+  );
 }

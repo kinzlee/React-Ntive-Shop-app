@@ -4,12 +4,22 @@ import CustomText from "../components/CustomText";
 import PRODUCTS from "../data/dummy-data";
 import { Card } from "react-native-shadow-cards";
 import colors from "../constants/colors";
+import { useSelector, useDispatch } from "react-redux";
+import { toggleCart } from "../store/actions/shopper";
 // import CardView from "react-native-cardview";
 
 const ProductDetailScreen = ({ navigation, route }) => {
+  const availableProducts = useSelector(state => state.products.products);
   const { productId } = route.params;
 
-  const selectedProducts = PRODUCTS.find(product => product.id === productId);
+  const selectedProducts = availableProducts.find(
+    product => product.id === productId
+  );
+  const dispatch = useDispatch();
+
+  const addToCart = () => {
+    dispatch(toggleCart(productId));
+  };
 
   return (
     <View>
@@ -36,6 +46,7 @@ const ProductDetailScreen = ({ navigation, route }) => {
           <View style={styles.btnStyle}>
             <TouchableOpacity
               onPress={() => {
+                addToCart();
                 navigation.navigate("Cart", {
                   productId: selectedProducts.id
                 });
