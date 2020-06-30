@@ -11,7 +11,6 @@ import { toggleCart } from "../store/actions/shopper";
 const ProductDetailScreen = ({ navigation, route }) => {
   const availableProducts = useSelector(state => state.products.products);
   const { productId } = route.params;
-
   const selectedProducts = availableProducts.find(
     product => product.id === productId
   );
@@ -46,9 +45,6 @@ const ProductDetailScreen = ({ navigation, route }) => {
           <View style={styles.btnStyle}>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("Cart", {
-                  productId: selectedProducts.id
-                });
                 console.log(addToCart());
               }}
             >
