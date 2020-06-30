@@ -21,7 +21,7 @@ const productReducer = (state = initialState, action) => {
         products = state.products.find(
           product => product.id === action.productId
         );
-        return { ...state, productCart: state.productCart.concat(productId) };
+        return { ...state, productCart: state.productCart.concat(products) };
       }
     default:
       return state;
