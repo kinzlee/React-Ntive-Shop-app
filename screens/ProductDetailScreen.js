@@ -11,14 +11,13 @@ import { toggleCart } from "../store/actions/shopper";
 const ProductDetailScreen = ({ navigation, route }) => {
   const availableProducts = useSelector(state => state.products.products);
   const { productId } = route.params;
+
   const selectedProducts = availableProducts.find(
     product => product.id === productId
   );
   const dispatch = useDispatch();
 
-  const addToCart = () => {
-    dispatch(toggleCart(productId));
-  };
+  const addToCart = () => {};
 
   return (
     <View>
@@ -45,10 +44,17 @@ const ProductDetailScreen = ({ navigation, route }) => {
           <View style={styles.btnStyle}>
             <TouchableOpacity
               onPress={() => {
-                addToCart;
+                navigation.navigate("Cart");
               }}
             >
               <CustomText>Go To Cart</CustomText>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => {
+                dispatch(toggleCart(productId));
+              }}
+            >
+              <CustomText>Add To Cart</CustomText>
             </TouchableOpacity>
           </View>
         </View>
@@ -76,13 +82,12 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     justifyContent: "center",
     alignItems: "center",
-    marginVertical: 25,
+    marginVertical: 20,
     marginHorizontal: 20,
     borderBottomColor: "#ccc",
     borderBottomWidth: 2,
     elevation: 0.5
   },
-  textStyle: {},
   btnStyle: {
     borderRadius: 18,
     backgroundColor: colors.primaryColor,
@@ -92,7 +97,7 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     alignItems: "center",
     paddingVertical: 13,
-    marginVertical: 10,
+    marginVertical: 7,
     width: 370,
     marginLeft: 15
   }

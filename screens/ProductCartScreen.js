@@ -5,8 +5,10 @@ import PRODUCTS from "../data/dummy-data";
 import { Ionicons } from "@expo/vector-icons";
 import { Card } from "react-native-shadow-cards";
 import colors from "../constants/colors";
+import { useSelector } from "react-redux";
 
-const ProductCartScreen = ({ navigation, route }) => {
+const ProductCartScreen = ({ navigation, route }, item) => {
+  const availableProducts = useSelector(state => state.products.products);
   const { productId } = route.params;
   const selectedProduct = PRODUCTS.find(product => product.id === productId);
   return (
