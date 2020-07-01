@@ -10,7 +10,9 @@ import { useSelector } from "react-redux";
 const ProductCartScreen = ({ navigation, route }, item) => {
   const availableProducts = useSelector(state => state.products.products);
   const { productId } = route.params;
-  const selectedProduct = PRODUCTS.find(product => product.id === productId);
+  const selectedProduct = availableProducts.find(
+    product => product.id === productId
+  );
   return (
     <View style={styles.screen}>
       <Card

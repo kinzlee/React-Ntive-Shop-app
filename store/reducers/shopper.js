@@ -3,7 +3,7 @@ import { TOGGLE_CART } from "../actions/shopper";
 
 const initialState = {
   products: PRODUCTS,
-  productCart: []
+  productCart: {}
 };
 
 const productReducer = (state = initialState, action) => {
