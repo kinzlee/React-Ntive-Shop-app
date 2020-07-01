@@ -5,7 +5,7 @@ import PRODUCTS from "../data/dummy-data";
 import { Card } from "react-native-shadow-cards";
 import colors from "../constants/colors";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleCart } from "../store/actions/shopper";
+import { toggleCart } from "../store/actions/product";
 // import CardView from "react-native-cardview";
 
 const ProductDetailScreen = ({ navigation, route }) => {
