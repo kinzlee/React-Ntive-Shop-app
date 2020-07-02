@@ -16,7 +16,13 @@ const ShopHomeScreen = ({ navigation, route }) => {
     navigation.setOptions({
       headerRight: () => (
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
-          <Item title="add" iconName="ios-cart" onPress={() => {}} />
+          <Item
+            title="add"
+            iconName="ios-cart"
+            onPress={() => {
+              navigation.navigate("Cart");
+            }}
+          />
         </HeaderButtons>
       )
     });

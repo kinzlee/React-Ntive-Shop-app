@@ -5,15 +5,15 @@ import { AppLoading } from "expo";
 import ShopNavigation from "./navigation/ShopNavigation";
 import { combineReducers, createStore } from "redux";
 import productReducer from "./store/reducers/product";
-import { composeWithDevTools } from "redux-devtools-extension";
-// import cartReducer from "./store/reducers/cart";
+import cartReducer from "./store/reducers/cart";
 import { Provider } from "react-redux";
 
 const rootReducer = combineReducers({
-  products: productReducer
+  products: productReducer,
+  cart: cartReducer
 });
 
-const store = createStore(rootReducer, composeWithDevTools());
+const store = createStore(rootReducer);
 
 const fetchFonts = () => {
   return Font.loadAsync({

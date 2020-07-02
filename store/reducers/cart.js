@@ -3,7 +3,7 @@ import CartItem from "../reducers/product";
 
 const initialState = {
   items: {},
-  totalAmount
+  totalAmount: 0
 };
 
 export default (state = initialState, action) => {

@@ -7,14 +7,9 @@ import { Card } from "react-native-shadow-cards";
 import colors from "../constants/colors";
 import { useSelector } from "react-redux";
 
-const ProductCartScreen = ({ navigation, route }, item) => {
-  const availableProducts = useSelector(
-    state => state.products.availableProducts
-  );
-  const { productId } = route.params;
-  const selectedProduct = availableProducts.find(
-    product => product.id === productId
-  );
+const ProductCartScreen = ({ navigation, route }) => {
+  const cartTotalAmount = useSelector(state => state.cart.totalAmount);
+
   return (
     <View style={styles.screen}>
       <Card
@@ -26,7 +21,7 @@ const ProductCartScreen = ({ navigation, route }, item) => {
         }}
       >
         <View style={styles.item}>
-          <CustomText>Total sum ${selectedProduct.price}</CustomText>
+          <CustomText>Total sum ${cartTotalAmount}</CustomText>
           <View style={styles.btn}>
             <TouchableOpacity
               onPress={() => {
@@ -48,7 +43,7 @@ const ProductCartScreen = ({ navigation, route }, item) => {
       >
         <View style={styles.item}>
           <CustomText>
-            {selectedProduct.productName} ${selectedProduct.price}
+            {namito} ${50}
           </CustomText>
           <View style={styles.icon}>
             <TouchableOpacity
