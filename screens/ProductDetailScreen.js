@@ -9,7 +9,9 @@ import { toggleCart } from "../store/actions/product";
 // import CardView from "react-native-cardview";
 
 const ProductDetailScreen = ({ navigation, route }) => {
-  const availableProducts = useSelector(state => state.products.products);
+  const availableProducts = useSelector(
+    state => state.products.availableProducts
+  );
   const { productId } = route.params;
 
   const selectedProducts = availableProducts.find(
@@ -48,13 +50,6 @@ const ProductDetailScreen = ({ navigation, route }) => {
               }}
             >
               <CustomText>Go To Cart</CustomText>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => {
-                dispatch(toggleCart(productId));
-              }}
-            >
-              <CustomText>Add To Cart</CustomText>
             </TouchableOpacity>
           </View>
         </View>
