@@ -16,6 +16,8 @@ export default (state = initialState, action) => {
         productTitle: productTitle,
         sum: sum
       });
+      const productPrice = addedProduct.price;
+      const productTitle = addedProduct.title;
 
       let updatedCartItem;
 
@@ -27,7 +29,12 @@ export default (state = initialState, action) => {
           state.items[addedProduct.id].sum + productPrice
         );
       } else {
-        updatedCartItem = cartItem(1, productPrice, productTitle, productPrice);
+        updatedCartItem = new cartItem(
+          1,
+          productPrice,
+          productTitle,
+          productPrice
+        );
       }
       return {
         ...state,

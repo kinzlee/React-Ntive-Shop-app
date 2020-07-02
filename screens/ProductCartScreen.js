@@ -43,7 +43,7 @@ const ProductCartScreen = ({ navigation, route }) => {
       >
         <View style={styles.item}>
           <CustomText>
-            {namito} ${50}
+            {"nami"} ${50}
           </CustomText>
           <View style={styles.icon}>
             <TouchableOpacity
