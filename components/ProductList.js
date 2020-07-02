@@ -1,9 +1,17 @@
 import React from "react";
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import ProductItem from "../components/ProductItem";
+import { useDispatch } from "react-redux";
+import ActionCart from "../store/actions/cart";
+import { useSelector } from "react-redux";
 
 const ProductList = ({ navigation, listData }) => {
+  const availableProduct = useSelector(
+    state => state.products.availableProducts
+  );
+
   const renderProductItem = itemData => {
+    const dispatch = useDispatch();
     return (
       <ProductItem
         productName={itemData.item.productName}
@@ -27,6 +35,9 @@ const ProductList = ({ navigation, listData }) => {
         price={itemData.item.price}
         firstFill={"Details"}
         lastFill={"Cart"}
+        carter={() => {
+          dispatch(ActionCart.addToCart(itemData.item));
+        }}
       />
     );
   };
@@ -34,7 +45,7 @@ const ProductList = ({ navigation, listData }) => {
   return (
     <View style={styles.list}>
       <FlatList
-        data={listData}
+        data={availableProduct}
         renderItem={renderProductItem}
         style={{ width: "100%" }}
       />

@@ -16,7 +16,8 @@ const ProductItem = ({
   price,
   onSwitchScreen,
   firstFill,
-  lastFill
+  lastFill,
+  carter
 }) => {
   return (
     <View style={styles.productItem}>
@@ -39,7 +40,7 @@ const ProductItem = ({
         </View>
         <CustomText>{price}</CustomText>
         <View>
-          <TouchableOpacity onPress={() => console.log("it works")}>
+          <TouchableOpacity onPress={carter}>
             <CustomText>{lastFill}</CustomText>
           </TouchableOpacity>
         </View>

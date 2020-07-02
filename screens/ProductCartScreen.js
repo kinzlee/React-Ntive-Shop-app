@@ -8,7 +8,9 @@ import colors from "../constants/colors";
 import { useSelector } from "react-redux";
 
 const ProductCartScreen = ({ navigation, route }, item) => {
-  const availableProducts = useSelector(state => state.products.products);
+  const availableProducts = useSelector(
+    state => state.products.availableProducts
+  );
   const { productId } = route.params;
   const selectedProduct = availableProducts.find(
     product => product.id === productId
@@ -35,6 +37,15 @@ const ProductCartScreen = ({ navigation, route }, item) => {
             </TouchableOpacity>
           </View>
         </View>
+      </Card>
+      <Card
+        style={{
+          padding: 15,
+          marginVertical: 50,
+          backgroundColor: colors.secondaryColor,
+          borderRadius: 15
+        }}
+      >
         <View style={styles.item}>
           <CustomText>
             {selectedProduct.productName} ${selectedProduct.price}
