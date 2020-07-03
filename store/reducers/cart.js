@@ -1,5 +1,4 @@
 import { ADD_TO_CART } from "../actions/cart";
-import CartItem from "../reducers/product";
 
 const initialState = {
   items: {},
@@ -11,35 +10,30 @@ export default (state = initialState, action) => {
     case ADD_TO_CART:
       const addedProduct = action.product;
       const cartItem = (quantity, productPrice, productTitle, sum) => ({
-        quantity: quantity,
-        productPrice: productPrice,
-        productTitle: productTitle,
-        sum: sum
+        quantity,
+        productPrice,
+        productTitle,
+        sum
       });
-      const productPrice = addedProduct.price;
-      const productTitle = addedProduct.title;
+      const prodPrice = addedProduct.price;
+      const prodTitle = addedProduct.title;
 
       let updatedCartItem;
 
       if (state.items[addedProduct.id]) {
         updatedCartItem = cartItem(
           state.items[addedProduct.id].quantity + 1,
-          (productPrice = addedProduct.price),
-          (productTitle = addedProduct.title),
-          state.items[addedProduct.id].sum + productPrice
+          prodPrice,
+          prodTitle,
+          state.items[addedProduct.id].sum + prodPrice
         );
       } else {
-        updatedCartItem = new cartItem(
-          1,
-          productPrice,
-          productTitle,
-          productPrice
-        );
+        updatedCartItem = cartItem(1, prodPrice, prodTitle, prodPrice);
       }
       return {
         ...state,
         items: { ...state.items, [addedProduct.id]: updatedCartItem },
-        totalAmount: state.totalAmount.productPrice
+        totalAmount: state.totalAmount + prodPrice
       };
   }
   return state;
