@@ -10,6 +10,21 @@ import { useSelector } from "react-redux";
 const ProductCartScreen = ({ navigation, route }) => {
   const cartTotalAmount = useSelector(state => state.cart.totalAmount);
 
+  const cartItems = useSelector((state) => {
+    transformedCartItems = [];
+    const key;
+    state.cart.item.map((key) => {
+      transformedCartItems.push({
+        productId: key,
+        productTitle: state.cart.items[key].productTitle,
+        productPrice: state.cart.items[key].productPrice,
+        quantity: state.cart.items[key].quantity,
+        sum: state.cart.items[key].sum
+      })
+    })
+    return transformedCartItems;
+  })
+
   return (
     <View style={styles.screen}>
       <Card
@@ -21,7 +36,7 @@ const ProductCartScreen = ({ navigation, route }) => {
         }}
       >
         <View style={styles.item}>
-          <CustomText>Total sum ${cartTotalAmount}</CustomText>
+          <CustomText>Total sum ${cartTotalAmount.toFixed(2)}</CustomText>
           <View style={styles.btn}>
             <TouchableOpacity
               onPress={() => {
