@@ -36,15 +36,15 @@ export default (state = initialState, action) => {
         totalAmount: state.totalAmount + prodPrice
       };
     case DELETE_FROM_CART:
-      const selectesCartItem = state.items[action.pid];
-      const currentQty = selectesCartItem.quantity;
+      const selectedCartItem = state.items[action.pid];
+      const currentQty = selectedCartItem.quantity;
       let updatedCartItems;
       if (currentQty > 1) {
         const updatedCartItem = cartItem(
-          selectesCartItem.quantity - 1,
-          selectesCartItem.productPrice,
-          selectesCartItem.productTitle,
-          selectesCartItem.sum - selectesCartItem.productPrice
+          selectedCartItem.quantity - 1,
+          selectedCartItem.productPrice,
+          selectedCartItem.productTitle,
+          selectedCartItem.sum - selectedCartItem.productPrice
         );
         updatedCartItems = { ...state.items, [action.pid]: updatedCartItem };
       } else {
@@ -54,7 +54,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         items: updatedCartItems,
-        totalAmount: state.productPrice - updatedCartItem.productPrice
+        totalAmount: state.productPrice - selectedCartItem.productPrice
       };
   }
   return state;
