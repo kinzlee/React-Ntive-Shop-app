@@ -46,10 +46,10 @@ export default (state = initialState, action) => {
           selectesCartItem.productTitle,
           selectesCartItem.sum - selectesCartItem.productPrice
         );
-        updatedCartItem = { ...state.items, [action.pid]: updatedCartItem };
+        updatedCartItems = { ...state.items, [action.pid]: updatedCartItem };
       } else {
-        updatedCartItem = { ...state.items };
-        delete updatedCartItem[action.pid];
+        updatedCartItems = { ...state.items };
+        delete updatedCartItems[action.pid];
       }
       return {
         ...state,
