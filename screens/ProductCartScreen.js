@@ -19,29 +19,13 @@ const ProductCartScreen = ({ navigation, route }) => {
   const cartTotalAmount = useSelector(state => state.cart.totalAmount);
 
   const cartItems = useSelector(state => {
-    const transformedCartItems = [];
-    for (const key in state.cart.items) {
-      transformedCartItems.push({
-        productId: key,
-        productTitle: state.cart.items[key].productTitle,
-        productPrice: state.cart.items[key].productPrice,
-        quantity: state.cart.items[key].quantity,
-        sum: state.cart.items[key].sum
-      });
-    }
-    return transformedCartItems;
-
-    //   const tunik = (key) => {
-    //     transformedCartItems.push({
-    //       productId: key,
-    //       productTitle: state.cart.items[key].productTitle,
-    //       productPrice: state.cart.items[key].productPrice,
-    //       quantity: state.cart.items[key].quantity,
-    //       sum: state.cart.items[key].sum
-    //     });
-    //   };
-    //   const shower = transformedCartItems.forEach(tunik);
-    //   return shower;
+    return Object.keys(state.cart.items).map(key => ({
+      productId: key,
+      productPrice: state.cart.items[key].productPrice,
+      productTitle: state.cart.items[key].productTitle,
+      quantity: state.cart.items[key].quantity,
+      sum: state.cart.items[key].sum
+    }));
   });
 
   return (
@@ -66,10 +50,17 @@ const ProductCartScreen = ({ navigation, route }) => {
           </View>
         </View>
       </Card>
-      <CartItem
-        onDelete={() => {
-          console.log("works");
-        }}
+      <FlatList
+        data={cartItems}
+        keyExtractor={item => item.productId}
+        renderItem={itemData => (
+          <CartItem
+            quantity={itemData.item.quantity}
+            title={itemData.item.productTitle}
+            amount={itemData.item.sum}
+            onDelete={() => {}}
+          />
+        )}
       />
     </View>
   );

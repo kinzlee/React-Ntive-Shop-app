@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
         sum
       });
       const prodPrice = addedProduct.price;
-      const prodTitle = addedProduct.title;
+      const prodTitle = addedProduct.productName;
 
       let updatedCartItem;
 
