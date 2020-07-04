@@ -6,15 +6,16 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
+  const cartItem = (quantity, productPrice, productTitle, sum) => ({
+    quantity,
+    productPrice,
+    productTitle,
+    sum
+  });
   switch (action.type) {
     case ADD_TO_CART:
       const addedProduct = action.product;
-      const cartItem = (quantity, productPrice, productTitle, sum) => ({
-        quantity,
-        productPrice,
-        productTitle,
-        sum
-      });
+
       const prodPrice = addedProduct.price;
       const prodTitle = addedProduct.productName;
 
@@ -54,7 +55,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         items: updatedCartItems,
-        totalAmount: state.productPrice - selectedCartItem.productPrice
+        totalAmount: state.totalAmount - selectedCartItem.productPrice
       };
   }
   return state;
