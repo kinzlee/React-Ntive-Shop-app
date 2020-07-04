@@ -4,12 +4,9 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  FlatList,
-  Button
+  FlatList
 } from "react-native";
 import CustomText from "../components/CustomText";
-import PRODUCTS from "../data/dummy-data";
-import { Ionicons } from "@expo/vector-icons";
 import { Card } from "react-native-shadow-cards";
 import colors from "../constants/colors";
 import { useSelector, useDispatch } from "react-redux";
@@ -22,7 +19,6 @@ const ProductCartScreen = ({ navigation, route }) => {
   const cartItems = useSelector(state => {
     return Object.keys(state.cart.items).map(key => ({
       productId: key,
-      // productId: state.cart.items[key].id,
       productPrice: state.cart.items[key].productPrice,
       productTitle: state.cart.items[key].productTitle,
       quantity: state.cart.items[key].quantity,
