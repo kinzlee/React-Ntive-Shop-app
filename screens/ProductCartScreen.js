@@ -12,8 +12,9 @@ import PRODUCTS from "../data/dummy-data";
 import { Ionicons } from "@expo/vector-icons";
 import { Card } from "react-native-shadow-cards";
 import colors from "../constants/colors";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import CartItem from "../components/CartItem";
+import * as actionCart from "../store/actions/cart";
 
 const ProductCartScreen = ({ navigation, route }) => {
   const cartTotalAmount = useSelector(state => state.cart.totalAmount);
@@ -21,12 +22,15 @@ const ProductCartScreen = ({ navigation, route }) => {
   const cartItems = useSelector(state => {
     return Object.keys(state.cart.items).map(key => ({
       productId: key,
+      // productId: state.cart.items[key].id,
       productPrice: state.cart.items[key].productPrice,
       productTitle: state.cart.items[key].productTitle,
       quantity: state.cart.items[key].quantity,
       sum: state.cart.items[key].sum
     }));
   });
+
+  const dispatch = useDispatch();
 
   return (
     <View style={styles.screen}>
@@ -58,7 +62,9 @@ const ProductCartScreen = ({ navigation, route }) => {
             quantity={itemData.item.quantity}
             title={itemData.item.productTitle}
             amount={itemData.item.sum}
-            onDelete={() => {}}
+            onDelete={() => {
+              dispatch(actionCart.deleteFromCart(itemData.item.productId));
+            }}
           />
         )}
       />
