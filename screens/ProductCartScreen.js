@@ -20,7 +20,7 @@ const ProductCartScreen = ({ navigation, route }) => {
 
   const cartItems = useSelector(state => {
     const transformedCartItems = [];
-    const tunik = key => {
+    for (const key in state.cart.items) {
       transformedCartItems.push({
         productId: key,
         productTitle: state.cart.items[key].productTitle,
@@ -28,9 +28,20 @@ const ProductCartScreen = ({ navigation, route }) => {
         quantity: state.cart.items[key].quantity,
         sum: state.cart.items[key].sum
       });
-    };
-    const shower = transformedCartItems.map(tunik);
-    return shower;
+    }
+    return transformedCartItems;
+
+    //   const tunik = (key) => {
+    //     transformedCartItems.push({
+    //       productId: key,
+    //       productTitle: state.cart.items[key].productTitle,
+    //       productPrice: state.cart.items[key].productPrice,
+    //       quantity: state.cart.items[key].quantity,
+    //       sum: state.cart.items[key].sum
+    //     });
+    //   };
+    //   const shower = transformedCartItems.forEach(tunik);
+    //   return shower;
   });
 
   return (
