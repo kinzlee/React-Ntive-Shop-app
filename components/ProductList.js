@@ -33,7 +33,7 @@ const ProductList = ({ navigation, listData }) => {
         firstFill={"Details"}
         lastFill={"Cart"}
         carter={() => {
-          console.log(dispatch(ActionCart.addToCart(itemData.item)));
+          dispatch(ActionCart.addToCart(itemData.item));
         }}
       />
     );

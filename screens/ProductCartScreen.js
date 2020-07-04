@@ -1,29 +1,37 @@
 import React from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  FlatList,
+  Button
+} from "react-native";
 import CustomText from "../components/CustomText";
 import PRODUCTS from "../data/dummy-data";
 import { Ionicons } from "@expo/vector-icons";
 import { Card } from "react-native-shadow-cards";
 import colors from "../constants/colors";
 import { useSelector } from "react-redux";
+import CartItem from "../components/CartItem";
 
 const ProductCartScreen = ({ navigation, route }) => {
   const cartTotalAmount = useSelector(state => state.cart.totalAmount);
 
-  const cartItems = useSelector((state) => {
-    transformedCartItems = [];
-    const key;
-    state.cart.item.map((key) => {
+  const cartItems = useSelector(state => {
+    const transformedCartItems = [];
+    const tunik = key => {
       transformedCartItems.push({
         productId: key,
         productTitle: state.cart.items[key].productTitle,
         productPrice: state.cart.items[key].productPrice,
         quantity: state.cart.items[key].quantity,
         sum: state.cart.items[key].sum
-      })
-    })
-    return transformedCartItems;
-  })
+      });
+    };
+    const shower = transformedCartItems.map(tunik);
+    return shower;
+  });
 
   return (
     <View style={styles.screen}>
@@ -36,45 +44,22 @@ const ProductCartScreen = ({ navigation, route }) => {
         }}
       >
         <View style={styles.item}>
-          <CustomText>Total sum ${cartTotalAmount.toFixed(2)}</CustomText>
+          <CustomText>
+            Total sum:{" "}
+            <Text style={styles.amount}> ${cartTotalAmount.toFixed(2)}</Text>
+          </CustomText>
           <View style={styles.btn}>
-            <TouchableOpacity
-              onPress={() => {
-                console.log("this orders the item");
-              }}
-            >
+            <TouchableOpacity disabled={cartItems.length === 0}>
               <Text style={{ color: "#fff" }}>Order</Text>
             </TouchableOpacity>
           </View>
         </View>
       </Card>
-      <Card
-        style={{
-          padding: 15,
-          marginVertical: 50,
-          backgroundColor: colors.secondaryColor,
-          borderRadius: 15
+      <CartItem
+        onDelete={() => {
+          console.log("works");
         }}
-      >
-        <View style={styles.item}>
-          <CustomText>
-            {"nami"} ${50}
-          </CustomText>
-          <View style={styles.icon}>
-            <TouchableOpacity
-              onPress={() => {
-                console.log("this deletes the item");
-              }}
-            >
-              <Ionicons
-                name="ios-trash"
-                size={25}
-                color={colors.primaryColor}
-              ></Ionicons>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Card>
+      />
     </View>
   );
 };
@@ -106,6 +91,10 @@ const styles = StyleSheet.create({
   icon: {
     paddingHorizontal: 8,
     marginHorizontal: 5
+  },
+  amount: {
+    color: colors.primaryColor,
+    fontSize: 18
   }
 });
 
