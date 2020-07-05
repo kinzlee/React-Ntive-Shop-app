@@ -12,6 +12,7 @@ import colors from "../constants/colors";
 import { useSelector, useDispatch } from "react-redux";
 import CartItem from "../components/CartItem";
 import * as actionCart from "../store/actions/cart";
+import * as actionOrders from "../store/actions/orders";
 
 const ProductCartScreen = ({ navigation, route }) => {
   const cartTotalAmount = useSelector(state => state.cart.totalAmount);
@@ -44,7 +45,12 @@ const ProductCartScreen = ({ navigation, route }) => {
             <Text style={styles.amount}> ${cartTotalAmount.toFixed(2)}</Text>
           </CustomText>
           <View style={styles.btn}>
-            <TouchableOpacity disabled={cartItems.length === 0}>
+            <TouchableOpacity
+              disabled={cartItems.length === 0}
+              onPress={() => {
+                dispatch(actionOrders.addOrder(cartItems, cartTotalAmount));
+              }}
+            >
               <Text style={{ color: "#fff" }}>Order</Text>
             </TouchableOpacity>
           </View>
