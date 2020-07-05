@@ -1,19 +1,25 @@
-import {ADD_ORDER} from '../actions/orders';
+import { ADD_ORDER } from "../actions/orders";
 
 const initialState = {
-    orders: []
+  orders: []
 };
 
-export default (state=initialState, action) => {
-    const order = (id, items, totalAmount, date) => ({
-        id,
-        items,
-        totalAmount,
-        dates
-    })
-    switch(action.type) {
+export default (state = initialState, action) => {
+  const order = (id, items, totalAmount, date) => ({
+    id,
+    items,
+    totalAmount,
+    date
+  });
+  switch (action.type) {
+    case ADD_ORDER:
+      const newOrder = order(
+        new Date().toString(),
+        action.orderData.items,
+        action.orderData.amount,
+        new Date()
+      );
+  }
 
-    }
-
-    return state;
-}
+  return state;
+};
