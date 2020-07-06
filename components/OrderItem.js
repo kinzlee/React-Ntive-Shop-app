@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import CustomText from "../components/CustomText";
 import CartItem from "../components/CartItem";
+import colors from "../constants/colors";
 
 const OrderItem = ({ amount, date, items }) => {
   const [toggleView, setToggleView] = useState(false);
@@ -51,13 +52,16 @@ const styles = StyleSheet.create({
   },
   itemsContainer: {
     flexDirection: "column",
-    marginVertical: 10,
-    paddingVertical: 10,
+    marginVertical: 16,
+    paddingVertical: 15,
     borderColor: "#ccc",
     borderWidth: 2,
     marginHorizontal: 10,
     justifyContent: "space-between",
-    paddingHorizontal: 28
+    paddingHorizontal: 28,
+    backgroundColor: colors.primaryColor,
+    borderRadius: 15,
+    elevation: 5
   },
   textItem: {
     flexDirection: "row",

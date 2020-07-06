@@ -1,10 +1,10 @@
 import React from "react";
-import { FlatList } from "react-native";
-import { useSelectors } from "react-redux";
+import { View, Text, FlatList } from "react-native";
+import { useSelector } from "react-redux";
 import OrderItem from "../components/OrderItem";
 
 const ProductOrdersScreen = () => {
-  const orders = useSelectors(state => state.orders.orders);
+  const orders = useSelector(state => state.orders.orders);
 
   return (
     <FlatList
