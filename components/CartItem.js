@@ -9,7 +9,7 @@ const CartItem = ({ onDelete, quantity, title, amount, deletable }) => {
   return (
     <Card
       style={{
-        padding: 10,
+        padding: 7,
         marginVertical: 30,
         backgroundColor: colors.secondaryColor,
         borderRadius: 15,
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     borderBottomColor: "#ccc",
     borderBottomWidth: 2,
-    marginVertical: 20,
+    marginVertical: 15,
     flexDirection: "row",
     justifyContent: "space-between"
   },

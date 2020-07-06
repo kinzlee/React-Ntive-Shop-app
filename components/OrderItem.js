@@ -29,7 +29,9 @@ const OrderItem = ({ amount, date, items }) => {
         <View style={styles.btn}>
           <TouchableOpacity onPress={set => showHideComponent(set)}>
             <View style={styles.btnStyle}>
-              <Text style={styles.btnText}>More</Text>
+              <Text style={styles.btnText}>
+                {toggleView ? "Hide Details" : "More Details"}
+              </Text>
             </View>
           </TouchableOpacity>
         </View>

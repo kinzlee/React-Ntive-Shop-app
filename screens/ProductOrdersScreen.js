@@ -12,7 +12,7 @@ const ProductOrdersScreen = () => {
       data={orders}
       renderItem={itemData => (
         <OrderItem
-          amount={itemData.item.totalAmount}
+          amount={itemData.item.totalAmount.toFixed(2)}
           date={itemData.item.readable}
           items={itemData.item.items}
         />
