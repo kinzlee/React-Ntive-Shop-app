@@ -5,12 +5,17 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  const order = (id, items, totalAmount, date) => ({
-    id,
-    items,
-    totalAmount,
-    date
-  });
+  const order = (id, items, totalAmount, date) => (
+    {
+      id,
+      items,
+      totalAmount,
+      date
+    },
+    {
+      get readable() {}
+    }
+  );
   switch (action.type) {
     case ADD_ORDER:
       const newOrder = order(

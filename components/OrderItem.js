@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import CustomText from "../components/CustomText";
+import CartItem from "../components/CartItem";
 
-const OrderItem = ({ amount, date }) => {
+const OrderItem = ({ amount, date, items }) => {
   const [toggleView, setToggleView] = useState(false);
 
   const showHideComponent = () => {
@@ -28,11 +29,13 @@ const OrderItem = ({ amount, date }) => {
       </View>
       {toggleView ? (
         <View style={styles.extendedContainer}>
-          <Text style={styles.textStyle}>{selectedProduct.productName}</Text>
-          <View style={styles.inExtContain}>
-            <CustomText>{selectedProduct.productName}</CustomText>
-            <CustomText> ${selectedProduct.price}</CustomText>
-          </View>
+          {items.map(cartItem => (
+            <CartItem
+              quantity={cartItem.quantity}
+              amount={cartItem.sum}
+              title={cartItem.productTitle}
+            />
+          ))}
         </View>
       ) : null}
     </View>
