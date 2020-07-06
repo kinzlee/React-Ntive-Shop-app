@@ -1,5 +1,6 @@
 import { ADD_TO_CART, DELETE_FROM_CART } from "../actions/cart";
 import { ADD_ORDER } from "../actions/orders";
+import { DELETE_PRODUCT } from "../actions/product";
 
 const initialState = {
   items: {},
@@ -59,6 +60,8 @@ export default (state = initialState, action) => {
       };
     case ADD_ORDER:
       return initialState;
+      case DELETE_PRODUCT:
+        if(!state )
   }
   return state;
 };
