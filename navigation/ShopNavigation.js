@@ -142,21 +142,42 @@ const MyDrawer = () => {
           name="Shop"
           component={ShopNavigation}
           options={{
-            drawerLabel: "Shop"
+            drawerLabel: "Shop",
+            drawerIcon: drawerConfig => (
+              <Ionicons
+                name={"ios-list"}
+                size={24}
+                color={drawerConfig.color}
+              />
+            )
           }}
         />
         <Drawer.Screen
           name="ProductOrders"
           component={OrderNavigator}
           options={{
-            drawerLabel: "Orders"
+            drawerLabel: "Orders",
+            drawerIcon: drawerConfig => (
+              <Ionicons
+                name={"ios-list"}
+                size={24}
+                color={drawerConfig.color}
+              />
+            )
           }}
         />
         <Drawer.Screen
           name="ProductManager"
           component={ManagerNavigator}
           options={{
-            drawerLabel: "Manage Product"
+            drawerLabel: "Manage Product",
+            drawerIcon: drawerConfig => (
+              <Ionicons
+                name={"ios-list"}
+                size={24}
+                color={drawerConfig.color}
+              />
+            )
           }}
         />
       </Drawer.Navigator>
