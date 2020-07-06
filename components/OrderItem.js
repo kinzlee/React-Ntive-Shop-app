@@ -90,21 +90,16 @@ const styles = StyleSheet.create({
   },
   extendedContainer: {
     flexDirection: "column",
-    borderBottomColor: "#000",
-    borderLeftColor: "#000",
-    borderRightColor: "#000",
+    borderBottomColor: colors.primaryColor,
     borderBottomWidth: 2,
-    borderRightWidth: 2,
-    borderLeftWidth: 2,
-    paddingHorizontal: 40,
-    paddingVertical: 20,
-    elevation: 3,
+    paddingHorizontal: 20,
+    paddingVertical: 5,
     justifyContent: "space-between"
   },
   inExtContain: {
     flexDirection: "row",
     justifyContent: "space-around",
-    marginHorizontal: 30
+    marginHorizontal: 10
   },
   textStyle: {
     fontFamily: "Open-Sans-Bold",

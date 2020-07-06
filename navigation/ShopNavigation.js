@@ -16,19 +16,18 @@ import EditProductScreen from "../screens/EditProductScreen";
 import { RectButton } from "react-native-gesture-handler";
 import colors from "../constants/colors";
 
+const headerCustom = {
+  headerStyle: {
+    backgroundColor: colors.secondaryColor
+  },
+  headerTintColor: "#fff"
+};
+
 const Stack = createStackNavigator();
 
 ShopNavigation = () => {
   return (
-    <Stack.Navigator
-      initialRouteName="Shop"
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: colors.secondaryColor
-        },
-        headerTintColor: "#fff"
-      }}
-    >
+    <Stack.Navigator initialRouteName="Shop" screenOptions={headerCustom}>
       <Stack.Screen
         name="Shop"
         component={ShopHomeScreen}
@@ -73,7 +72,7 @@ ShopNavigation = () => {
 
 const OrderNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={headerCustom}>
       <Stack.Screen
         name="ProductOrders"
         component={ProductOrdersScreen}
@@ -100,7 +99,7 @@ const OrderNavigator = () => {
 
 const ManagerNavigator = () => {
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={headerCustom}>
       <Stack.Screen
         name="ProductManager"
         component={ProductManagerScreen}
@@ -144,11 +143,7 @@ const MyDrawer = () => {
           options={{
             drawerLabel: "Shop",
             drawerIcon: drawerConfig => (
-              <Ionicons
-                name={"ios-list"}
-                size={24}
-                color={drawerConfig.color}
-              />
+              <Ionicons name={"md-cart"} size={24} color={drawerConfig.color} />
             )
           }}
         />
@@ -170,10 +165,10 @@ const MyDrawer = () => {
           name="ProductManager"
           component={ManagerNavigator}
           options={{
-            drawerLabel: "Manage Product",
+            drawerLabel: "Admin",
             drawerIcon: drawerConfig => (
               <Ionicons
-                name={"ios-list"}
+                name={"ios-create"}
                 size={24}
                 color={drawerConfig.color}
               />
