@@ -1,21 +1,23 @@
 import { ADD_ORDER } from "../actions/orders";
+import * as moment from "moment";
 
 const initialState = {
   orders: []
 };
 
 export default (state = initialState, action) => {
-  const order = (id, items, totalAmount, date) => (
-    {
-      id,
-      items,
-      totalAmount,
-      date
-    },
-    {
-      get readable() {}
+  const order = (id, items, totalAmount, date) => ({
+    id,
+    items,
+    totalAmount,
+    date
+  });
+
+  Object.defineProperty(order, readable, {
+    get: function() {
+      return moment(date).format("MMM Do YYY, hh:mm");
     }
-  );
+  });
   switch (action.type) {
     case ADD_ORDER:
       const newOrder = order(

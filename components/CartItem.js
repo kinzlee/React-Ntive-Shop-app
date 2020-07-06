@@ -5,7 +5,7 @@ import colors from "../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
 import { Card } from "react-native-shadow-cards";
 
-const CartItem = ({ onDelete, quantity, title, amount }) => {
+const CartItem = ({ onDelete, quantity, title, amount, deletable }) => {
   return (
     <Card
       style={{
@@ -21,13 +21,15 @@ const CartItem = ({ onDelete, quantity, title, amount }) => {
         <CustomText>{title}</CustomText>
         <View style={styles.icon}>
           <CustomText>$ {amount.toFixed(2)}</CustomText>
-          <TouchableOpacity onPress={onDelete} style={styles.delete}>
-            <Ionicons
-              name="ios-trash"
-              size={25}
-              color={colors.primaryColor}
-            ></Ionicons>
-          </TouchableOpacity>
+          {deletable && (
+            <TouchableOpacity onPress={onDelete} style={styles.delete}>
+              <Ionicons
+                name="ios-trash"
+                size={25}
+                color={colors.primaryColor}
+              ></Ionicons>
+            </TouchableOpacity>
+          )}
         </View>
       </View>
     </Card>
