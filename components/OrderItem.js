@@ -18,13 +18,19 @@ const OrderItem = ({ amount, date, items }) => {
   return (
     <View style={styles.screen}>
       <View style={styles.itemsContainer}>
-        <View style={styles.textItem}>
-          <CustomText>Price: $ {amount}</CustomText>
-          <CustomText> {date}</CustomText>
+        <View style={styles.textItemContainer}>
+          <View style={styles.textItem}>
+            <CustomText>Price: $ {amount}</CustomText>
+          </View>
+          <View style={styles.dateStyle}>
+            <Text style={styles.text}> {date}</Text>
+          </View>
         </View>
         <View style={styles.btn}>
           <TouchableOpacity onPress={set => showHideComponent(set)}>
-            <Text>More</Text>
+            <View style={styles.btnStyle}>
+              <Text style={styles.btnText}>More</Text>
+            </View>
           </TouchableOpacity>
         </View>
       </View>
@@ -32,6 +38,7 @@ const OrderItem = ({ amount, date, items }) => {
         <View style={styles.extendedContainer}>
           {items.map(cartItem => (
             <CartItem
+              key={cartItem.productId}
               quantity={cartItem.quantity}
               amount={cartItem.sum}
               title={cartItem.productTitle}
@@ -53,7 +60,7 @@ const styles = StyleSheet.create({
   itemsContainer: {
     flexDirection: "column",
     marginVertical: 16,
-    paddingVertical: 15,
+    paddingVertical: 10,
     borderColor: "#ccc",
     borderWidth: 2,
     marginHorizontal: 10,
@@ -61,14 +68,23 @@ const styles = StyleSheet.create({
     paddingHorizontal: 28,
     backgroundColor: colors.primaryColor,
     borderRadius: 15,
-    elevation: 5
+    elevation: 5,
+    alignItems: "center"
+  },
+  textItemContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderBottomColor: "#ccc",
+    borderBottomWidth: 1
   },
   textItem: {
     flexDirection: "row",
-    borderBottomColor: "#ccc",
-    borderBottomWidth: 1,
-    padding: 5,
-    paddingHorizontal: 10
+    padding: 7,
+    paddingVertical: 7,
+    paddingHorizontal: 20,
+    paddingLeft: 15
   },
   extendedContainer: {
     flexDirection: "column",
@@ -94,9 +110,29 @@ const styles = StyleSheet.create({
     color: "red",
     textAlign: "center"
   },
+  dateStyle: {
+    paddingVertical: 12,
+    paddingRight: 7
+  },
+  text: {
+    color: "#fff",
+    fontSize: 14,
+    fontFamily: "Open-Sans"
+  },
   btn: {
+    paddingVertical: 7
+  },
+  btnStyle: {
     alignItems: "center",
-    justifyContent: "center"
+    justifyContent: "center",
+    backgroundColor: "#fff",
+    borderColor: "#fff",
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 3
+  },
+  btnText: {
+    color: colors.primaryColor
   }
 });
 

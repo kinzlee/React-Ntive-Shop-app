@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
     totalAmount,
     date,
     get readable() {
-      return moment(date).format("MMMM Do YYY, hh:mm");
+      return moment(date).format("MMM Do YYY, hh:mm");
     }
   });
   switch (action.type) {
