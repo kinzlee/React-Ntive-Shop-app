@@ -1,8 +1,17 @@
 import React from "react";
-import { View, StyleSheet, FlatList } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Text,
+  FlatList,
+  TouchableOpacity
+} from "react-native";
 import ProductItem from "../components/ProductItem";
+import { useDispatch } from "react-redux";
+import * as actionProducts from "../store/actions/product";
 
 const ProductManagerList = ({ navigation, listData }) => {
+  const dispatch = useDispatch();
   const renderProductManagerItem = itemData => {
     return (
       <ProductItem
@@ -28,7 +37,15 @@ const ProductManagerList = ({ navigation, listData }) => {
         image={itemData.item.imageUrl}
         price={itemData.item.price}
         firstFill={"Edit"}
-        lastFill={"Delete"}
+        lastFill={
+          <TouchableOpacity
+            onPress={() => {
+              dispatch(actionProducts.deleteProduct(itemData.item.id));
+            }}
+          >
+            <Text>Delete</Text>
+          </TouchableOpacity>
+        }
       />
     );
   };

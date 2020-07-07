@@ -4,9 +4,10 @@ import PRODUCTS from "../data/dummy-data";
 import ProductManagerList from "../components/ProductMangerList";
 import HeaderButton from "../components/HeaderButtton";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import Product from "../models/Product";
+import { useSelector } from "react-redux";
 
 const ProductManagerScreen = ({ navigation, route }) => {
+  const userProducts = useSelector(state => state.products.userProducts);
   // const selectedProducte = PRODUCTS.find(product => product.id === productId);
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -29,7 +30,7 @@ const ProductManagerScreen = ({ navigation, route }) => {
     });
   }, [navigation]);
 
-  return <ProductManagerList listData={PRODUCTS} navigation={navigation} />;
+  return <ProductManagerList listData={userProducts} navigation={navigation} />;
 };
 
 const styles = StyleSheet.create({

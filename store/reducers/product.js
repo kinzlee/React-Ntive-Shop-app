@@ -4,7 +4,7 @@ import Product from "../../models/Product";
 
 const initialState = {
   availableProducts: PRODUCTS,
-  userProducts: PRODUCTS.filter(prod => prod.ownerId === "u1")
+  userProducts: PRODUCTS.filter(prod => prod.userId === "u1")
 };
 
 export default (state = initialState, action) => {
