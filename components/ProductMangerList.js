@@ -10,7 +10,7 @@ import ProductItem from "../components/ProductItem";
 import { useDispatch } from "react-redux";
 import * as actionProducts from "../store/actions/product";
 
-const ProductManagerList = ({ navigation, listData }) => {
+const ProductManagerList = ({ navigation, listData, item }) => {
   const dispatch = useDispatch();
   const renderProductManagerItem = itemData => {
     return (
@@ -37,15 +37,10 @@ const ProductManagerList = ({ navigation, listData }) => {
         image={itemData.item.imageUrl}
         price={itemData.item.price}
         firstFill={"Edit"}
-        lastFill={
-          <TouchableOpacity
-            onPress={() => {
-              dispatch(actionProducts.deleteProduct(itemData.item.id));
-            }}
-          >
-            <Text>Delete</Text>
-          </TouchableOpacity>
-        }
+        carter={() => {
+          dispatch(actionProducts.deleteProduct(itemData.item.id));
+        }}
+        lastFill={"delete"}
       />
     );
   };
@@ -54,6 +49,7 @@ const ProductManagerList = ({ navigation, listData }) => {
     <View style={styles.list}>
       <FlatList
         data={listData}
+        keyExtractor={item}
         renderItem={renderProductManagerItem}
         style={{ width: "100%" }}
       />

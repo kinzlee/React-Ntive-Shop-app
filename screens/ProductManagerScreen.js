@@ -30,7 +30,13 @@ const ProductManagerScreen = ({ navigation, route }) => {
     });
   }, [navigation]);
 
-  return <ProductManagerList listData={userProducts} navigation={navigation} />;
+  return (
+    <ProductManagerList
+      listData={userProducts}
+      navigation={navigation}
+      item={item => item.id}
+    />
+  );
 };
 
 const styles = StyleSheet.create({

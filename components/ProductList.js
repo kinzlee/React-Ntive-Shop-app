@@ -15,7 +15,7 @@ const ProductList = ({ navigation, listData }) => {
         onSelectProduct={() => {
           navigation.navigate("Product Detail", {
             productId: itemData.item.id,
-            userId: itemData.item.userId,
+            // userId: itemData.item.userId,
             productName: itemData.item.productName,
             porductDescription: itemData.item.porductDescription
           });
@@ -23,7 +23,7 @@ const ProductList = ({ navigation, listData }) => {
         onSwitchScreen={() => {
           navigation.navigate("Product Detail", {
             productId: itemData.item.id,
-            userId: itemData.item.userId,
+            // userId: itemData.item.userId,
             productName: itemData.item.productName,
             porductDescription: itemData.item.porductDescription
           });
