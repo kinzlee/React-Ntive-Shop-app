@@ -17,12 +17,7 @@ const ProductManagerScreen = ({ navigation, route }) => {
             title="add"
             iconName="ios-add-circle"
             onPress={() => {
-              navigation.navigate("EditProduct", {
-                productName: id.productName,
-                price: id.price,
-                productDescription: id.productDescription,
-                imageUrl: id.imageUrl
-              });
+              navigation.navigate("EditProduct");
             }}
           />
         </HeaderButtons>

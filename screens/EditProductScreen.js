@@ -1,15 +1,11 @@
 import React from "react";
-import { View, Text, StyleSheet, TextInput } from "react-native";
+import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
 import CustomText from "../components/CustomText";
 import PRODUCTS from "../data/dummy-data";
 import HeaderButton from "../components/HeaderButtton";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 
 const EditProductScreen = ({ navigation, route }) => {
-  const { productId } = route.params;
-
-  const selectedProduct = PRODUCTS.find(product => product.id === productId);
-
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -28,36 +24,42 @@ const EditProductScreen = ({ navigation, route }) => {
 
   return (
     <View style={styles.screen}>
-      <View style={styles.itemContainer}>
-        <Text style={styles.headerInputText}>Title: </Text>
-        <View style={styles.itemInput}>
+      <ScrollView>
+        <View style={styles.itemContainer}>
+          <View style={styles.itemInput}>
+            <CustomText>TITLE</CustomText>
+            <TextInput
+              placeholder="Title"
+              style={styles.textStyle}
+              defaultValue={"productName"}
+            />
+          </View>
+        </View>
+        <View style={styles.description}>
+          <CustomText>PRICE</CustomText>
           <TextInput
-            placeholder="Title"
+            placeholder="Price"
             style={styles.textStyle}
-            defaultValue={selectedProduct.productName}
+            defaultValue={"Price"}
           />
         </View>
-      </View>
-      <View style={styles.itemContainer}>
-        <Text style={styles.headerText}>Price: </Text>
-        <View style={styles.item}>
-          <CustomText>{selectedProduct.price}</CustomText>
+        <View style={styles.description}>
+          <CustomText>DESCRIPTION</CustomText>
+          <TextInput
+            placeholder="Description"
+            style={styles.textStyle}
+            defaultValue={"productDescription"}
+          />
         </View>
-      </View>
-      <View style={styles.description}>
-        <TextInput
-          placeholder="Description"
-          style={styles.textStyle}
-          defaultValue={selectedProduct.productDescription}
-        />
-      </View>
-      <View style={styles.uri}>
-        <TextInput
-          placeholder="Image Url"
-          style={styles.textStyle}
-          defaultValue={selectedProduct.imageUrl}
-        />
-      </View>
+        <View style={styles.uri}>
+          <CustomText>IMAGE URI</CustomText>
+          <TextInput
+            placeholder="Image Url"
+            style={styles.textStyle}
+            defaultValue={"imageUrl"}
+          />
+        </View>
+      </ScrollView>
     </View>
   );
 };

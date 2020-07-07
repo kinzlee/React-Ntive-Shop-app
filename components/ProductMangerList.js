@@ -12,27 +12,18 @@ import * as actionProducts from "../store/actions/product";
 
 const ProductManagerList = ({ navigation, listData, item }) => {
   const dispatch = useDispatch();
+  const editProductHandler = id => {
+    navigation.navigate("EditProduct", { productId: id });
+  };
   const renderProductManagerItem = itemData => {
     return (
       <ProductItem
         productName={itemData.item.productName}
         onSelectProduct={() => {
-          navigation.navigate("EditProduct", {
-            productId: itemData.item.id,
-            productName: itemData.item.productName,
-            price: itemData.item.price,
-            productDescription: itemData.item.productDescription,
-            imageUrl: itemData.item.imageUrl
-          });
+          editProductHandler(itemData.item.id);
         }}
         onSwitchScreen={() => {
-          navigation.navigate("EditProduct", {
-            productId: itemData.item.id,
-            productName: itemData.item.productName,
-            price: itemData.item.price,
-            productDescription: itemData.item.productDescription,
-            imageUrl: itemData.item.imageUrl
-          });
+          editProductHandler(itemData.item.id);
         }}
         image={itemData.item.imageUrl}
         price={itemData.item.price}

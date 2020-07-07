@@ -42,7 +42,10 @@ const ProductCartScreen = ({ navigation, route }) => {
         <View style={styles.item}>
           <CustomText>
             Total sum:{" "}
-            <Text style={styles.amount}> ${cartTotalAmount.toFixed(2)}</Text>
+            <Text style={styles.amount}>
+              {" "}
+              ${Math.round(cartTotalAmount.toFixed(2) * 100) / 100}
+            </Text>
           </CustomText>
           <View style={styles.btn}>
             <TouchableOpacity
