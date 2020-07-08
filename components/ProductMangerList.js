@@ -20,7 +20,9 @@ const ProductManagerList = ({ navigation, listData, item }) => {
     return (
       <ProductItem
         productName={itemData.item.productName}
-        onSelectProduct={editProductHandler(itemData.item.id)}
+        onSelectProduct={() => {
+          editProductHandler(itemData.item.id);
+        }}
         onSwitchScreen={() => {
           editProductHandler(itemData.item.id);
         }}

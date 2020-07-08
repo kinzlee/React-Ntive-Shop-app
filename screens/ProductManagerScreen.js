@@ -10,25 +10,21 @@ const ProductManagerScreen = ({ navigation, route }) => {
   const userProducts = useSelector(state => state.products.userProducts);
   // const selectedProducte = PRODUCTS.find(product => product.id === productId);
 
-  React.useLayoutEffect(() => {
-    navigation.setOptions(({ navigation }) => {
-      const header = route.params.productId;
-      return {
-        title: header ? "Edit Product" : "Add Product",
-        headerRight: () => (
-          <HeaderButtons HeaderButtonComponent={HeaderButton}>
-            <Item
-              title="add"
-              iconName="ios-add-circle"
-              onPress={() => {
-                navigation.navigate("EditProduct");
-              }}
-            />
-          </HeaderButtons>
-        )
-      };
-    });
-  }, [navigation]);
+  // React.useLayoutEffect(() => {
+  //   navigation.setOptions({
+  //     headerRight: () => (
+  //       <HeaderButtons HeaderButtonComponent={HeaderButton}>
+  //         <Item
+  //           title="add"
+  //           iconName="ios-add-circle"
+  //           onPress={() => {
+  //             navigation.navigate("EditProduct");
+  //           }}
+  //         />
+  //       </HeaderButtons>
+  //     )
+  //   });
+  // }, [navigation]);
 
   return (
     <ProductManagerList
