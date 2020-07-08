@@ -123,10 +123,10 @@ const ManagerNavigator = () => {
       <Stack.Screen
         name="EditProduct"
         component={EditProductScreen}
-        // options={({ route }) => {
-        //   const header = route.params.productId;
-        //   return { title: header ? "Edit Product" : "Add Product" };
-        // }}
+        options={({ route }) => {
+          const header = route.params.productId;
+          return { title: header ? "Edit Product" : "Add Product" };
+        }}
       />
     </Stack.Navigator>
   );

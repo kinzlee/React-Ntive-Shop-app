@@ -10,6 +10,10 @@ const ProductManagerScreen = ({ navigation, route }) => {
   const userProducts = useSelector(state => state.products.userProducts);
   // const selectedProducte = PRODUCTS.find(product => product.id === productId);
   React.useLayoutEffect(() => {
+    ({ route }) => {
+      const header = route.params.productId;
+      return { title: header ? "Edit Product" : "Add Product" };
+    };
     navigation.setOptions({
       headerRight: () => (
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
