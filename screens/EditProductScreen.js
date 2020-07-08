@@ -4,13 +4,16 @@ import CustomText from "../components/CustomText";
 import PRODUCTS from "../data/dummy-data";
 import HeaderButton from "../components/HeaderButtton";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import * as actionProducts from "../store/actions/product";
 
 const EditProductScreen = ({ navigation, route }) => {
   const prodId = route.params.productId;
   const editedProduct = useSelector(state =>
     state.products.userProducts.find(prod => prod.id === prodId)
   );
+
+  const dispatch = useDispatch();
 
   const [title, setTitle] = useState(editedProduct ? editedProduct.title : "");
   const [imageUrl, setImageUrl] = useState(
@@ -22,7 +25,15 @@ const EditProductScreen = ({ navigation, route }) => {
   );
 
   const submitHandler = () => {
-    console.log("this submits");
+    if (editedProduct) {
+      dispatch(
+        actionProducts.updatedProduct(prodId, title, description, imageUrl)
+      );
+    } else {
+      dispatch(
+        actionProducts.createProduct(title, description, imageUrl, +price)
+      );
+    }
   };
 
   useEffect(() => {

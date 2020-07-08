@@ -40,6 +40,18 @@ export default (state = initialState, action) => {
         action.productData.description,
         state.userProducts[productIndex].price
       );
+      const updatedUserProducts = [...state.availableProducts];
+      updatedUserProducts[productIndex] = updatedProduct;
+      const availableProductIndex = state.availableProducts.findIndex(
+        prod => prod.id === action.pid
+      );
+      const updatedAvailableProduct = [...state.availableProducts];
+      updatedAvailableProduct[availableProductIndex] = updatedProduct;
+      return {
+        ...state,
+        availableProducts: updatedAvailableProduct,
+        userProducts: updatedUserProducts
+      };
 
     case DELETE_PRODUCT:
       return {
