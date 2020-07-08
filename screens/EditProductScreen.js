@@ -1,11 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
 import CustomText from "../components/CustomText";
 import PRODUCTS from "../data/dummy-data";
 import HeaderButton from "../components/HeaderButtton";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
+import { useSelector } from "react-redux";
 
 const EditProductScreen = ({ navigation, route }) => {
+  const prodId = route.params.productId;
+  const editedProduct = useSelector(state =>
+    state.products.userProducts.find(prod => prod.id === prodId)
+  );
+
+  const [title, setTitle] = useState(editedProduct ? editedProduct.title : "");
+  const [imageUrl, setImageUrl] = useState(
+    editedProduct ? editedProduct.imageUrl : ""
+  );
+  const [price, setPrice] = useState(editedProduct ? editedProduct.price : "");
+  const [description, setDescription] = useState(
+    editedProduct ? editedProduct.description : ""
+  );
+
+  const submitHandler = () => {
+    console.log("this submits");
+  };
+
+  useEffect(() => {
+    navigation.setParams({ submit: submitHandler });
+  }, [submitHandler]);
+
+  const submitForm = route.params.submit;
+
   React.useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => (
@@ -14,7 +39,7 @@ const EditProductScreen = ({ navigation, route }) => {
             title="add"
             iconName="md-checkbox-outline"
             onPress={() => {
-              console.log("this works");
+              submitForm;
             }}
           />
         </HeaderButtons>
@@ -31,24 +56,29 @@ const EditProductScreen = ({ navigation, route }) => {
             <TextInput
               placeholder="Title"
               style={styles.textStyle}
-              defaultValue={"productName"}
+              value={title}
+              onChangeText={text => setTitle(text)}
             />
           </View>
         </View>
-        <View style={styles.description}>
-          <CustomText>PRICE</CustomText>
-          <TextInput
-            placeholder="Price"
-            style={styles.textStyle}
-            defaultValue={"Price"}
-          />
-        </View>
+        {editedProduct ? null : (
+          <View style={styles.description}>
+            <CustomText>PRICE</CustomText>
+            <TextInput
+              placeholder="Price"
+              style={styles.textStyle}
+              value={price}
+              onChangeText={text => setPrice(text)}
+            />
+          </View>
+        )}
         <View style={styles.description}>
           <CustomText>DESCRIPTION</CustomText>
           <TextInput
             placeholder="Description"
             style={styles.textStyle}
-            defaultValue={"productDescription"}
+            value={description}
+            onChangeText={text => setDescription(text)}
           />
         </View>
         <View style={styles.uri}>
@@ -56,7 +86,8 @@ const EditProductScreen = ({ navigation, route }) => {
           <TextInput
             placeholder="Image Url"
             style={styles.textStyle}
-            defaultValue={"imageUrl"}
+            value={imageUrl}
+            onChangeText={text => setImageUrl(text)}
           />
         </View>
       </ScrollView>
