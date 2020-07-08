@@ -16,22 +16,6 @@ const ProductManagerList = ({ navigation, listData, item }) => {
     navigation.navigate("EditProduct", { productId: id });
   };
 
-  React.useLayoutEffect(() => {
-    navigation.setOptions(({ navigation }) => {
-      headerRight: () => (
-        <HeaderButtons HeaderButtonComponent={HeaderButton}>
-          <Item
-            title="add"
-            iconName="md-checkbox-outline"
-            onPress={() => {
-              submitForm;
-            }}
-          />
-        </HeaderButtons>
-      );
-    });
-  }, [navigation]);
-
   const renderProductManagerItem = itemData => {
     return (
       <ProductItem
