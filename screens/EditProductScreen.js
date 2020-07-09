@@ -62,7 +62,7 @@ const EditProductScreen = ({ navigation, route }) => {
         </HeaderButtons>
       )
     });
-  }, [navigation]);
+  }, [navigation, submitHandler]);
 
   return (
     <View style={styles.screen}>

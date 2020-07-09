@@ -18,7 +18,7 @@ const ProductManagerScreen = ({ navigation, route }) => {
             title="add"
             iconName="ios-add-circle"
             onPress={() => {
-              navigation.navigate("EditProduct");
+              navigation.navigate("EditProduct", { productId: null });
             }}
           />
         </HeaderButtons>

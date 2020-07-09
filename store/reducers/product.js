@@ -21,12 +21,12 @@ export default (state = initialState, action) => {
         action.productData.title,
         action.productData.imageUrl,
         action.productData.description,
-        actoin.productData.price
+        action.productData.price
       );
       return {
         ...state,
         availableProducts: state.availableProducts.concat(newProduct),
-        userProducts: state.userProducts.concat(userProducts)
+        userProducts: state.userProducts.concat(newProduct)
       };
     case UPDATE_PRODUCT:
       const productIndex = state.userProducts.findIndex(
