@@ -13,61 +13,64 @@ const EditProductScreen = ({ navigation, route }) => {
     state.products.userProducts.find(prod => prod.id === prodId)
   );
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const [title, setTitle] = useState(editedProduct ? editedProduct.title : "");
-  // const [imageUrl, setImageUrl] = useState(
-  //   editedProduct ? editedProduct.imageUrl : ""
-  // );
-  // const [price, setPrice] = useState(editedProduct ? editedProduct.price : "");
-  // const [description, setDescription] = useState(
-  //   editedProduct ? editedProduct.description : ""
-  // );
+  const [title, setTitle] = useState(editedProduct ? editedProduct.title : "");
+  const [imageUrl, setImageUrl] = useState(
+    editedProduct ? editedProduct.imageUrl : ""
+  );
+  const [price, setPrice] = useState(editedProduct ? editedProduct.price : "");
+  const [description, setDescription] = useState(
+    editedProduct ? editedProduct.description : ""
+  );
 
-  // const submitHandler = () => {
-  //   if (editedProduct) {
-  //     dispatch(
-  //       actionProducts.updatedProduct(prodId, title, description, imageUrl)
-  //     );
-  //   } else {
-  //     dispatch(
-  //       actionProducts.createProduct(title, description, imageUrl, +price)
-  //     );
-  //   }
-  // };
+  const submitHandler = () => {
+    if (editedProduct) {
+      dispatch(
+        actionProducts.updatedProduct(prodId, title, description, imageUrl)
+      );
+    } else {
+      dispatch(
+        actionProducts.createProduct(title, description, imageUrl, +price)
+      );
+    }
+  };
 
   // useEffect(() => {
   //   navigation.setParams({ submit: submitHandler });
   // }, [submitHandler]);
 
-  // const submitForm = route.params.submit;
+  const submitForm = route.params.submit;
 
-  // React.useLayoutEffect(() => {
-  //   navigation.setOptions({
-  //     headerRight: () => (
-  //       <HeaderButtons HeaderButtonComponent={HeaderButton}>
-  //         <Item
-  //           title="add"
-  //           iconName="md-checkbox-outline"
-  //           onPress={() => {
-  //             submitForm;
-  //           }}
-  //         />
-  //       </HeaderButtons>
-  //     )
-  //   });
-  // }, [navigation]);
+  const { productId } = route.params;
+
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      title: productId ? "this" : "that",
+      headerRight: () => (
+        <HeaderButtons HeaderButtonComponent={HeaderButton}>
+          <Item
+            title="add"
+            iconName="md-checkbox-outline"
+            onPress={() => {
+              submitForm;
+            }}
+          />
+        </HeaderButtons>
+      )
+    });
+  }, [navigation]);
 
   return (
     <View style={styles.screen}>
       <ScrollView>
-        <View style={styles.itemContainer}>
+        <View style={styles.description}>
           <View style={styles.itemInput}>
             <CustomText>TITLE</CustomText>
             <TextInput
               placeholder="Title"
               style={styles.textStyle}
-              value={"title"}
+              value={title}
               onChangeText={text => setTitle(text)}
             />
           </View>
@@ -78,7 +81,7 @@ const EditProductScreen = ({ navigation, route }) => {
             <TextInput
               placeholder="Price"
               style={styles.textStyle}
-              value={"price"}
+              value={price}
               onChangeText={text => setPrice(text)}
             />
           </View>
@@ -88,7 +91,7 @@ const EditProductScreen = ({ navigation, route }) => {
           <TextInput
             placeholder="Description"
             style={styles.textStyle}
-            value={"description"}
+            value={description}
             onChangeText={text => setDescription(text)}
           />
         </View>
@@ -97,7 +100,7 @@ const EditProductScreen = ({ navigation, route }) => {
           <TextInput
             placeholder="Image Url"
             style={styles.textStyle}
-            value={"imageUrl"}
+            value={imageUrl}
             onChangeText={text => setImageUrl(text)}
           />
         </View>
