@@ -28,6 +28,7 @@ const ProductManagerList = ({ navigation, listData, item }) => {
         }}
         image={itemData.item.imageUrl}
         price={itemData.item.price}
+        productName={itemData.item.productName}
         firstFill={"Edit"}
         carter={() => {
           dispatch(actionProducts.deleteProduct(itemData.item.id));

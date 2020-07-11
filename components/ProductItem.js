@@ -33,13 +33,16 @@ const ProductItem = ({
         </View>
       </TouchableOpacity>
       <View style={{ ...styles.productRow, ...styles.productDetail }}>
-        <View>
+        <View style={styles.btn}>
           <TouchableOpacity onPress={onSwitchScreen}>
             <CustomText>{firstFill}</CustomText>
           </TouchableOpacity>
         </View>
-        <CustomText>{price}</CustomText>
-        <View>
+        <View style={styles.placer}>
+          <CustomText>{productName}</CustomText>
+          <CustomText>{price}</CustomText>
+        </View>
+        <View style={styles.btn}>
           <TouchableOpacity onPress={carter}>
             <CustomText>{lastFill}</CustomText>
           </TouchableOpacity>
@@ -51,7 +54,7 @@ const ProductItem = ({
 
 const styles = StyleSheet.create({
   productItem: {
-    height: 230,
+    height: 245,
     width: "100%",
     backgroundColor: colors.secondaryColor,
     overflow: "hidden",
@@ -68,6 +71,11 @@ const styles = StyleSheet.create({
     height: 10,
     alignItems: "center"
   },
+  placer: {
+    flexDirection: "column",
+    alignItems: "center",
+    paddingBottom: 5
+  },
   productHeader: {
     height: "90%"
   },
@@ -75,6 +83,12 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 200,
     justifyContent: "flex-end"
+  },
+  btn: {
+    borderRadius: 5,
+    backgroundColor: colors.primaryColor,
+    paddingHorizontal: 5,
+    paddingVertical: -3
   }
 });
 

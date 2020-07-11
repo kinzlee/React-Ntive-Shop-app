@@ -30,6 +30,7 @@ const ProductList = ({ navigation, listData }) => {
         }}
         image={itemData.item.imageUrl}
         price={itemData.item.price}
+        productName={itemData.item.productName}
         firstFill={"Details"}
         lastFill={"Cart"}
         carter={() => {
