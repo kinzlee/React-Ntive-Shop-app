@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Text, FlatList, Alert } from "react-native";
+import { View, StyleSheet, FlatList, Alert } from "react-native";
 import ProductItem from "../components/ProductItem";
 import { useDispatch } from "react-redux";
 import * as actionProducts from "../store/actions/product";

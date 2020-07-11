@@ -2,8 +2,7 @@ import PRODUCTS from "../../data/dummy-data";
 import {
   DELETE_PRODUCT,
   CREATE_PRODUCT,
-  UPDATE_PRODUCT,
-  updatedProduct
+  UPDATE_PRODUCT
 } from "../actions/product";
 import Product from "../../models/Product";
 

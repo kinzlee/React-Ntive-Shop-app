@@ -119,16 +119,7 @@ const ManagerNavigator = () => {
           };
         }}
       />
-      <Stack.Screen
-        name="EditProduct"
-        component={EditProductScreen}
-        // options={({ route }) => {
-        //   const { productId } = route.params;
-        //   return {
-        //     title: produccctId ? "Editerrr Product" : "Add Producerrrrsserrt"
-        //   };
-        // }}
-      />
+      <Stack.Screen name="EditProduct" component={EditProductScreen} />
     </Stack.Navigator>
   );
 };
