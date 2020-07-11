@@ -13,7 +13,6 @@ import ProductManagerScreen from "../screens/ProductManagerScreen";
 import ProductOrdersScreen from "../screens/ProductOrdersScreen";
 import ProductDetailScreen from "../screens/ProductDetailScreen";
 import EditProductScreen from "../screens/EditProductScreen";
-import { RectButton } from "react-native-gesture-handler";
 import colors from "../constants/colors";
 
 const headerCustom = {
@@ -139,7 +138,11 @@ const Drawer = createDrawerNavigator();
 const MyDrawer = () => {
   return (
     <NavigationContainer>
-      <Drawer.Navigator>
+      <Drawer.Navigator
+        drawerContentOptions={{
+          activeTintColor: colors.primaryColor
+        }}
+      >
         <Drawer.Screen
           name="Shop"
           component={ShopNavigation}
