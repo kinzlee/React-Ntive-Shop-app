@@ -40,7 +40,7 @@ const ProductItem = ({
         </View>
         <View style={styles.placer}>
           <CustomText>{productName}</CustomText>
-          <CustomText>{price}</CustomText>
+          <CustomText>$ {price}</CustomText>
         </View>
         <View style={styles.btn}>
           <TouchableOpacity onPress={carter}>

@@ -13,7 +13,13 @@ const ProductManagerList = ({ navigation, listData, item }) => {
   const deleteItem = id => {
     Alert.alert("Are you sure ?", "Do you really want to delete this item ?", [
       { text: "No", style: "default" },
-      { text: "", style: "" }
+      {
+        text: "Yes",
+        style: "destructive",
+        onPress: () => {
+          dispatch(actionProducts.deleteProduct(id));
+        }
+      }
     ]);
   };
 
