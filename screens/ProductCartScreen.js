@@ -14,7 +14,7 @@ import CartItem from "../components/CartItem";
 import * as actionCart from "../store/actions/cart";
 import * as actionOrders from "../store/actions/orders";
 
-const ProductCartScreen = ({ navigation, route }) => {
+const ProductCartScreen = () => {
   const cartTotalAmount = useSelector(state => state.cart.totalAmount);
 
   const cartItems = useSelector(state => {

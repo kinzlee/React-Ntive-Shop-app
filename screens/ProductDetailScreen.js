@@ -6,7 +6,6 @@ import { Card } from "react-native-shadow-cards";
 import colors from "../constants/colors";
 import { useSelector, useDispatch } from "react-redux";
 import * as ActionCart from "../store/actions/cart";
-// import CardView from "react-native-cardview";
 
 const ProductDetailScreen = ({ navigation, route }) => {
   const availableProducts = useSelector(
