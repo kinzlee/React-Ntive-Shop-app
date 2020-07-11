@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  View,
-  StyleSheet,
-  Text,
-  FlatList,
-  TouchableOpacity
-} from "react-native";
+import { View, StyleSheet, Text, FlatList, Alert } from "react-native";
 import ProductItem from "../components/ProductItem";
 import { useDispatch } from "react-redux";
 import * as actionProducts from "../store/actions/product";
@@ -14,6 +8,13 @@ const ProductManagerList = ({ navigation, listData, item }) => {
   const dispatch = useDispatch();
   const editProductHandler = id => {
     navigation.navigate("EditProduct", { productId: id });
+  };
+
+  const deleteItem = id => {
+    Alert.alert("Are you sure ?", "Do you really want to delete this item ?", [
+      { text: "No", style: "default" },
+      { text: "", style: "" }
+    ]);
   };
 
   const renderProductManagerItem = itemData => {
@@ -30,9 +31,7 @@ const ProductManagerList = ({ navigation, listData, item }) => {
         price={itemData.item.price}
         productName={itemData.item.productName}
         firstFill={"Edit"}
-        carter={() => {
-          dispatch(actionProducts.deleteProduct(itemData.item.id));
-        }}
+        carter={deleteItem.bind(this, itemData.item.id)}
         lastFill={"delete"}
       />
     );

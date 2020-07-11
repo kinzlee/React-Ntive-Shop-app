@@ -5,7 +5,7 @@ import PRODUCTS from "../data/dummy-data";
 import { Card } from "react-native-shadow-cards";
 import colors from "../constants/colors";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleCart } from "../store/actions/product";
+import * as ActionCart from "../store/actions/cart";
 // import CardView from "react-native-cardview";
 
 const ProductDetailScreen = ({ navigation, route }) => {
@@ -18,8 +18,6 @@ const ProductDetailScreen = ({ navigation, route }) => {
     product => product.id === productId
   );
   const dispatch = useDispatch();
-
-  const addToCart = () => {};
 
   return (
     <View>
@@ -46,9 +44,7 @@ const ProductDetailScreen = ({ navigation, route }) => {
           <View style={styles.btnStyle}>
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("Cart", {
-                  productId: selectedProducts.id
-                });
+                dispatch(ActionCart.addToCart(selectedProducts));
               }}
             >
               <CustomText>Go To Cart</CustomText>

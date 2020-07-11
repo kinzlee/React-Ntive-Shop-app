@@ -49,7 +49,7 @@ const EditProductScreen = ({ navigation, route }) => {
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
-      title: productId ? "this" : "that",
+      title: productId ? "Edit Product" : "Add Product",
       headerRight: () => (
         <HeaderButtons HeaderButtonComponent={HeaderButton}>
           <Item
@@ -149,7 +149,8 @@ const styles = StyleSheet.create({
     borderBottomColor: "#ccc",
     borderBottomWidth: 1,
     paddingVertical: 20,
-    marginHorizontal: 10
+    marginHorizontal: 5,
+    paddingHorizontal: 40
   },
   uri: {
     borderColor: "#ccc",
@@ -161,7 +162,7 @@ const styles = StyleSheet.create({
   },
   textStyle: {
     fontFamily: "Open-Sans",
-    padding: 5,
+    padding: 2,
     color: "#fff"
   }
 });
