@@ -8,6 +8,10 @@ import { useSelector, useDispatch } from "react-redux";
 import * as actionProducts from "../store/actions/product";
 import colors from "../constants/colors";
 
+const FORM_UPDATE = 'FORM_UPDATE';
+
+const formReducer = 
+
 const EditProductScreen = ({ navigation, route }) => {
   const prodId = route.params.productId;
   const editedProduct = useSelector(state =>
