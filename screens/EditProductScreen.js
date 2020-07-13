@@ -142,7 +142,7 @@ const EditProductScreen = ({ navigation, route }) => {
             value={title}
             onChangeText={changeTextHandler.bind(this, "title")}
           />
-          {!title && <Text>Please enter a valid text</Text>}
+          {!formState.inputValidities.title && <Text>Please enter a valid text</Text>}
         </View>
         {editedProduct ? null : (
           <View style={styles.description}>
