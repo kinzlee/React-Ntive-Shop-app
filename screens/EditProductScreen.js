@@ -27,16 +27,17 @@ const formReducer = (state, action) => {
       ...state.inputValidities,
       [action.input]: action.isValidInput
     };
-    let formIsValid = true;
+    let updatedFormIsValid = true;
     Object.keys(updatedValidities).map(key => {
-      formIsValid = formIsValid && updatedValidities[key];
+      updatedFormIsValid = updatedFormIsValid && updatedValidities[key];
     });
     return {
-      ...state,
+      formIsValid: updatedFormIsValid,
       inputValidities: updatedValidities,
       inputValues: updatedValues
     };
   }
+  return state;
 };
 
 const EditProductScreen = ({ navigation, route }) => {
@@ -64,7 +65,7 @@ const EditProductScreen = ({ navigation, route }) => {
   });
 
   const submitHandler = useCallback(() => {
-    if (!titleIsValid) {
+    if (!formState.formIsValid) {
       Alert.alert(
         "Incorrect input!",
         "Please check the errors with the form.",
@@ -73,18 +74,28 @@ const EditProductScreen = ({ navigation, route }) => {
     }
     if (editedProduct) {
       dispatch(
-        actionProducts.updatedProduct(prodId, title, description, imageUrl)
+        actionProducts.updatedProduct(
+          prodId,
+          formState.inputValuestitle,
+          formState.inputValuesdescription,
+          formState.inputValuesimageUrl
+        )
       );
     } else {
       dispatch(
-        actionProducts.createProduct(title, description, imageUrl, +price)
+        actionProducts.createProduct(
+          formState.inputValues.title,
+          formState.inputValues.description,
+          formState.inputValues.imageUrl,
+          +formState.inputValues.price
+        )
       );
     }
     navigation.goBack();
-  }, [dispatch, prodId, title, description, imageUrl, price]);
+  }, [dispatch, prodId, formState]);
 
   // useEffect(() => {
-  //   navigation.setParams({ submit: submitHandler });
+  //   navigation.setParams({ submit: submitHandler })
   // }, [submitHandler]);
 
   const { productId } = route.params;
