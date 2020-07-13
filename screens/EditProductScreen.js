@@ -14,6 +14,7 @@ import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector, useDispatch } from "react-redux";
 import * as actionProducts from "../store/actions/product";
 import colors from "../constants/colors";
+import Input from "../components/Input";
 
 const FORM_UPDATE = "FORM_UPDATE";
 
@@ -134,46 +135,38 @@ const EditProductScreen = ({ navigation, route }) => {
   return (
     <View style={styles.screen}>
       <ScrollView>
-        <View style={styles.description}>
-          <CustomText>TITLE</CustomText>
-          <TextInput
-            placeholder="Title"
-            style={styles.textStyle}
-            value={title}
-            onChangeText={changeTextHandler.bind(this, "title")}
-          />
-          {!formState.inputValidities.title && <Text>Please enter a valid text</Text>}
-        </View>
+        <Input
+          label="Title"
+          errorTitle="please input a valid title!"
+          keyboardType="default"
+          autoCapitalize="sentences"
+          autoCorrect
+          returnKeyType="next"
+        />
         {editedProduct ? null : (
-          <View style={styles.description}>
-            <CustomText>PRICE</CustomText>
-            <TextInput
-              placeholder="Price"
-              style={styles.textStyle}
-              value={price}
-              onChangeText={changeTextHandler.bind(this, "price")}
-              keyboardType="decimal-pad"
-            />
-          </View>
+          <Input
+            label="Price"
+            errorTitle="please input a valid price"
+            keyboardType="decimal-pad"
+            returnKeyType="next"
+          />
         )}
-        <View style={styles.description}>
-          <CustomText>DESCRIPTION</CustomText>
-          <TextInput
-            placeholder="Description"
-            style={styles.textStyle}
-            value={description}
-            onChangeText={changeTextHandler.bind(this, "description")}
-          />
-        </View>
-        <View style={styles.description}>
-          <CustomText>IMAGE URI</CustomText>
-          <TextInput
-            placeholder="Image Url"
-            style={styles.textStyle}
-            value={imageUrl}
-            onChangeText={changeTextHandler.bind(this, "imageUrl")}
-          />
-        </View>
+        <Input
+          label="Description"
+          errorTitle="please input a valid description"
+          keyboardType="default"
+          returnKeyType="next"
+          autoCapitalize="sentences"
+          multilne
+          numberOfLines={3}
+        />
+        <Input
+          label="Image Url"
+          errorTitle="please input a valid image url"
+          keyboardType="default"
+          autoCorrect
+          returnKeyType="next"
+        />
       </ScrollView>
     </View>
   );
@@ -213,26 +206,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingVertical: 20,
     justifyContent: "space-between"
-  },
-  description: {
-    borderBottomColor: "#ccc",
-    borderBottomWidth: 1,
-    paddingVertical: 20,
-    marginHorizontal: 5,
-    paddingHorizontal: 40
-  },
-  uri: {
-    borderColor: "#ccc",
-    borderWidth: 3,
-    paddingVertical: 20,
-    marginVertical: 20,
-    marginHorizontal: 10,
-    elevation: 1
-  },
-  textStyle: {
-    fontFamily: "Open-Sans",
-    padding: 2,
-    color: "#fff"
   }
 });
 
