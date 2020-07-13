@@ -1,5 +1,12 @@
-import React, { useState, useCallback } from "react";
-import { View, Text, StyleSheet, TextInput, ScrollView } from "react-native";
+import React, { useCallback, useReducer } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TextInput,
+  ScrollView,
+  Alert
+} from "react-native";
 import CustomText from "../components/CustomText";
 import PRODUCTS from "../data/dummy-data";
 import HeaderButton from "../components/HeaderButtton";
@@ -8,9 +15,29 @@ import { useSelector, useDispatch } from "react-redux";
 import * as actionProducts from "../store/actions/product";
 import colors from "../constants/colors";
 
-const FORM_UPDATE = 'FORM_UPDATE';
+const FORM_UPDATE = "FORM_UPDATE";
 
-const formReducer = 
+const formReducer = (state, action) => {
+  if (action.type === FORM_UPDATE) {
+    const updatedValues = {
+      ...state.inputValues,
+      [action.input]: action.value
+    };
+    const updatedValidities = {
+      ...state.inputValidities,
+      [action.input]: action.isValidInput
+    };
+    let formIsValid = true;
+    Object.keys(updatedValidities).map(key => {
+      formIsValid = formIsValid && updatedValidities[key];
+    });
+    return {
+      ...state,
+      inputValidities: updatedValidities,
+      inputValues: updatedValues
+    };
+  }
+};
 
 const EditProductScreen = ({ navigation, route }) => {
   const prodId = route.params.productId;
@@ -20,18 +47,30 @@ const EditProductScreen = ({ navigation, route }) => {
 
   const dispatch = useDispatch();
 
-  const [title, setTitle] = useState(
-    editedProduct ? editedProduct.productName : ""
-  );
-  const [imageUrl, setImageUrl] = useState(
-    editedProduct ? editedProduct.imageUrl : ""
-  );
-  const [price, setPrice] = useState(editedProduct ? editedProduct.price : "");
-  const [description, setDescription] = useState(
-    editedProduct ? editedProduct.productDescription : ""
-  );
+  const [formState, dispatchFormState] = useReducer(formReducer, {
+    inputValues: {
+      title: editedProduct ? editedProduct.productName : "",
+      imageUrl: editedProduct ? editedProduct.imageUrl : "",
+      description: editedProduct ? editedProduct.productDescription : "",
+      price: ""
+    },
+    inputValidities: {
+      title: editedProduct ? true : false,
+      imageUrl: editedProduct ? true : false,
+      description: editedProduct ? true : false,
+      price: editedProduct ? true : false
+    },
+    formIsValid: editedProduct ? true : false
+  });
 
   const submitHandler = useCallback(() => {
+    if (!titleIsValid) {
+      Alert.alert(
+        "Incorrect input!",
+        "Please check the errors with the form.",
+        [{ text: "Sure" }]
+      );
+    }
     if (editedProduct) {
       dispatch(
         actionProducts.updatedProduct(prodId, title, description, imageUrl)
@@ -47,8 +86,6 @@ const EditProductScreen = ({ navigation, route }) => {
   // useEffect(() => {
   //   navigation.setParams({ submit: submitHandler });
   // }, [submitHandler]);
-
-  const submitForm = route.params.submit;
 
   const { productId } = route.params;
 
@@ -69,6 +106,20 @@ const EditProductScreen = ({ navigation, route }) => {
     });
   }, [navigation, submitHandler]);
 
+  const changeTextHandler = (text, inputIdentifier) => {
+    let isValidInput = false;
+    if (text.trim.length > 0) {
+      isValidInput = true;
+    } else {
+      dispatchFormState({
+        type: FORM_UPDATE,
+        value: text,
+        isValidInput: isValidInput,
+        input: inputIdentifier
+      });
+    }
+  };
+
   return (
     <View style={styles.screen}>
       <ScrollView>
@@ -78,8 +129,9 @@ const EditProductScreen = ({ navigation, route }) => {
             placeholder="Title"
             style={styles.textStyle}
             value={title}
-            onChangeText={text => setTitle(text)}
+            onChangeText={changeTextHandler.bind(this, "title")}
           />
+          {!title && <Text>Please enter a valid text</Text>}
         </View>
         {editedProduct ? null : (
           <View style={styles.description}>
@@ -88,7 +140,8 @@ const EditProductScreen = ({ navigation, route }) => {
               placeholder="Price"
               style={styles.textStyle}
               value={price}
-              onChangeText={text => setPrice(text)}
+              onChangeText={changeTextHandler.bind(this, "price")}
+              keyboardType="decimal-pad"
             />
           </View>
         )}
@@ -98,7 +151,7 @@ const EditProductScreen = ({ navigation, route }) => {
             placeholder="Description"
             style={styles.textStyle}
             value={description}
-            onChangeText={text => setDescription(text)}
+            onChangeText={changeTextHandler.bind(this, "description")}
           />
         </View>
         <View style={styles.description}>
@@ -107,7 +160,7 @@ const EditProductScreen = ({ navigation, route }) => {
             placeholder="Image Url"
             style={styles.textStyle}
             value={imageUrl}
-            onChangeText={text => setImageUrl(text)}
+            onChangeText={changeTextHandler.bind(this, "imageUrl")}
           />
         </View>
       </ScrollView>
