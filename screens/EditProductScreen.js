@@ -63,35 +63,46 @@ const EditProductScreen = ({ navigation, route }) => {
     inputValidities: {
       productName: editedProduct ? true : false,
       imageUrl: editedProduct ? true : false,
-      description: editedProduct ? true : false,
+      productDescription: editedProduct ? true : false,
       price: editedProduct ? true : false
     },
     formIsValid: editedProduct ? true : false
   });
 
   const submitHandler = useCallback(() => {
-    if (!formState.formIsValid) {
-      Alert.alert(
-        "Incorrect input!",
-        "Please check the errors with the form.",
-        [{ text: "Sure" }]
-      );
-    }
+    // if (!formState.formIsValid) {
+    //   Alert.alert(
+    //     "Incorrect input!",
+    //     "Please check the errors with the form.",
+    //     [{ text: "Sure" }]
+    //   );
+    // }
     if (editedProduct) {
       dispatch(
         actionProducts.updatedProduct(
           prodId,
           formState.inputValues.productName,
           formState.inputValues.productDescription,
-          formState.inputValues.imageUrl
+          console.log(
+            formState.inputValues.imageUrl,
+            "<<<<<<<<<<<<<<<<<<<<<<<",
+            formState.inputValues
+          )
         )
       );
     } else {
       dispatch(
         actionProducts.createProduct(
-          formState.inputValues.title,
-          formState.inputValues.description,
-          formState.inputValues.imageUrl,
+          formState.inputValues.productName,
+          console.log(
+            ">>>>>>>>>>>>>>>>",
+            formState.inputValues.imageUrl,
+            formState.inputValues
+          ),
+          console.log(
+            "^^^^^^^^^^^^^^",
+            formState.inputValues.productDescription
+          ),
           +formState.inputValues.price
         )
       );
@@ -165,6 +176,7 @@ const EditProductScreen = ({ navigation, route }) => {
             onInputChange={changeInputHandler}
             required
             min={0.1}
+            initiallyValid={!!editedProduct}
           />
         )}
         <Input
@@ -186,10 +198,11 @@ const EditProductScreen = ({ navigation, route }) => {
         <Input
           id="imageUrl"
           label="Image Url"
-          errorText="please input a valid image url"
+          errorText="please input a valid imageUrl"
           keyboardType="default"
-          autoCorrect
           returnKeyType="next"
+          autoCapitalize="sentences"
+          autoCorrect
           onInputChange={changeInputHandler}
           initialValue={editedProduct ? editedProduct.imageUrl : ""}
           initiallyValid={!!editedProduct}
