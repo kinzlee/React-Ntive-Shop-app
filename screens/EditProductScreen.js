@@ -5,7 +5,8 @@ import {
   StyleSheet,
   TextInput,
   ScrollView,
-  Alert
+  Alert,
+  KeyboardAvoidingView
 } from "react-native";
 import CustomText from "../components/CustomText";
 import PRODUCTS from "../data/dummy-data";
@@ -131,51 +132,68 @@ const EditProductScreen = ({ navigation, route }) => {
   );
 
   return (
-    <View style={styles.screen}>
-      <ScrollView>
-        <Input
-          label="Title"
-          errorTitle="please input a valid title!"
-          keyboardType="default"
-          autoCapitalize="sentences"
-          autoCorrect
-          returnKeyType="next"
-          onInputChange={changeInputHandler.bind(this, "title")}
-          initialValue={editedProduct ? editedProduct : ""}
-          initiallyValid
-        />
-        {editedProduct ? null : (
+    <KeyboardAvoidingView
+      behavior="padding"
+      keyboardVerticalOffset={100}
+      style={{ flex: 1 }}
+    >
+      <View style={styles.screen}>
+        <ScrollView>
           <Input
-            label="Price"
-            errorTitle="please input a valid price"
-            keyboardType="decimal-pad"
+            id="title"
+            label="Title"
+            errorText="please input a valid title!"
+            keyboardType="default"
+            autoCapitalize="sentences"
+            autoCorrect
+            returnKeyType="next"
+            onInputChange={changeInputHandler}
+            initialValue={editedProduct ? editedProduct : ""}
+            initiallyValid={!!editedProduct}
+            required
+          />
+          {editedProduct ? null : (
+            <Input
+              id="price"
+              label="Price"
+              errorText="please input a valid price"
+              keyboardType="decimal-pad"
+              returnKeyType="next"
+              onInputChange={changeInputHandler}
+              required
+              min={0.1}
+            />
+          )}
+          <Input
+            id="description"
+            label="Description"
+            errorText="please input a valid description"
+            keyboardType="default"
+            returnKeyType="next"
+            autoCapitalize="sentences"
+            autoCorrect
+            multilne
+            numberOfLines={3}
+            onInputChange={changeInputHandler}
+            initialValue={editedProduct ? editedProduct : ""}
+            initiallyValid={!!editedProduct}
+            required
+            minLength={5}
+          />
+          <Input
+            id="imageUrl"
+            label="Image Url"
+            errorText="please input a valid image url"
+            keyboardType="default"
+            autoCorrect
             returnKeyType="next"
             initialValue={editedProduct ? editedProduct : ""}
-            initiallyValid
+            initiallyValid={!!editedProduct}
+            required
           />
-        )}
-        <Input
-          label="Description"
-          errorTitle="please input a valid description"
-          keyboardType="default"
-          returnKeyType="next"
-          autoCapitalize="sentences"
-          multilne
-          numberOfLines={3}
-          initialValue={editedProduct ? editedProduct : ""}
-          initiallyValid
-        />
-        <Input
-          label="Image Url"
-          errorTitle="please input a valid image url"
-          keyboardType="default"
-          autoCorrect
-          returnKeyType="next"
-          initialValue={editedProduct ? editedProduct : ""}
-          initiallyValid
-        />
-      </ScrollView>
-    </View>
+        </ScrollView>
+      </View>
+    </KeyboardAvoidingView>
   );
 };
 
