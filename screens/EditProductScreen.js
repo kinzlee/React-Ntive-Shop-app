@@ -118,19 +118,17 @@ const EditProductScreen = ({ navigation, route }) => {
     });
   }, [navigation, submitHandler]);
 
-  const changeTextHandler = (text, inputIdentifier) => {
-    let isValidInput = false;
-    if (text.trim.length > 0) {
-      isValidInput = true;
-    } else {
+  const changeInputHandler = useCallback(
+    (inputIdentifier, inputValue, inputValidity) => {
       dispatchFormState({
         type: FORM_UPDATE,
-        value: text,
-        isValidInput: isValidInput,
+        value: inputValue,
+        isValidInput: inputValidity,
         input: inputIdentifier
       });
-    }
-  };
+    },
+    [dispatchFormState]
+  );
 
   return (
     <View style={styles.screen}>
@@ -142,6 +140,9 @@ const EditProductScreen = ({ navigation, route }) => {
           autoCapitalize="sentences"
           autoCorrect
           returnKeyType="next"
+          onInputChange={changeInputHandler.bind(this, "title")}
+          initialValue={editedProduct ? editedProduct : ""}
+          initiallyValid
         />
         {editedProduct ? null : (
           <Input
@@ -149,6 +150,8 @@ const EditProductScreen = ({ navigation, route }) => {
             errorTitle="please input a valid price"
             keyboardType="decimal-pad"
             returnKeyType="next"
+            initialValue={editedProduct ? editedProduct : ""}
+            initiallyValid
           />
         )}
         <Input
@@ -159,6 +162,8 @@ const EditProductScreen = ({ navigation, route }) => {
           autoCapitalize="sentences"
           multilne
           numberOfLines={3}
+          initialValue={editedProduct ? editedProduct : ""}
+          initiallyValid
         />
         <Input
           label="Image Url"
@@ -166,6 +171,8 @@ const EditProductScreen = ({ navigation, route }) => {
           keyboardType="default"
           autoCorrect
           returnKeyType="next"
+          initialValue={editedProduct ? editedProduct : ""}
+          initiallyValid
         />
       </ScrollView>
     </View>
