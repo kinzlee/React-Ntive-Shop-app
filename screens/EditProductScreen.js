@@ -30,9 +30,12 @@ const formReducer = (state, action) => {
       [action.input]: action.isValidInput
     };
     let updatedFormIsValid = true;
-    Object.keys(updatedValidities).map(key => {
+    // Object.keys(updatedValidities).map(key => {
+    //   updatedFormIsValid = updatedFormIsValid && updatedValidities[key];
+    // });
+    for (const key in updatedValidities) {
       updatedFormIsValid = updatedFormIsValid && updatedValidities[key];
-    });
+    }
     return {
       formIsValid: updatedFormIsValid,
       inputValidities: updatedValidities,
@@ -78,9 +81,9 @@ const EditProductScreen = ({ navigation, route }) => {
       dispatch(
         actionProducts.updatedProduct(
           prodId,
-          formState.inputValuestitle,
-          formState.inputValuesdescription,
-          formState.inputValuesimageUrl
+          formState.inputValues.title,
+          formState.inputValues.description,
+          formState.inputValues.imageUrl
         )
       );
     } else {
@@ -132,68 +135,68 @@ const EditProductScreen = ({ navigation, route }) => {
   );
 
   return (
-    <KeyboardAvoidingView
-      behavior="padding"
-      keyboardVerticalOffset={100}
-      style={{ flex: 1 }}
-    >
-      <View style={styles.screen}>
-        <ScrollView>
+    // <KeyboardAvoidingView
+    // behavior="padding"
+    // keyboardVerticalOffset={}
+    // style={{ flex: 1 }}
+    // ></KeyboardAvoidingView>
+    <View style={styles.screen}>
+      <ScrollView>
+        <Input
+          id="title"
+          label="Title"
+          errorText="please input a valid title!"
+          keyboardType="default"
+          autoCapitalize="sentences"
+          autoCorrect
+          returnKeyType="next"
+          onInputChange={changeInputHandler}
+          initialValue={editedProduct ? editedProduct : ""}
+          initiallyValid={!!editedProduct}
+          required
+        />
+        {editedProduct ? null : (
           <Input
-            id="title"
-            label="Title"
-            errorText="please input a valid title!"
-            keyboardType="default"
-            autoCapitalize="sentences"
-            autoCorrect
+            id="price"
+            label="Price"
+            errorText="please input a valid price"
+            keyboardType="decimal-pad"
             returnKeyType="next"
             onInputChange={changeInputHandler}
-            initialValue={editedProduct ? editedProduct : ""}
-            initiallyValid={!!editedProduct}
             required
+            min={0.1}
           />
-          {editedProduct ? null : (
-            <Input
-              id="price"
-              label="Price"
-              errorText="please input a valid price"
-              keyboardType="decimal-pad"
-              returnKeyType="next"
-              onInputChange={changeInputHandler}
-              required
-              min={0.1}
-            />
-          )}
-          <Input
-            id="description"
-            label="Description"
-            errorText="please input a valid description"
-            keyboardType="default"
-            returnKeyType="next"
-            autoCapitalize="sentences"
-            autoCorrect
-            multilne
-            numberOfLines={3}
-            onInputChange={changeInputHandler}
-            initialValue={editedProduct ? editedProduct : ""}
-            initiallyValid={!!editedProduct}
-            required
-            minLength={5}
-          />
-          <Input
-            id="imageUrl"
-            label="Image Url"
-            errorText="please input a valid image url"
-            keyboardType="default"
-            autoCorrect
-            returnKeyType="next"
-            initialValue={editedProduct ? editedProduct : ""}
-            initiallyValid={!!editedProduct}
-            required
-          />
-        </ScrollView>
-      </View>
-    </KeyboardAvoidingView>
+        )}
+        <Input
+          id="description"
+          label="Description"
+          errorText="please input a valid description"
+          keyboardType="default"
+          returnKeyType="next"
+          autoCapitalize="sentences"
+          autoCorrect
+          multilne
+          numberOfLines={3}
+          onInputChange={changeInputHandler}
+          initialValue={editedProduct ? editedProduct : ""}
+          initiallyValid={!!editedProduct}
+          required
+          minLength={5}
+        />
+        <Input
+          id="imageUrl"
+          label="Image Url"
+          errorText="please input a valid image url"
+          keyboardType="default"
+          autoCorrect
+          returnKeyType="next"
+          onInputChange={changeInputHandler}
+          initialValue={editedProduct ? editedProduct : ""}
+          initiallyValid={!!editedProduct}
+          required
+        />
+      </ScrollView>
+    </View>
   );
 };
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useReducer } from "react";
 import { View, Text, TextInput, StyleSheet } from "react-native";
 import CustomText from "./CustomText";
-import { red } from "ansi-colors";
 
 const INPUT_CHANGE = "INPUT_CHANGE";
 const INPUT_BLUR = "INPUT_BLUR";
@@ -101,7 +100,7 @@ const styles = StyleSheet.create({
   },
   errorText: {
     fontFamily: "Open-Sans",
-    color: red,
+    color: "red",
     fontSize: 14
   }
 });
