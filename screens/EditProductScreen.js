@@ -55,13 +55,13 @@ const EditProductScreen = ({ navigation, route }) => {
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
     inputValues: {
-      title: editedProduct ? editedProduct.productName : "",
+      productName: editedProduct ? editedProduct.productName : "",
       imageUrl: editedProduct ? editedProduct.imageUrl : "",
-      description: editedProduct ? editedProduct.productDescription : "",
+      productDescription: editedProduct ? editedProduct.productDescription : "",
       price: ""
     },
     inputValidities: {
-      title: editedProduct ? true : false,
+      productName: editedProduct ? true : false,
       imageUrl: editedProduct ? true : false,
       description: editedProduct ? true : false,
       price: editedProduct ? true : false
@@ -81,8 +81,8 @@ const EditProductScreen = ({ navigation, route }) => {
       dispatch(
         actionProducts.updatedProduct(
           prodId,
-          formState.inputValues.title,
-          formState.inputValues.description,
+          formState.inputValues.productName,
+          formState.inputValues.productDescription,
           formState.inputValues.imageUrl
         )
       );
@@ -143,7 +143,7 @@ const EditProductScreen = ({ navigation, route }) => {
     <View style={styles.screen}>
       <ScrollView>
         <Input
-          id="title"
+          id="productName"
           label="Title"
           errorText="please input a valid title!"
           keyboardType="default"
@@ -151,7 +151,7 @@ const EditProductScreen = ({ navigation, route }) => {
           autoCorrect
           returnKeyType="next"
           onInputChange={changeInputHandler}
-          initialValue={editedProduct ? editedProduct : ""}
+          initialValue={editedProduct ? editedProduct.productName : ""}
           initiallyValid={!!editedProduct}
           required
         />
@@ -168,7 +168,7 @@ const EditProductScreen = ({ navigation, route }) => {
           />
         )}
         <Input
-          id="description"
+          id="productDescription"
           label="Description"
           errorText="please input a valid description"
           keyboardType="default"
@@ -178,7 +178,7 @@ const EditProductScreen = ({ navigation, route }) => {
           multilne
           numberOfLines={3}
           onInputChange={changeInputHandler}
-          initialValue={editedProduct ? editedProduct : ""}
+          initialValue={editedProduct ? editedProduct.productDescription : ""}
           initiallyValid={!!editedProduct}
           required
           minLength={5}
@@ -191,7 +191,7 @@ const EditProductScreen = ({ navigation, route }) => {
           autoCorrect
           returnKeyType="next"
           onInputChange={changeInputHandler}
-          initialValue={editedProduct ? editedProduct : ""}
+          initialValue={editedProduct ? editedProduct.imageUrl : ""}
           initiallyValid={!!editedProduct}
           required
         />
