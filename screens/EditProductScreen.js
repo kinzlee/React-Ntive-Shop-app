@@ -153,61 +153,76 @@ const EditProductScreen = ({ navigation, route }) => {
     // ></KeyboardAvoidingView>
     <View style={styles.screen}>
       <ScrollView>
-        <Input
-          id="productName"
-          label="Title"
-          errorText="please input a valid title!"
-          keyboardType="default"
-          autoCapitalize="sentences"
-          autoCorrect
-          returnKeyType="next"
-          onInputChange={changeInputHandler}
-          initialValue={editedProduct ? editedProduct.productName : ""}
-          initiallyValid={!!editedProduct}
-          required
-        />
-        {editedProduct ? null : (
-          <Input
-            id="price"
-            label="Price"
-            errorText="please input a valid price"
-            keyboardType="decimal-pad"
+        <View style={styles.description}>
+          <CustomText>Title</CustomText>
+
+          <TextInput
+            // id="productName"
+            // "Title"
+            errorText="please input a valid title!"
+            keyboardType="default"
+            autoCapitalize="sentences"
+            autoCorrect
             returnKeyType="next"
             onInputChange={changeInputHandler}
+            initialValue={editedProduct ? editedProduct.productName : ""}
+            // initiallyValid={!!editedProduct}
             required
-            min={0.1}
-            initiallyValid={!!editedProduct}
           />
+        </View>
+        {editedProduct ? null : (
+          <View style={styles.description}>
+            <CustomText>Price</CustomText>
+            <TextInput
+              // id="price"
+              // "Price"
+              errorText="please input a valid price"
+              keyboardType="decimal-pad"
+              returnKeyType="next"
+              onInputChange={changeInputHandler}
+              required
+              min={0.1}
+              // initiallyValid={!!editedProduct}
+            />
+          </View>
         )}
-        <Input
-          id="productDescription"
-          label="Description"
-          errorText="please input a valid description"
-          keyboardType="default"
-          returnKeyType="next"
-          autoCapitalize="sentences"
-          autoCorrect
-          multilne
-          numberOfLines={3}
-          onInputChange={changeInputHandler}
-          initialValue={editedProduct ? editedProduct.productDescription : ""}
-          initiallyValid={!!editedProduct}
-          required
-          minLength={5}
-        />
-        <Input
-          id="imageUrl"
-          label="Image Url"
-          errorText="please input a valid imageUrl"
-          keyboardType="default"
-          returnKeyType="next"
-          autoCapitalize="sentences"
-          autoCorrect
-          onInputChange={changeInputHandler}
-          initialValue={editedProduct ? editedProduct.imageUrl : ""}
-          initiallyValid={!!editedProduct}
-          required
-        />
+        <View style={styles.description}>
+          <CustomText>Description</CustomText>
+
+          <TextInput
+            // id="productDescription"
+            // "Description"
+            errorText="please input a valid description"
+            keyboardType="default"
+            returnKeyType="next"
+            autoCapitalize="sentences"
+            autoCorrect
+            multilne
+            numberOfLines={3}
+            onInputChange={changeInputHandler}
+            initialValue={editedProduct ? editedProduct.productDescription : ""}
+            // initiallyValid={!!editedProduct}
+            required
+            minLength={5}
+          />
+        </View>
+        <View style={styles.description}>
+          <CustomText>ImageUrl</CustomText>
+
+          <TextInput
+            // id="imageUrl"
+            // "Image Url"
+            errorText="please input a valid imageUrl"
+            keyboardType="default"
+            returnKeyType="next"
+            autoCapitalize="sentences"
+            autoCorrect
+            onInputChange={changeInputHandler}
+            initialValue={editedProduct ? editedProduct.imageUrl : ""}
+            // initiallyValid={!!editedProduct}
+            required
+          />
+        </View>
       </ScrollView>
     </View>
   );
