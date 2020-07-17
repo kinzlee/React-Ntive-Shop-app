@@ -83,11 +83,7 @@ const EditProductScreen = ({ navigation, route }) => {
           prodId,
           formState.inputValues.productName,
           formState.inputValues.productDescription,
-          console.log(
-            formState.inputValues.imageUrl,
-            "<<<<<<<<<<<<<<<<<<<<<<<",
-            formState.inputValues
-          )
+          formState.inputValues.imageUrl
         )
       );
     } else {
@@ -146,81 +142,67 @@ const EditProductScreen = ({ navigation, route }) => {
     // ></KeyboardAvoidingView>
     <View style={styles.screen}>
       <ScrollView>
-        <View style={styles.description}>
-          <CustomText> Title </CustomText>
-
-          <TextInput
-            // id="productName"
-            label="Title"
-            errorText="please input a valid title!"
-            keyboardType="default"
-            autoCapitalize="sentences"
-            autoCorrect
-            returnKeyType="next"
-            value={formState.inputValues.productName}
-            onChangeText={changeInputHandler.bind(this, "productName")}
-            initialValue={editedProduct ? editedProduct.productName : ""}
-            // initiallyValid={!!editedProduct}
-            required
-          />
-        </View>
+        <Input
+          id="productName"
+          label="Title"
+          errorText="please input a valid title!"
+          keyboardType="default"
+          autoCapitalize="sentences"
+          autoCorrect
+          returnKeyType="next"
+          // value={formState.inputValues.productName}
+          onChangeText={changeInputHandler}
+          initialValue={editedProduct ? editedProduct.productName : ""}
+          initiallyValid={!!editedProduct}
+          required
+        />
         {editedProduct ? null : (
-          <View style={styles.description}>
-            <CustomText>Price</CustomText>
-            <TextInput
-              // id="price"
-              label="Price"
-              errorText="please input a valid price"
-              keyboardType="decimal-pad"
-              returnKeyType="next"
-              value={formState.inputValues.price}
-              onInputChange={changeInputHandler.bind(this, "price")}
-              required
-              min={0.1}
-              // initiallyValid={!!editedProduct}
-            />
-          </View>
+          <Input
+            id="price"
+            label="Price"
+            errorText="please input a valid price"
+            keyboardType="decimal-pad"
+            returnKeyType="next"
+            // value={formState.inputValues.price}
+            onInputChange={changeInputHandler}
+            required
+            min={0.1}
+            initiallyValid={!!editedProduct}
+          />
         )}
-        <View style={styles.description}>
-          <CustomText> Description </CustomText>
 
-          <TextInput
-            // id="productDescription"
-            label="Description"
-            errorText="please input a valid description"
-            keyboardType="default"
-            returnKeyType="next"
-            autoCapitalize="sentences"
-            autoCorrect
-            multilne
-            numberOfLines={3}
-            value={formState.inputValues.productDescription}
-            onChangeText={changeInputHandler.bind(this, "productDescription")}
-            initialValue={editedProduct ? editedProduct.productDescription : ""}
-            // initiallyValid={!!editedProduct}
-            required
-            minLength={5}
-          />
-        </View>
+        <Input
+          id="productDescription"
+          label="Description"
+          errorText="please input a valid description"
+          keyboardType="default"
+          returnKeyType="next"
+          autoCapitalize="sentences"
+          autoCorrect
+          multilne
+          numberOfLines={3}
+          value={formState.inputValues.productDescription}
+          onInputChange={changeInputHandler}
+          initialValue={editedProduct ? editedProduct.productDescription : ""}
+          initiallyValid={!!editedProduct}
+          required
+          minLength={3}
+        />
 
-        <View style={styles.description}>
-          <CustomText> Image Url </CustomText>
-
-          <TextInput
-            // id="imageUrl"
-            label="Image Url"
-            errorText="please input a valid imageUrl"
-            keyboardType="default"
-            returnKeyType="next"
-            autoCapitalize="sentences"
-            autoCorrect
-            value={formState.inputValues.imageUrl}
-            onChangeText={changeInputHandler.bind(this, "imageUrl")}
-            initialValue={editedProduct ? editedProduct.imageUrl : ""}
-            // initiallyValid={!!editedProduct}
-            required
-          />
-        </View>
+        <Input
+          id="imageUrl"
+          label="Image Url"
+          errorText="please input a valid imageUrl"
+          keyboardType="default"
+          returnKeyType="next"
+          autoCapitalize="sentences"
+          autoCorrect
+          value={formState.inputValues.imageUrl}
+          onChangeText={changeInputHandler}
+          initialValue={editedProduct ? editedProduct.imageUrl : ""}
+          initiallyValid={!!editedProduct}
+          required
+        />
       </ScrollView>
     </View>
   );

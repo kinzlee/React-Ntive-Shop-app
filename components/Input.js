@@ -6,20 +6,21 @@ const INPUT_CHANGE = "INPUT_CHANGE";
 const INPUT_BLUR = "INPUT_BLUR";
 
 const inputReducer = (state, action) => {
-  if (action.type === INPUT_CHANGE) {
-    return {
-      ...state,
-      value: action.value,
-      isValid: action.isValid
-    };
+  switch (action.type) {
+    case INPUT_CHANGE:
+      return {
+        ...state,
+        value: action.value,
+        isValid: action.isValid
+      };
+    case INPUT_BLUR:
+      return {
+        ...state,
+        touched: true
+      };
+    default:
+      return state;
   }
-  if (action.type === INPUT_BLUR) {
-    return {
-      ...state,
-      touched: true
-    };
-  }
-  return state;
 };
 
 const Input = props => {
