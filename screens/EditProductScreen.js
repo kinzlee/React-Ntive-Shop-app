@@ -162,12 +162,13 @@ const EditProductScreen = ({ navigation, route }) => {
             errorText="please input a valid title!"
             keyboardType="default"
             autoCapitalize="sentences"
+            value={formState.inputValues.title}
             autoCorrect
             returnKeyType="next"
-            onInputChange={changeInputHandler}
+            onChangeText={changeInputHandler.bind(this, "title")}
             initialValue={editedProduct ? editedProduct.productName : ""}
             // initiallyValid={!!editedProduct}
-            required
+            // required
           />
         </View>
         {editedProduct ? null : (
@@ -179,9 +180,10 @@ const EditProductScreen = ({ navigation, route }) => {
               errorText="please input a valid price"
               keyboardType="decimal-pad"
               returnKeyType="next"
-              onInputChange={changeInputHandler}
-              required
-              min={0.1}
+              value={formState.inputValues.price}
+              onChangeText={changeInputHandler.bind(this, "price")}
+              // required
+              // min={0.1}
               // initiallyValid={!!editedProduct}
             />
           </View>
@@ -196,13 +198,14 @@ const EditProductScreen = ({ navigation, route }) => {
             keyboardType="default"
             returnKeyType="next"
             autoCapitalize="sentences"
+            value={formState.inputValues.description}
             autoCorrect
             multilne
             numberOfLines={3}
-            onInputChange={changeInputHandler}
+            onChangeText={changeInputHandler.bind(this, "description")}
             initialValue={editedProduct ? editedProduct.productDescription : ""}
             // initiallyValid={!!editedProduct}
-            required
+            // required
             minLength={5}
           />
         </View>
@@ -217,10 +220,11 @@ const EditProductScreen = ({ navigation, route }) => {
             returnKeyType="next"
             autoCapitalize="sentences"
             autoCorrect
-            onInputChange={changeInputHandler}
+            value={formState.inputValues.imageUrl}
+            onChangeText={changeInputHandler.bind(this, "imageUrl")}
             initialValue={editedProduct ? editedProduct.imageUrl : ""}
             // initiallyValid={!!editedProduct}
-            required
+            // required
           />
         </View>
       </ScrollView>
