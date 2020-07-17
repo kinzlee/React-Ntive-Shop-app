@@ -26,13 +26,7 @@ const ProductManagerScreen = ({ navigation, route }) => {
     });
   }, [navigation]);
 
-  return (
-    <ProductManagerList
-      listData={userProducts}
-      navigation={navigation}
-      item={item => item.id}
-    />
-  );
+  return <ProductManagerList listData={userProducts} navigation={navigation} />;
 };
 
 const styles = StyleSheet.create({

@@ -47,7 +47,7 @@ const ProductManagerList = ({ navigation, listData, item }) => {
     <View style={styles.list}>
       <FlatList
         data={listData}
-        keyExtractor={item}
+        keyExtractor={item => item.id}
         renderItem={renderProductManagerItem}
         style={{ width: "100%" }}
       />

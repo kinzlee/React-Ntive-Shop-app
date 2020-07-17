@@ -94,15 +94,8 @@ const EditProductScreen = ({ navigation, route }) => {
       dispatch(
         actionProducts.createProduct(
           formState.inputValues.productName,
-          console.log(
-            ">>>>>>>>>>>>>>>>",
-            formState.inputValues.imageUrl,
-            formState.inputValues
-          ),
-          console.log(
-            "^^^^^^^^^^^^^^",
-            formState.inputValues.productDescription
-          ),
+          formState.inputValues.imageUrl,
+          formState.inputValues.productDescription,
           +formState.inputValues.price
         )
       );
@@ -154,21 +147,21 @@ const EditProductScreen = ({ navigation, route }) => {
     <View style={styles.screen}>
       <ScrollView>
         <View style={styles.description}>
-          <CustomText>Title</CustomText>
+          <CustomText> Title </CustomText>
 
           <TextInput
             // id="productName"
-            // "Title"
+            label="Title"
             errorText="please input a valid title!"
             keyboardType="default"
             autoCapitalize="sentences"
-            value={formState.inputValues.title}
             autoCorrect
             returnKeyType="next"
-            onChangeText={changeInputHandler.bind(this, "title")}
+            value={formState.inputValues.productName}
+            onChangeText={changeInputHandler.bind(this, "productName")}
             initialValue={editedProduct ? editedProduct.productName : ""}
             // initiallyValid={!!editedProduct}
-            // required
+            required
           />
         </View>
         {editedProduct ? null : (
@@ -176,45 +169,46 @@ const EditProductScreen = ({ navigation, route }) => {
             <CustomText>Price</CustomText>
             <TextInput
               // id="price"
-              // "Price"
+              label="Price"
               errorText="please input a valid price"
               keyboardType="decimal-pad"
               returnKeyType="next"
               value={formState.inputValues.price}
-              onChangeText={changeInputHandler.bind(this, "price")}
-              // required
-              // min={0.1}
+              onInputChange={changeInputHandler.bind(this, "price")}
+              required
+              min={0.1}
               // initiallyValid={!!editedProduct}
             />
           </View>
         )}
         <View style={styles.description}>
-          <CustomText>Description</CustomText>
+          <CustomText> Description </CustomText>
 
           <TextInput
             // id="productDescription"
-            // "Description"
+            label="Description"
             errorText="please input a valid description"
             keyboardType="default"
             returnKeyType="next"
             autoCapitalize="sentences"
-            value={formState.inputValues.description}
             autoCorrect
             multilne
             numberOfLines={3}
-            onChangeText={changeInputHandler.bind(this, "description")}
+            value={formState.inputValues.productDescription}
+            onChangeText={changeInputHandler.bind(this, "productDescription")}
             initialValue={editedProduct ? editedProduct.productDescription : ""}
             // initiallyValid={!!editedProduct}
-            // required
+            required
             minLength={5}
           />
         </View>
+
         <View style={styles.description}>
-          <CustomText>ImageUrl</CustomText>
+          <CustomText> Image Url </CustomText>
 
           <TextInput
             // id="imageUrl"
-            // "Image Url"
+            label="Image Url"
             errorText="please input a valid imageUrl"
             keyboardType="default"
             returnKeyType="next"
@@ -224,7 +218,7 @@ const EditProductScreen = ({ navigation, route }) => {
             onChangeText={changeInputHandler.bind(this, "imageUrl")}
             initialValue={editedProduct ? editedProduct.imageUrl : ""}
             // initiallyValid={!!editedProduct}
-            // required
+            required
           />
         </View>
       </ScrollView>
