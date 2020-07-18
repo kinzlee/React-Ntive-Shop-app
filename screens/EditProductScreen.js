@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer } from "react";
+import React, { useEffect, useCallback, useReducer } from "react";
 import {
   View,
   Text,
@@ -70,18 +70,22 @@ const EditProductScreen = ({ navigation, route }) => {
   });
 
   const submitHandler = useCallback(() => {
-    // if (!formState.formIsValid) {
-    //   Alert.alert(
-    //     "Incorrect input!",
-    //     "Please check the errors with the form.",
-    //     [{ text: "Sure" }]
-    //   );
-    // }
+    if (!formState.formIsValid) {
+      Alert.alert(
+        "Incorrect input!",
+        "Please check the errors with the form.",
+        [{ text: "Sure" }]
+      );
+    }
     if (editedProduct) {
       dispatch(
         actionProducts.updatedProduct(
           prodId,
-          formState.inputValues.productName,
+          console.log(
+            formState.inputValues.productName,
+            ">>>>>>>>>>>>>>>>>>>>>>>>>>",
+            formState.inputValues
+          ),
           formState.inputValues.productDescription,
           formState.inputValues.imageUrl
         )
@@ -100,7 +104,7 @@ const EditProductScreen = ({ navigation, route }) => {
   }, [dispatch, prodId, formState]);
 
   // useEffect(() => {
-  //   navigation.setParams({ submit: submitHandler })
+  //   navigation.setParams({ submit: submitHandler });
   // }, [submitHandler]);
 
   const { productId } = route.params;
@@ -150,10 +154,11 @@ const EditProductScreen = ({ navigation, route }) => {
           autoCapitalize="sentences"
           autoCorrect
           returnKeyType="next"
+          onBlur
           // value={formState.inputValues.productName}
-          onChangeText={changeInputHandler}
+          onInputChange={changeInputHandler}
           initialValue={editedProduct ? editedProduct.productName : ""}
-          initiallyValid={!!editedProduct}
+          initiallyValid={editedProduct}
           required
         />
         {editedProduct ? null : (
@@ -181,7 +186,7 @@ const EditProductScreen = ({ navigation, route }) => {
           autoCorrect
           multilne
           numberOfLines={3}
-          value={formState.inputValues.productDescription}
+          // value={formState.inputValues.productDescription}
           onInputChange={changeInputHandler}
           initialValue={editedProduct ? editedProduct.productDescription : ""}
           initiallyValid={!!editedProduct}
@@ -198,7 +203,7 @@ const EditProductScreen = ({ navigation, route }) => {
           autoCapitalize="sentences"
           autoCorrect
           value={formState.inputValues.imageUrl}
-          onChangeText={changeInputHandler}
+          onInputChange={changeInputHandler}
           initialValue={editedProduct ? editedProduct.imageUrl : ""}
           initiallyValid={!!editedProduct}
           required
