@@ -11,7 +11,7 @@ const inputReducer = (state, action) => {
       return {
         ...state,
         value: action.value,
-        isValid: action.isValid
+        isValidInput: action.isValidInput
       };
     case INPUT_BLUR:
       return {
@@ -26,7 +26,7 @@ const inputReducer = (state, action) => {
 const Input = props => {
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: props.initialValue ? props.initialValue : "",
-    isValid: props.initiallyValid,
+    isValidInput: props.initiallyValid,
     touched: false
   });
 
@@ -34,30 +34,30 @@ const Input = props => {
 
   useEffect(() => {
     if (inputState.touched) {
-      onInputChange(id, inputState.value, inputState.isValid);
+      onInputChange(id, inputState.value, inputState.isValidInput);
     }
   }, [inputState, onInputChange, id]);
 
   const textChangeHandler = text => {
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    let isValid = true;
+    let isValidInput = true;
     if (props.required && text.trim().length === 0) {
-      isValid = false;
+      isValidInput = false;
     }
     if (props.email && !emailRegex.test(text.toLowerCase())) {
-      isValid = false;
+      isValidInput = false;
     }
     if (props.min != null && +text < props.min) {
-      isValid = false;
+      isValidInput = false;
     }
     if (props.max != null && +text > props.max) {
-      isValid = false;
+      isValidInput = false;
     }
     if (props.minLength != null && text.length < props.minLength) {
-      isValid = false;
+      isValidInput = false;
     }
 
-    dispatch({ type: INPUT_CHANGE, value: text, isValid: isValid });
+    dispatch({ type: INPUT_CHANGE, value: text, isValidInput: isValidInput });
   };
 
   const focusLostHandler = () => {
@@ -74,11 +74,13 @@ const Input = props => {
         onChangeText={textChangeHandler}
         onBlur={focusLostHandler}
       />
-      {!inputState.isValid && inputState.touched && (
-        <View style={styles.errorTextContainer}>
-          <Text style={styles.errorText}>{props.errorText}</Text>
-        </View>
-      )}
+      {
+        !inputState.isValidInput(
+          <View style={styles.errorTextContainer}>
+            <Text style={styles.errorText}>{props.errorText}</Text>
+          </View>
+        )
+      }
     </View>
   );
 };

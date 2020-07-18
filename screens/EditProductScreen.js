@@ -154,11 +154,10 @@ const EditProductScreen = ({ navigation, route }) => {
           autoCapitalize="sentences"
           autoCorrect
           returnKeyType="next"
-          onBlur
           // value={formState.inputValues.productName}
           onInputChange={changeInputHandler}
           initialValue={editedProduct ? editedProduct.productName : ""}
-          initiallyValid={editedProduct}
+          initiallyValid={!!editedProduct}
           required
         />
         {editedProduct ? null : (
