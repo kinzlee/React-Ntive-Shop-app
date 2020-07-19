@@ -51,6 +51,7 @@ const EditProductScreen = ({ navigation, route }) => {
     state.products.userProducts.find(prod => prod.id === prodId)
   );
 
+  console.log("this");
   const dispatch = useDispatch();
 
   const [formState, dispatchFormState] = useReducer(formReducer, {
@@ -71,6 +72,7 @@ const EditProductScreen = ({ navigation, route }) => {
 
   const changeInputHandler = useCallback(
     (inputIdentifier, inputValue, inputValidity) => {
+      console.log(inputValue, ">>>>>>>>>>>>>>>>>^^^^^");
       dispatchFormState({
         type: FORM_UPDATE,
         value: inputValue,

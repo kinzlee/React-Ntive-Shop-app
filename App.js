@@ -3,11 +3,13 @@ import { Text, View } from "react-native";
 import * as Font from "expo-font";
 import { AppLoading } from "expo";
 import ShopNavigation from "./navigation/ShopNavigation";
-import { combineReducers, createStore } from "redux";
+import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 import productReducer from "./store/reducers/product";
 import cartReducer from "./store/reducers/cart";
-import ordersReducer from './store/reducers/orders';
+import ordersReducer from "./store/reducers/orders";
 import { Provider } from "react-redux";
+// import { composeWithDevTools } from "redux-devtools-extension";
+import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
   products: productReducer,
@@ -15,7 +17,12 @@ const rootReducer = combineReducers({
   orders: ordersReducer
 });
 
-const store = createStore(rootReducer);
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+  rootReducer,
+  composeEnhancers(applyMiddleware(thunk))
+);
 
 const fetchFonts = () => {
   return Font.loadAsync({

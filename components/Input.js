@@ -29,10 +29,10 @@ const Input = props => {
     isValidInput: props.initiallyValid,
     touched: false
   });
-
   const { onInputChange, id } = props;
 
   useEffect(() => {
+    console.log("effect, >>>>>>>>>>>>>>>>>>>>><<<<<<<<<");
     if (inputState.touched) {
       onInputChange(id, inputState.value, inputState.isValidInput);
     }
