@@ -69,6 +69,18 @@ const EditProductScreen = ({ navigation, route }) => {
     formIsValid: editedProduct ? true : false
   });
 
+  const changeInputHandler = useCallback(
+    (inputIdentifier, inputValue, inputValidity) => {
+      dispatchFormState({
+        type: FORM_UPDATE,
+        value: inputValue,
+        isValidInput: inputValidity,
+        input: inputIdentifier
+      });
+    },
+    [dispatchFormState]
+  );
+
   const submitHandler = useCallback(() => {
     if (!formState.formIsValid) {
       Alert.alert(
@@ -81,11 +93,7 @@ const EditProductScreen = ({ navigation, route }) => {
       dispatch(
         actionProducts.updatedProduct(
           prodId,
-          console.log(
-            formState.inputValues.productName,
-            ">>>>>>>>>>>>>>>>>>>>>>>>>>",
-            formState.inputValues
-          ),
+          formState.inputValues.productName,
           formState.inputValues.productDescription,
           formState.inputValues.imageUrl
         )
@@ -94,9 +102,9 @@ const EditProductScreen = ({ navigation, route }) => {
       dispatch(
         actionProducts.createProduct(
           formState.inputValues.productName,
-          formState.inputValues.imageUrl,
+          +formState.inputValues.price,
           formState.inputValues.productDescription,
-          +formState.inputValues.price
+          formState.inputValues.imageUrl
         )
       );
     }
@@ -125,18 +133,6 @@ const EditProductScreen = ({ navigation, route }) => {
       )
     });
   }, [navigation, submitHandler]);
-
-  const changeInputHandler = useCallback(
-    (inputIdentifier, inputValue, inputValidity) => {
-      dispatchFormState({
-        type: FORM_UPDATE,
-        value: inputValue,
-        isValidInput: inputValidity,
-        input: inputIdentifier
-      });
-    },
-    [dispatchFormState]
-  );
 
   return (
     // <KeyboardAvoidingView
@@ -174,6 +170,20 @@ const EditProductScreen = ({ navigation, route }) => {
             initiallyValid={!!editedProduct}
           />
         )}
+        <Input
+          id="imageUrl"
+          label="Image Url"
+          errorText="please input a valid imageUrl"
+          keyboardType="default"
+          returnKeyType="next"
+          autoCapitalize="sentences"
+          autoCorrect
+          value={formState.inputValues.imageUrl}
+          onInputChange={changeInputHandler}
+          initialValue={editedProduct ? editedProduct.imageUrl : ""}
+          initiallyValid={!!editedProduct}
+          required
+        />
 
         <Input
           id="productDescription"
@@ -191,21 +201,6 @@ const EditProductScreen = ({ navigation, route }) => {
           initiallyValid={!!editedProduct}
           required
           minLength={3}
-        />
-
-        <Input
-          id="imageUrl"
-          label="Image Url"
-          errorText="please input a valid imageUrl"
-          keyboardType="default"
-          returnKeyType="next"
-          autoCapitalize="sentences"
-          autoCorrect
-          value={formState.inputValues.imageUrl}
-          onInputChange={changeInputHandler}
-          initialValue={editedProduct ? editedProduct.imageUrl : ""}
-          initiallyValid={!!editedProduct}
-          required
         />
       </ScrollView>
     </View>

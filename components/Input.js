@@ -74,13 +74,11 @@ const Input = props => {
         onChangeText={textChangeHandler}
         onBlur={focusLostHandler}
       />
-      {
-        !inputState.isValidInput(
-          <View style={styles.errorTextContainer}>
-            <Text style={styles.errorText}>{props.errorText}</Text>
-          </View>
-        )
-      }
+      {!inputState.isValidInput && inputState.touched && (
+        <View style={styles.errorTextContainer}>
+          <Text style={styles.errorText}>{props.errorText}</Text>
+        </View>
+      )}
     </View>
   );
 };
