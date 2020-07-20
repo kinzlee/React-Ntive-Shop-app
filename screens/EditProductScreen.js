@@ -104,9 +104,9 @@ const EditProductScreen = ({ navigation, route }) => {
       dispatch(
         actionProducts.createProduct(
           formState.inputValues.productName,
-          +formState.inputValues.price,
           formState.inputValues.productDescription,
-          formState.inputValues.imageUrl
+          formState.inputValues.imageUrl,
+          +formState.inputValues.price
         )
       );
     }
