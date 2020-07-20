@@ -8,8 +8,6 @@ import {
   Alert,
   KeyboardAvoidingView
 } from "react-native";
-import CustomText from "../components/CustomText";
-import PRODUCTS from "../data/dummy-data";
 import HeaderButton from "../components/HeaderButtton";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector, useDispatch } from "react-redux";
@@ -30,9 +28,7 @@ const formReducer = (state, action) => {
       [action.input]: action.isValidInput
     };
     let updatedFormIsValid = true;
-    // Object.keys(updatedValidities).map(key => {
-    //   updatedFormIsValid = updatedFormIsValid && updatedValidities[key];
-    // });
+
     for (const key in updatedValidities) {
       updatedFormIsValid = updatedFormIsValid && updatedValidities[key];
     }
@@ -113,10 +109,6 @@ const EditProductScreen = ({ navigation, route }) => {
     navigation.goBack();
   }, [dispatch, prodId, formState]);
 
-  // useEffect(() => {
-  //   navigation.setParams({ submit: submitHandler });
-  // }, [submitHandler]);
-
   const { productId } = route.params;
 
   React.useLayoutEffect(() => {
@@ -152,7 +144,6 @@ const EditProductScreen = ({ navigation, route }) => {
           autoCapitalize="sentences"
           autoCorrect
           returnKeyType="next"
-          // value={formState.inputValues.productName}
           onInputChange={changeInputHandler}
           initialValue={editedProduct ? editedProduct.productName : ""}
           initiallyValid={!!editedProduct}
@@ -165,7 +156,6 @@ const EditProductScreen = ({ navigation, route }) => {
             errorText="please input a valid price"
             keyboardType="decimal-pad"
             returnKeyType="next"
-            // value={formState.inputValues.price}
             onInputChange={changeInputHandler}
             required
             min={0.1}
@@ -197,7 +187,6 @@ const EditProductScreen = ({ navigation, route }) => {
           autoCorrect
           multilne
           numberOfLines={3}
-          // value={formState.inputValues.productDescription}
           onInputChange={changeInputHandler}
           initialValue={editedProduct ? editedProduct.productDescription : ""}
           initiallyValid={!!editedProduct}
