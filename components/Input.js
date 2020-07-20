@@ -66,7 +66,9 @@ const Input = props => {
 
   return (
     <View style={styles.description}>
-      <CustomText>{props.label}</CustomText>
+      <View style={styles.hederStyle}>
+        <CustomText>{props.label}</CustomText>
+      </View>
       <TextInput
         {...props}
         style={styles.textStyle}
@@ -88,9 +90,11 @@ const styles = StyleSheet.create({
   description: {
     borderBottomColor: "#ccc",
     borderBottomWidth: 1,
-    paddingVertical: 20,
+    paddingVertical: 8,
     marginHorizontal: 5,
-    paddingHorizontal: 40
+    paddingHorizontal: 80,
+    justifyContent: "space-around"
+    // paddingBottom: 20
   },
   textStyle: {
     fontFamily: "Open-Sans",
@@ -104,6 +108,9 @@ const styles = StyleSheet.create({
     fontFamily: "Open-Sans",
     color: "red",
     fontSize: 14
+  },
+  hederStyle: {
+    paddingRight: 70
   }
 });
 

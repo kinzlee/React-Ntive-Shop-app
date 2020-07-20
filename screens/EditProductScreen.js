@@ -72,7 +72,6 @@ const EditProductScreen = ({ navigation, route }) => {
 
   const changeInputHandler = useCallback(
     (inputIdentifier, inputValue, inputValidity) => {
-      console.log(inputValue, ">>>>>>>>>>>>>>>>>^^^^^");
       dispatchFormState({
         type: FORM_UPDATE,
         value: inputValue,
@@ -90,6 +89,7 @@ const EditProductScreen = ({ navigation, route }) => {
         "Please check the errors with the form.",
         [{ text: "Sure" }]
       );
+      return;
     }
     if (editedProduct) {
       dispatch(
@@ -214,10 +214,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "flex-start",
-    marginVertical: 65,
+    marginTop: 35,
+    marginBottom: 185,
     marginHorizontal: 10,
     paddingVertical: 10,
-    paddingBottom: 50,
+    // paddingBottom: 50,
     borderRadius: 10,
     backgroundColor: colors.secondaryColor
   },
