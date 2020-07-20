@@ -3,7 +3,7 @@ import { View, Text, TextInput, StyleSheet } from "react-native";
 import CustomText from "./CustomText";
 
 const INPUT_CHANGE = "INPUT_CHANGE";
-const INPUT_BLUR = "INPUT_BLUR";
+// const INPUT_BLUR = "INPUT_BLUR";
 
 const inputReducer = (state, action) => {
   switch (action.type) {
@@ -13,11 +13,11 @@ const inputReducer = (state, action) => {
         value: action.value,
         isValidInput: action.isValidInput
       };
-    case INPUT_BLUR:
-      return {
-        ...state,
-        touched: true
-      };
+    // case INPUT_BLUR:
+    //   return {
+    //     ...state,
+    //     touched: true
+    //   };
     default:
       return state;
   }
@@ -26,16 +26,14 @@ const inputReducer = (state, action) => {
 const Input = props => {
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: props.initialValue ? props.initialValue : "",
-    isValidInput: props.initiallyValid,
-    touched: false
+    isValidInput: props.initiallyValid
+    // touched: false
   });
   const { onInputChange, id } = props;
 
   useEffect(() => {
     console.log("effect, >>>>>>>>>>>>>>>>>>>>><<<<<<<<<");
-    if (inputState.touched) {
-      onInputChange(id, inputState.value, inputState.isValidInput);
-    }
+    onInputChange(id, inputState.value, inputState.isValidInput);
   }, [inputState, onInputChange, id]);
 
   const textChangeHandler = text => {
@@ -72,10 +70,10 @@ const Input = props => {
         style={styles.textStyle}
         value={inputState.value}
         onChangeText={textChangeHandler}
-        onBlur={focusLostHandler}
+        // onBlur={focusLostHandler}
         // onBlur={focusLostHandler}
       />
-      {!inputState.isValidInput && inputState.touched && (
+      {!inputState.isValidInput && (
         <View style={styles.errorTextContainer}>
           <Text style={styles.errorText}>{props.errorText}</Text>
         </View>
