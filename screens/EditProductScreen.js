@@ -168,7 +168,7 @@ const EditProductScreen = ({ navigation, route }) => {
           errorText="please input a valid imageUrl"
           keyboardType="default"
           returnKeyType="next"
-          autoCapitalize="sentences"
+          autoCapi
           autoCorrect
           value={formState.inputValues.imageUrl}
           onInputChange={changeInputHandler}
