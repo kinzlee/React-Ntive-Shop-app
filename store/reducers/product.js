@@ -14,15 +14,14 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_PRODUCTS :
+    case SET_PRODUCTS:
       return {
         avaialbleProducts: action.products,
         userProducts: action.products
-        
       };
     case CREATE_PRODUCT:
       const newProduct = new Product(
-        new Date().toString(),
+        action.productData.id,
         "u1",
         action.productData.title,
         action.productData.imageUrl,
