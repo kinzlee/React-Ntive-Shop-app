@@ -30,7 +30,7 @@ export const fetchProducts = () => {
         )
       );
     }
-
+    console.log(loadedProducts, "<<<<<<<<<<<<<<<<<<<");
     dispatch({ type: SET_PRODUCTS, products: loadedProducts });
     // } catch (err) {
     //   throw err;

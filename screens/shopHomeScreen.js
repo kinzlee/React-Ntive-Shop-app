@@ -52,6 +52,9 @@ const ShopHomeScreen = ({ navigation, route }) => {
 
   useEffect(() => {
     dispatch(actionProduct.fetchProducts());
+    console.log(
+      dispatch(actionProduct.fetchProducts(), ">>>>>>>>>>>>>>>>>>>>>>>>")
+    );
   }, [dispatch]);
 
   // if (error) {
