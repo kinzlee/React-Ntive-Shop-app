@@ -18,6 +18,12 @@ const ProductDetailScreen = ({ navigation, route }) => {
   );
   const dispatch = useDispatch();
 
+  React.useLayoutEffect(() => {
+    navigation.setOptions({
+      title: selectedProducts.productName
+    });
+  }, [navigation]);
+
   return (
     <View>
       <Image source={{ uri: selectedProducts.imageUrl }} style={styles.image} />

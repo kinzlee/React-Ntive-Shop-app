@@ -37,39 +37,35 @@ const ShopHomeScreen = ({ navigation, route }) => {
     });
   }, [navigation]);
 
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // const loadedProducts = useCallback(async () => {
-  //   setError(null);
-  //   setIsLoading(true);
-  //   try {
-  //     await dispatch(actionProduct.fetchProducts());
-  //   } catch (err) {
-  //     setError(err.message);
-  //   }
-  //   setIsLoading(false);
-  // }, [dispatch, setError, setIsLoading]);
-
-  // console.log(
-  //   dispatch(actionProduct.fetchProducts(), ">>>>>>>>>>>>>>>>>>>>>>>>")
-  // );
+  const loadedProducts = useCallback(async () => {
+    setError(null);
+    setIsLoading(true);
+    try {
+      await dispatch(actionProduct.fetchProducts());
+    } catch (err) {
+      setError(err.message);
+    }
+    setIsLoading(false);
+  }, [dispatch, setError, setIsLoading]);
 
   useEffect(() => {
     loadedProducts();
   }, [dispatch, loadedProducts]);
 
-  // if (error) {
-  //   return (
-  //     <View style={styles.screen}>
-  //       <Text> An error occured!</Text>
-  //       <Button
-  //         title="Try Again"
-  //         onPress={loadedProducts}
-  //         color={colors.primaryColor}
-  //       />
-  //     </View>
-  //   );
-  // }
+  if (error) {
+    return (
+      <View style={styles.screen}>
+        <Text> An error occured!</Text>
+        <Button
+          title="Try Again"
+          onPress={loadedProducts}
+          color={colors.primaryColor}
+        />
+      </View>
+    );
+  }
 
   if (isLoading) {
     return (
