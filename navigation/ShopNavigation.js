@@ -48,22 +48,7 @@ ShopNavigation = () => {
           };
         }}
       />
-      <Stack.Screen
-        name="Product Detail"
-        component={ProductDetailScreen}
-        // options={({ route }) => {
-        //   const { productId } = route.params;
-        //   // const availableProduct = useSelector(
-        //   //   state => state.products.availableProducts
-        //   // );
-        //   const selectedProduct = availableProducts.find(
-        //     product => product.id === productId
-        //   );
-        //   return {
-        //     title: selectedProduct.productName
-        //   };
-        // }}
-      />
+      <Stack.Screen name="Product Detail" component={ProductDetailScreen} />
       <Stack.Screen
         name="Cart"
         component={ProductCartScreen}

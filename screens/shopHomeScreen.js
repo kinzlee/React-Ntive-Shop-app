@@ -51,6 +51,14 @@ const ShopHomeScreen = ({ navigation, route }) => {
   }, [dispatch, setError, setIsLoading]);
 
   useEffect(() => {
+    const willFocusComp = navigation.addListener("willFocus", loadedProducts);
+
+    return () => {
+      willFocusComp.remove();
+    };
+  }, [loadedProducts, navigation]);
+
+  useEffect(() => {
     loadedProducts();
   }, [dispatch, loadedProducts]);
 
