@@ -37,25 +37,26 @@ const ShopHomeScreen = ({ navigation, route }) => {
     });
   }, [navigation]);
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  // const loadedProducts = async () => {
-  // setError(null);
-  // setIsLoading(true);
-  // try {
-  //   await dispatch(actionProduct.fetchProducts());
-  // } catch (err) {
-  // setError(err.message);
-  // }
-  // setIsLoading(false);
-  // };
+  // const loadedProducts = useCallback(async () => {
+  //   setError(null);
+  //   setIsLoading(true);
+  //   try {
+  //     await dispatch(actionProduct.fetchProducts());
+  //   } catch (err) {
+  //     setError(err.message);
+  //   }
+  //   setIsLoading(false);
+  // }, [dispatch, setError, setIsLoading]);
+
+  // console.log(
+  //   dispatch(actionProduct.fetchProducts(), ">>>>>>>>>>>>>>>>>>>>>>>>")
+  // );
 
   useEffect(() => {
-    dispatch(actionProduct.fetchProducts());
-    console.log(
-      dispatch(actionProduct.fetchProducts(), ">>>>>>>>>>>>>>>>>>>>>>>>")
-    );
-  }, [dispatch]);
+    loadedProducts();
+  }, [dispatch, loadedProducts]);
 
   // if (error) {
   //   return (
@@ -70,21 +71,21 @@ const ShopHomeScreen = ({ navigation, route }) => {
   //   );
   // }
 
-  // if (isLoading) {
-  //   return (
-  //     <View style={styles.screen}>
-  //       <ActivityIndicator size="large" color={colors.primaryColor} />
-  //     </View>
-  //   );
-  // }
+  if (isLoading) {
+    return (
+      <View style={styles.screen}>
+        <ActivityIndicator size="large" color={colors.primaryColor} />
+      </View>
+    );
+  }
 
-  // if (!isLoading && availableProduct.length === 0) {
-  //   return (
-  //     <View style={styles.screen}>
-  //       <Text>No Products Found! You shold add some</Text>
-  //     </View>
-  //   );
-  // }
+  if (!isLoading && availableProduct.length === 0) {
+    return (
+      <View style={styles.screen}>
+        <Text>No Products Found! You shold add some</Text>
+      </View>
+    );
+  }
 
   return <ProductList listData={availableProduct} navigation={navigation} />;
 };

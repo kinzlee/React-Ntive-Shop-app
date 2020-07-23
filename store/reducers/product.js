@@ -16,7 +16,7 @@ export default (state = initialState, action) => {
   switch (action.type) {
     case SET_PRODUCTS:
       return {
-        avaialbleProducts: action.products,
+        availableProducts: action.products,
         userProducts: action.products
       };
     case CREATE_PRODUCT:
