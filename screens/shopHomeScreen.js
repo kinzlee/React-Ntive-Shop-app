@@ -11,7 +11,7 @@ import PRODUCTS from "../data/dummy-data";
 import HeaderButton from "../components/HeaderButtton";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector, useDispatch } from "react-redux";
-import actionProduct from "../store/actions/product";
+import * as actionProduct from "../store/actions/product";
 import colors from "../constants/colors";
 
 const ShopHomeScreen = ({ navigation, route }) => {
@@ -39,20 +39,20 @@ const ShopHomeScreen = ({ navigation, route }) => {
 
   const dispatch = useDispatch();
 
-  const loadedProducts = async () => {
-    // setError(null);
-    // setIsLoading(true);
-    try {
-      await dispatch(actionProduct.fetchProducts());
-    } catch (err) {
-      // setError(err.message);
-    }
-    // setIsLoading(false);
-  };
+  // const loadedProducts = async () => {
+  // setError(null);
+  // setIsLoading(true);
+  // try {
+  //   await dispatch(actionProduct.fetchProducts());
+  // } catch (err) {
+  // setError(err.message);
+  // }
+  // setIsLoading(false);
+  // };
 
   useEffect(() => {
-    loadedProducts();
-  }, [dispatch, loadedProducts]);
+    dispatch(actionProduct.fetchProducts());
+  }, [dispatch]);
 
   // if (error) {
   //   return (
