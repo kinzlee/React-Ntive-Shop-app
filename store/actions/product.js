@@ -22,9 +22,9 @@ export const fetchProducts = () => {
           new Product(
             key,
             "u1",
-            resData[key].productName,
+            resData[key].title,
             resData[key].imageUrl,
-            resData[key].productDescription,
+            resData[key].description,
             resData[key].price
           )
         );
