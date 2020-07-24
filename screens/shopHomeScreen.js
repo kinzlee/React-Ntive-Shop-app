@@ -56,7 +56,7 @@ const ShopHomeScreen = ({ navigation, route }) => {
     return () => {
       willFocusComp.remove();
     };
-  }, [loadedProducts, navigation]);
+  }, [loadedProducts]);
 
   useEffect(() => {
     loadedProducts();
