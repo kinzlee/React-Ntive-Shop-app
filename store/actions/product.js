@@ -20,22 +20,47 @@ export const fetchProducts = () => {
       }
 
       const resData = await response.json();
+
+      // const cartItems = useSelector(state => {
+      //   return Object.keys(state.cart.items).map(key => ({
+      //     productId: key,
+      //     productPrice: state.cart.items[key].productPrice,
+      //     productTitle: state.cart.items[key].productTitle,
+      //     quantity: state.cart.items[key].quantity,
+      //     sum: state.cart.items[key].sum
+      //   }));
+      // });
+
       console.log(resData);
-      const loadedProducts = [];
-      for (const key in resData) {
-        loadedProducts.push(
-          new Product(
-            key,
-            "u1",
-            resData[key].title,
-            resData[key].imageUrl,
-            resData[key].description,
-            resData[key].price
-          )
+      // const loadedProducts = [];
+      // // for (const key in resData) {
+      // //   loadedProducts.push(
+      // //     new Product(
+      // //       key,
+      // "u1",
+      //   resData[key].title,
+      //   resData[key].imageUrl,
+      //   resData[key].description,
+      //   resData[key].price;
+      //     )
+      //   );
+      // }
+
+      const loadedProducts = () => {
+        return Object.keys(resData).map(
+          key =>
+            new Product(
+              key,
+              "u1",
+              resData[key].title,
+              resData[key].imageUrl,
+              resData[key].description,
+              resData[key].price
+            )
         );
-      }
-      console.log(loadedProducts, "<<<<<<<<<<<<<<<<<<<");
-      dispatch({ type: SET_PRODUCTS_SUCCESS, products: loadedProducts });
+      };
+
+      dispatch({ type: SET_PRODUCTS_SUCCESS, products: loadedProducts() });
     } catch (err) {
       dispatch({ type: SET_PRODUCTS_ERROR });
     }
