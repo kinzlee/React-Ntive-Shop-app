@@ -37,7 +37,7 @@ export const fetchProducts = () => {
       console.log(loadedProducts, "<<<<<<<<<<<<<<<<<<<");
       dispatch({ type: SET_PRODUCTS_SUCCESS, products: loadedProducts });
     } catch (err) {
-      throw err;
+      dispatch({ type: SET_PRODUCTS_ERROR });
     }
   };
 };
