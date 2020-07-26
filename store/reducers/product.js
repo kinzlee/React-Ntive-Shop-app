@@ -3,19 +3,37 @@ import {
   DELETE_PRODUCT,
   CREATE_PRODUCT,
   UPDATE_PRODUCT,
-  SET_PRODUCTS
+  SET_PRODUCTS_ERROR,
+  SET_PRODUCTS_LOADING,
+  SET_PRODUCTS_SUCCESS
 } from "../actions/product";
 import Product from "../../models/Product";
 
 const initialState = {
   availableProducts: PRODUCTS,
-  userProducts: PRODUCTS.filter(prod => prod.userId === "u1")
+  userProducts: PRODUCTS.filter(prod => prod.userId === "u1"),
+  isError: false,
+  isLoading: false
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case SET_PRODUCTS:
+    case SET_PRODUCTS_LOADING:
       return {
+        ...state,
+        isError: false,
+        isLoading: true
+      };
+    case SET_PRODUCTS_ERROR:
+      return {
+        ...state,
+        isError: true,
+        isLoading: false
+      };
+    case SET_PRODUCTS_SUCCESS:
+      return {
+        isError: false,
+        isLoading: false,
         availableProducts: action.products,
         userProducts: action.products
       };

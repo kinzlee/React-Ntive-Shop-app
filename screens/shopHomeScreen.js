@@ -20,6 +20,8 @@ const ShopHomeScreen = ({ navigation, route }) => {
   const availableProduct = useSelector(
     state => state.products.availableProducts
   );
+  // const spinner = useSelector(state => state.products.isLoading);
+  // const error = useSelector(state => state.products.isError);
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
@@ -43,12 +45,14 @@ const ShopHomeScreen = ({ navigation, route }) => {
     setError(null);
     setIsLoading(true);
     try {
+      console.log("I am here now");
       await dispatch(actionProduct.fetchProducts());
     } catch (err) {
-      setError(err.message);
+      setError(err);
     }
     setIsLoading(false);
-  }, [dispatch, setError, setIsLoading]);
+    console.log("now i am here");
+  }, [dispatch, setIsLoading, setError]);
 
   useEffect(() => {
     const willFocusComp = navigation.addListener("willFocus", loadedProducts);

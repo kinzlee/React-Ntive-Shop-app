@@ -2,11 +2,15 @@ import Product from "../../models/Product";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
 export const CREATE_PRODUCT = "CREATE_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
-export const SET_PRODUCTS = "SET_PRODUCTS";
+export const SET_PRODUCTS_SUCCESS = "SET_PRODUCTS_SUCCES";
+export const SET_PRODUCTS_LOADING = "SET_PRODUCTS_LOADING";
+export const SET_PRODUCTS_ERROR = "SET_PRODUCTS_ERROR";
 
 export const fetchProducts = () => {
   return async dispatch => {
     try {
+      dispatch({ type: SET_PRODUCTS_LOADING });
+
       const response = await fetch(
         "https://shopper-e5714.firebaseio.com/product.json"
       );
@@ -31,7 +35,7 @@ export const fetchProducts = () => {
         );
       }
       console.log(loadedProducts, "<<<<<<<<<<<<<<<<<<<");
-      dispatch({ type: SET_PRODUCTS, products: loadedProducts });
+      dispatch({ type: SET_PRODUCTS_SUCCESS, products: loadedProducts });
     } catch (err) {
       throw err;
     }
