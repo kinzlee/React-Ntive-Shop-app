@@ -1,8 +1,9 @@
-import { ADD_ORDER } from "../actions/orders";
+import { ADD_ORDER_SUCCESS, ADD_ORDER_LOADING } from "../actions/orders";
 import moment from "moment";
 
 const initialState = {
-  orders: []
+  orders: [],
+  isLoading: false
 };
 
 export default (state = initialState, action) => {
@@ -16,7 +17,12 @@ export default (state = initialState, action) => {
     }
   });
   switch (action.type) {
-    case ADD_ORDER:
+    case ADD_ORDER_LOADING:
+      return {
+        ...state,
+        isLoading: true
+      };
+    case ADD_ORDER_SUCCESS:
       const newOrder = order(
         new Date().toString(),
         action.orderData.items,
@@ -25,6 +31,7 @@ export default (state = initialState, action) => {
       );
       return {
         ...state,
+        isLoading: false,
         orders: state.orders.concat(newOrder)
       };
   }

@@ -4,7 +4,8 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  FlatList
+  FlatList,
+  ActivityIndicator
 } from "react-native";
 import CustomText from "../components/CustomText";
 import { Card } from "react-native-shadow-cards";
@@ -15,7 +16,10 @@ import * as actionCart from "../store/actions/cart";
 import * as actionOrders from "../store/actions/orders";
 
 const ProductCartScreen = () => {
-  const cartTotalAmount = useSelector(state => state.cart.totalAmount);
+  const { spinner, cartTotalAmount } = useSelector(state => ({
+    cartTotalAmount: state.cart.totalAmount,
+    spinner: state.orders.isLoading
+  }));
 
   const cartItems = useSelector(state => {
     return Object.keys(state.cart.items).map(key => ({
@@ -28,6 +32,11 @@ const ProductCartScreen = () => {
   });
 
   const dispatch = useDispatch();
+
+  const sendOrderHandler = async () => {
+    spinner;
+    await dispatch(actionOrders.addOrder(cartItems, cartTotalAmount));
+  };
 
   return (
     <View style={styles.screen}>
