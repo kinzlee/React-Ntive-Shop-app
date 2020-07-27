@@ -12,12 +12,16 @@ import colors from "../constants/colors";
 import * as actionOrders from "../store/actions/orders";
 
 const ProductOrdersScreen = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const orders = useSelector(state => state.orders.orders);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(actionOrders.fetchOrders());
+    setIsLoading(true);
+    console.log(isLoading, "seteeeeeeeeeeeeeeeee");
+    dispatch(actionOrders.fetchOrders()).then(() => {
+      setIsLoading(false);
+    });
   }, [dispatch]);
 
   if (isLoading) {
@@ -26,16 +30,16 @@ const ProductOrdersScreen = () => {
     </View>;
   }
 
-  if (orders.length === 0 || !orders) {
-    return (
-      <View style={styles.content}>
-        <Text style={styles.text}>
-          No orders found. Please try adding the items of your choice to the
-          cart, then order them!
-        </Text>
-      </View>
-    );
-  }
+  // if (orders.length === 0 || !orders) {
+  //   return (
+  //     <View style={styles.content}>
+  //       <Text style={styles.text}>
+  //         No orders found. Please try adding the items of your choice to the
+  //         cart, then order them!
+  //       </Text>
+  //     </View>
+  //   );
+  // }
 
   return (
     <FlatList

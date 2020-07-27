@@ -32,7 +32,10 @@ export const fetchOrders = () => {
             key,
             resData[key].cartItems,
             resData[key].totalAmount,
-            new Date(resData[key].date)
+            console.log(
+              new Date(resData[key].date),
+              "^^^^^^^^^^^^^^^^^^^^^^^^^^"
+            )
           )
         );
       };
