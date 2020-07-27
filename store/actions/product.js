@@ -21,16 +21,6 @@ export const fetchProducts = () => {
 
       const resData = await response.json();
 
-      // const cartItems = useSelector(state => {
-      //   return Object.keys(state.cart.items).map(key => ({
-      //     productId: key,
-      //     productPrice: state.cart.items[key].productPrice,
-      //     productTitle: state.cart.items[key].productTitle,
-      //     quantity: state.cart.items[key].quantity,
-      //     sum: state.cart.items[key].sum
-      //   }));
-      // });
-
       console.log(resData);
       const loadedProducts = () => {
         return Object.keys(resData).map(
