@@ -1,9 +1,8 @@
-import { ADD_ORDER } from "../actions/orders";
+import { ADD_ORDER, SET_ORDER } from "../actions/orders";
 import moment from "moment";
 
 const initialState = {
-  orders: [],
-  isLoading: false
+  orders: []
 };
 
 export default (state = initialState, action) => {
@@ -17,6 +16,10 @@ export default (state = initialState, action) => {
     }
   });
   switch (action.type) {
+    case SET_ORDER:
+      return {
+        orders: action.orders
+      };
     case ADD_ORDER:
       const newOrder = order(
         new Date().toString(),
