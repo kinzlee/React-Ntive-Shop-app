@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   View,
   Text,
@@ -16,10 +16,8 @@ import * as actionCart from "../store/actions/cart";
 import * as actionOrders from "../store/actions/orders";
 
 const ProductCartScreen = () => {
-  const { spinner, cartTotalAmount } = useSelector(state => ({
-    cartTotalAmount: state.cart.totalAmount,
-    spinner: state.orders.isLoading
-  }));
+  const [isLoading, setIsLoading] = useState(false);
+  const cartTotalAmount = useSelector(state => state.cart.totalAmount);
 
   const cartItems = useSelector(state => {
     return Object.keys(state.cart.items).map(key => ({
@@ -34,8 +32,9 @@ const ProductCartScreen = () => {
   const dispatch = useDispatch();
 
   const sendOrderHandler = async () => {
-    spinner;
+    setIsLoading(true);
     await dispatch(actionOrders.addOrder(cartItems, cartTotalAmount));
+    setIsLoading(false);
   };
 
   return (
@@ -56,16 +55,18 @@ const ProductCartScreen = () => {
               ${Math.round(cartTotalAmount.toFixed(2) * 100) / 100}
             </Text>
           </CustomText>
-          <View style={styles.btn}>
-            <TouchableOpacity
-              disabled={cartItems.length === 0}
-              onPress={() => {
-                dispatch(actionOrders.addOrder(cartItems, cartTotalAmount));
-              }}
-            >
-              <Text style={{ color: "#fff" }}>Order</Text>
-            </TouchableOpacity>
-          </View>
+          {isLoading ? (
+            <ActivityIndicator size="large" color={colors.primaryColor} />
+          ) : (
+            <View style={styles.btn}>
+              <TouchableOpacity
+                disabled={cartItems.length === 0}
+                onPress={sendOrderHandler}
+              >
+                <Text style={{ color: "#fff" }}>Order</Text>
+              </TouchableOpacity>
+            </View>
+          )}
         </View>
       </Card>
       <FlatList
