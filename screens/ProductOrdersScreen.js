@@ -12,34 +12,24 @@ import colors from "../constants/colors";
 import * as actionOrders from "../store/actions/orders";
 
 const ProductOrdersScreen = () => {
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const orders = useSelector(state => state.orders.orders);
   const dispatch = useDispatch();
 
   useEffect(() => {
     setIsLoading(true);
-    console.log(isLoading, "seteeeeeeeeeeeeeeeee");
     dispatch(actionOrders.fetchOrders()).then(() => {
       setIsLoading(false);
     });
   }, [dispatch]);
 
   if (isLoading) {
-    <View style={styles.centered}>
-      <ActivityIndicator size="large" color={colors.primaryColor} />
-    </View>;
+    return (
+      <View style={styles.content}>
+        <ActivityIndicator size="large" color={colors.primaryColor} />
+      </View>
+    );
   }
-
-  // if (orders.length === 0 || !orders) {
-  //   return (
-  //     <View style={styles.content}>
-  //       <Text style={styles.text}>
-  //         No orders found. Please try adding the items of your choice to the
-  //         cart, then order them!
-  //       </Text>
-  //     </View>
-  //   );
-  // }
 
   return (
     <FlatList
@@ -67,11 +57,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: "center",
     color: colors.primaryColor
-  },
-  centered: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
   }
 });
 
