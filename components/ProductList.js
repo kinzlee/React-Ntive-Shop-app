@@ -5,12 +5,7 @@ import { useDispatch } from "react-redux";
 import * as ActionCart from "../store/actions/cart";
 import { useSelector } from "react-redux";
 
-const ProductList = ({
-  navigation,
-  listData,
-  pageRefresher,
-  refreshingPage
-}) => {
+const ProductList = ({ navigation, listData }) => {
   const dispatch = useDispatch();
 
   const renderProductItem = itemData => {
@@ -48,8 +43,6 @@ const ProductList = ({
   return (
     <View style={styles.list}>
       <FlatList
-        onRefresh={pageRefresher}
-        refreshing={refreshingPage}
         data={listData}
         renderItem={renderProductItem}
         style={{ width: "100%" }}

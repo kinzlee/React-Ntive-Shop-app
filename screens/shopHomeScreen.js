@@ -15,7 +15,6 @@ import * as actionProduct from "../store/actions/product";
 import colors from "../constants/colors";
 
 const ShopHomeScreen = ({ navigation, route }) => {
-  const [isRefreshing, setIsRefreshing] = useState(false);
   const { spinner, error, availableProduct } = useSelector(state => ({
     spinner: state.products.isLoading,
     error: state.products.isError,
@@ -60,15 +59,9 @@ const ShopHomeScreen = ({ navigation, route }) => {
   //     willFocusComp.remove();
   //   };
   // }, [loadedProducts, navigation]);
-  const loader = () => {
-    setIsRefreshing(true);
-    dispatch(actionProduct.fetchProducts()).then(() => {
-      setIsRefreshing(false);
-    });
-  };
 
   useEffect(() => {
-    loader();
+    dispatch(actionProduct.fetchProducts());
     console.log("I was called");
   }, []);
   console.log(error, "^^^^^^^^^^^^^^666666666");
@@ -102,14 +95,7 @@ const ShopHomeScreen = ({ navigation, route }) => {
     );
   }
 
-  return (
-    <ProductList
-      listData={availableProduct}
-      navigation={navigation}
-      pageRefresher={loader}
-      refreshingPage={isRefreshing}
-    />
-  );
+  return <ProductList listData={availableProduct} navigation={navigation} />;
 };
 
 const styles = StyleSheet.create({

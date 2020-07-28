@@ -25,7 +25,7 @@ const headerCustom = {
 
 const Stack = createStackNavigator();
 
-ShopNavigation = () => {
+const ShopNavigation = () => {
   return (
     <Stack.Navigator initialRouteName="Shop" screenOptions={headerCustom}>
       <Stack.Screen
