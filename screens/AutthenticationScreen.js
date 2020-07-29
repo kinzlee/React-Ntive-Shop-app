@@ -118,9 +118,7 @@ const Authentication = ({ navigation }) => {
               minLength={5}
               autoCapitalize="none"
               errorText="Please enter a valid password."
-              onInputChange={() => {
-                changeInputHandler;
-              }}
+              onInputChange={changeInputHandler}
               initialValue=""
             />
             <View style={styles.btnContainer}>

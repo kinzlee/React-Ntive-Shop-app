@@ -2,6 +2,7 @@ export const SIGNUP = "SIGNUP";
 
 export const signUp = (email, password) => {
   return async dispatch => {
+    // console.log(signUp(), "<<<<<<<<<<<<<>>>>>>>>>>>>");
     const response = await fetch(
       "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBQUFfDUHletkKkyze0vNsW5fvunxaVvIU",
       {
