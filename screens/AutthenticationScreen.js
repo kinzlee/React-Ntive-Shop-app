@@ -1,4 +1,4 @@
-import React, { useCallback, useReducer } from "react";
+import React, { useCallback, useReducer, useState } from "react";
 import {
   View,
   ScrollView,
@@ -41,15 +41,23 @@ const formReducer = (state, action) => {
 };
 
 const Authentication = ({ navigation }) => {
+  const [isSignup, setIsSignup] = useState(false);
   const dispatch = useDispatch();
 
-  const signupHander = () => {
-    dispatch(
-      actionAuth.signUp(
+  const authHander = () => {
+    let action;
+    if (isSignup) {
+      action = actionAuth.signUp(
         formState.inputValues.email,
         formState.inputValues.password
-      )
-    );
+      );
+    } else {
+      action = actionAuth.login(
+        formState.inputValues.email,
+        formState.inputValues.password
+      );
+    }
+    dispatch(action);
   };
 
   const changeInputHandler = useCallback(
@@ -123,16 +131,18 @@ const Authentication = ({ navigation }) => {
             />
             <View style={styles.btnContainer}>
               <Button
-                title="Sign Up"
+                title={isSignup ? "Sign Up" : "login"}
                 color={colors.primaryColor}
-                onPress={signupHander}
+                onPress={authHander}
               />
             </View>
             <View style={styles.btnContainer}>
               <Button
-                title="Switch to Login"
+                title={`Switch to ${isSignup ? "Sign Up" : "Login"}`}
                 color={colors.accentColor}
-                onPress={() => {}}
+                onPress={() => {
+                  setIsSignup(prevState => !prevState);
+                }}
               />
             </View>
           </ScrollView>
