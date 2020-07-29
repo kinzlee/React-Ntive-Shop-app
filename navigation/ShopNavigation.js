@@ -8,6 +8,7 @@ import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import PRODUCTS from "../data/dummy-data";
 import { availableProducts } from "../screens/ProductDetailScreen";
 import HeaderButton from "../components/HeaderButtton";
+import AutthenticationScreen from "../screens/AutthenticationScreen";
 import ShopHomeScreen from "../screens/ShopHomeScreen";
 import ProductCartScreen from "../screens/ProductCartScreen";
 import ProductManagerScreen from "../screens/ProductManagerScreen";
@@ -24,36 +25,43 @@ const headerCustom = {
 };
 
 const Stack = createStackNavigator();
+const isAuthenticated = false;
 
 const ShopNavigation = () => {
   return (
     <Stack.Navigator initialRouteName="Shop" screenOptions={headerCustom}>
-      <Stack.Screen
-        name="Shop"
-        component={ShopHomeScreen}
-        options={({ navigation }) => {
-          return {
-            title: "Shop",
-            headerLeft: () => (
-              <HeaderButtons HeaderButtonComponent={HeaderButton}>
-                <Item
-                  title="menu"
-                  iconName="ios-menu"
-                  onPress={() => {
-                    navigation.dispatch(DrawerActions.openDrawer());
-                  }}
-                />
-              </HeaderButtons>
-            )
-          };
-        }}
-      />
-      <Stack.Screen name="Product Detail" component={ProductDetailScreen} />
-      <Stack.Screen
-        name="Cart"
-        component={ProductCartScreen}
-        options={{ title: "Cart" }}
-      />
+      {isAuthenticated ? (
+        <>
+          <Stack.Screen
+            name="Shop"
+            component={ShopHomeScreen}
+            options={({ navigation }) => {
+              return {
+                title: "Shop",
+                headerLeft: () => (
+                  <HeaderButtons HeaderButtonComponent={HeaderButton}>
+                    <Item
+                      title="menu"
+                      iconName="ios-menu"
+                      onPress={() => {
+                        navigation.dispatch(DrawerActions.openDrawer());
+                      }}
+                    />
+                  </HeaderButtons>
+                )
+              };
+            }}
+          />
+          <Stack.Screen name="Product Detail" component={ProductDetailScreen} />
+          <Stack.Screen
+            name="Cart"
+            component={ProductCartScreen}
+            options={{ title: "Cart" }}
+          />
+        </>
+      ) : (
+        <Stack.Screen name="Authentication" component={AutthenticationScreen} />
+      )}
     </Stack.Navigator>
   );
 };

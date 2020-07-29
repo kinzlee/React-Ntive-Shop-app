@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     paddingVertical: 8,
     marginHorizontal: 5,
-    paddingHorizontal: 80,
+    paddingHorizontal: 50,
     justifyContent: "space-around"
     // paddingBottom: 20
   },
