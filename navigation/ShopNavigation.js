@@ -16,6 +16,7 @@ import ProductOrdersScreen from "../screens/ProductOrdersScreen";
 import ProductDetailScreen from "../screens/ProductDetailScreen";
 import EditProductScreen from "../screens/EditProductScreen";
 import colors from "../constants/colors";
+import { State } from "react-native-gesture-handler";
 
 const headerCustom = {
   headerStyle: {
@@ -30,7 +31,7 @@ const isAuthenticated = false;
 const ShopNavigation = () => {
   return (
     <Stack.Navigator initialRouteName="Shop" screenOptions={headerCustom}>
-      {isAuthenticated ? (
+      {State.userToken === null ? (
         <>
           <Stack.Screen
             name="Shop"

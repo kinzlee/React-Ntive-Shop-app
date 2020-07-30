@@ -68,7 +68,6 @@ const Authentication = ({ navigation }) => {
       setError(err.message);
     }
     setIsLoading(false);
-
     // console.log(dispatch(action), "//////////////////");
   };
 
@@ -100,7 +99,7 @@ const Authentication = ({ navigation }) => {
     if (error) {
       Alert.alert("An error occurred!", error, [{ text: "Okay" }]);
     }
-  });
+  }, [error]);
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
