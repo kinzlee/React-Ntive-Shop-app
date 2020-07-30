@@ -44,7 +44,7 @@ const Authentication = ({ navigation }) => {
   const [isSignup, setIsSignup] = useState(false);
   const dispatch = useDispatch();
 
-  const authHander = () => {
+  const authHandler = () => {
     let action;
     if (isSignup) {
       action = actionAuth.signUp(
@@ -58,6 +58,7 @@ const Authentication = ({ navigation }) => {
       );
     }
     dispatch(action);
+    // console.log(dispatch(action), "//////////////////");
   };
 
   const changeInputHandler = useCallback(
@@ -131,14 +132,14 @@ const Authentication = ({ navigation }) => {
             />
             <View style={styles.btnContainer}>
               <Button
-                title={isSignup ? "Sign Up" : "login"}
+                title={isSignup ? "Sign Up" : "Login"}
                 color={colors.primaryColor}
-                onPress={authHander}
+                onPress={authHandler}
               />
             </View>
             <View style={styles.btnContainer}>
               <Button
-                title={`Switch to ${isSignup ? "Sign Up" : "Login"}`}
+                title={`Switch to ${isSignup ? "Login" : "Sign Up"}`}
                 color={colors.accentColor}
                 onPress={() => {
                   setIsSignup(prevState => !prevState);
