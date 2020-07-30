@@ -1,11 +1,12 @@
-import React, { useCallback, useReducer, useState } from "react";
+import React, { useCallback, useReducer, useState, useEffect } from "react";
 import {
   View,
   ScrollView,
   StyleSheet,
   KeyboardAvoidingView,
   Button,
-  ActivityIndicator
+  ActivityIndicator,
+  Alert
 } from "react-native";
 import { Card } from "react-native-shadow-cards";
 import Input from "../components/Input";
@@ -43,6 +44,7 @@ const formReducer = (state, action) => {
 const Authentication = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
+  const [error, setError] = useState();
   const dispatch = useDispatch();
 
   const authHandler = async () => {
@@ -58,8 +60,13 @@ const Authentication = ({ navigation }) => {
         formState.inputValues.password
       );
     }
+    setError(null);
     setIsLoading(true);
-    await dispatch(action);
+    try {
+      await dispatch(action);
+    } catch (err) {
+      setError(err.message);
+    }
     setIsLoading(false);
 
     // console.log(dispatch(action), "//////////////////");
@@ -87,6 +94,12 @@ const Authentication = ({ navigation }) => {
       password: false
     },
     formIsValid: false
+  });
+
+  useEffect(() => {
+    if (error) {
+      Alert.alert("An error occurred!", error, [{ text: "Okay" }]);
+    }
   });
 
   React.useLayoutEffect(() => {
