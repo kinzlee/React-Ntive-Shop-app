@@ -5,7 +5,7 @@ import {
   StyleSheet,
   KeyboardAvoidingView,
   Button,
-  TouchableOpacity
+  ActivityIndicator
 } from "react-native";
 import { Card } from "react-native-shadow-cards";
 import Input from "../components/Input";
@@ -41,10 +41,11 @@ const formReducer = (state, action) => {
 };
 
 const Authentication = ({ navigation }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
   const dispatch = useDispatch();
 
-  const authHandler = () => {
+  const authHandler = async () => {
     let action;
     if (isSignup) {
       action = actionAuth.signUp(
@@ -57,7 +58,10 @@ const Authentication = ({ navigation }) => {
         formState.inputValues.password
       );
     }
-    dispatch(action);
+    setIsLoading(true);
+    await dispatch(action);
+    setIsLoading(false);
+
     // console.log(dispatch(action), "//////////////////");
   };
 
@@ -131,11 +135,15 @@ const Authentication = ({ navigation }) => {
               initialValue=""
             />
             <View style={styles.btnContainer}>
-              <Button
-                title={isSignup ? "Sign Up" : "Login"}
-                color={colors.primaryColor}
-                onPress={authHandler}
-              />
+              {isLoading ? (
+                <ActivityIndicator size="small" color={colors.primaryColor} />
+              ) : (
+                <Button
+                  title={isSignup ? "Sign Up" : "Login"}
+                  color={colors.primaryColor}
+                  onPress={authHandler}
+                />
+              )}
             </View>
             <View style={styles.btnContainer}>
               <Button
