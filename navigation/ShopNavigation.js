@@ -1,5 +1,6 @@
 import React from "react";
 import { Platform } from "react-native";
+import { useSelector } from "react-redux";
 import { NavigationContainer, DrawerActions } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -26,12 +27,12 @@ const headerCustom = {
 };
 
 const Stack = createStackNavigator();
-const isAuthenticated = false;
+const isAuthenticated = true;
 
 const ShopNavigation = () => {
   return (
     <Stack.Navigator initialRouteName="Shop" screenOptions={headerCustom}>
-      {State.userToken === null ? (
+      {isAuthenticated ? (
         <>
           <Stack.Screen
             name="Shop"
