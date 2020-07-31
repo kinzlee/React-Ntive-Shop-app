@@ -7,6 +7,7 @@ import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 import productReducer from "./store/reducers/product";
 import cartReducer from "./store/reducers/cart";
 import ordersReducer from "./store/reducers/orders";
+import authReducer from "./store/reducers/auth";
 import { Provider } from "react-redux";
 // import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
@@ -14,7 +15,8 @@ import thunk from "redux-thunk";
 const rootReducer = combineReducers({
   products: productReducer,
   cart: cartReducer,
-  orders: ordersReducer
+  orders: ordersReducer,
+  auth: authReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
