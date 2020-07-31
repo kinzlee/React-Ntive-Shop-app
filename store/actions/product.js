@@ -8,6 +8,7 @@ export const SET_PRODUCTS_ERROR = "SET_PRODUCTS_ERROR";
 
 export const fetchProducts = () => {
   return async (dispatch, getState) => {
+    const userId = getState().auth.userId;
     try {
       dispatch({ type: SET_PRODUCTS_LOADING });
 
@@ -38,14 +39,14 @@ export const fetchProducts = () => {
 
       dispatch({
         type: SET_PRODUCTS_SUCCESS,
-        products: loadedProducts()
+        products: loadedProducts(),
+        userProducts: loadedProducts().filter(prod => prod.ownerId === userId)
       });
     } catch (err) {
       dispatch({ type: SET_PRODUCTS_ERROR });
     }
   };
 };
-y;
 
 export const deleteProduct = productId => {
   return async dispatch => {
