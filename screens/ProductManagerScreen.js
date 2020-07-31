@@ -5,6 +5,7 @@ import ProductManagerList from "../components/ProductMangerList";
 import HeaderButton from "../components/HeaderButtton";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import { useSelector } from "react-redux";
+import orders from "../store/reducers/orders";
 
 const ProductManagerScreen = ({ navigation, route }) => {
   const userProducts = useSelector(state => state.products.userProducts);
@@ -25,6 +26,14 @@ const ProductManagerScreen = ({ navigation, route }) => {
       )
     });
   }, [navigation]);
+
+  if (userProducts.length === 0) {
+    return (
+      <View>
+        <Text>No Products Found, you should add some !</Text>
+      </View>
+    );
+  }
 
   return <ProductManagerList listData={userProducts} navigation={navigation} />;
 };

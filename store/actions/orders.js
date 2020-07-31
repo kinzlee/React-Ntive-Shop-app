@@ -41,7 +41,7 @@ export const fetchOrders = () => {
         );
       };
 
-      dispatch({ type: SET_ORDER, orders: loadedOrders() });
+      dispatch({ type: SET_ORDER, orders: loadedOrders });
     } catch (err) {
       throw err;
     }
