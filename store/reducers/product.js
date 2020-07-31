@@ -10,8 +10,8 @@ import {
 import Product from "../../models/Product";
 
 const initialState = {
-  availableProducts: PRODUCTS,
-  userProducts: PRODUCTS.filter(prod => prod.userId === "u1"),
+  availableProducts: [],
+  userProducts: [],
   isError: false,
   isLoading: false
 };
@@ -35,12 +35,12 @@ export default (state = initialState, action) => {
         isError: false,
         isLoading: false,
         availableProducts: action.products,
-        userProducts: action.products
+        userProducts: action.userProducts
       };
     case CREATE_PRODUCT:
       const newProduct = new Product(
         action.productData.id,
-        "u1",
+        action.productData.userId,
         action.productData.title,
         action.productData.imageUrl,
         action.productData.description,

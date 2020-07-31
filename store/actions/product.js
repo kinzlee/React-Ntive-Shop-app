@@ -7,7 +7,7 @@ export const SET_PRODUCTS_LOADING = "SET_PRODUCTS_LOADING";
 export const SET_PRODUCTS_ERROR = "SET_PRODUCTS_ERROR";
 
 export const fetchProducts = () => {
-  return async dispatch => {
+  return async (dispatch, getState) => {
     try {
       dispatch({ type: SET_PRODUCTS_LOADING });
 
@@ -16,7 +16,7 @@ export const fetchProducts = () => {
       );
 
       if (!response.ok) {
-        throw new Error("something went wrong!");
+        throw new Error("something went wrongg!");
       }
 
       const resData = await response.json();
@@ -27,7 +27,7 @@ export const fetchProducts = () => {
           key =>
             new Product(
               key,
-              "u1",
+              resData[key].ownerId,
               resData[key].title,
               resData[key].imageUrl,
               resData[key].description,
@@ -35,8 +35,13 @@ export const fetchProducts = () => {
             )
         );
       };
+      console.log(loadedProducts(), "??????????>>>>>>>>>>?????");
 
-      dispatch({ type: SET_PRODUCTS_SUCCESS, products: loadedProducts() });
+      dispatch({
+        type: SET_PRODUCTS_SUCCESS,
+        products: loadedProducts(),
+        userProducts: loadedProducts().filter(prod => prod.ownerId === userId)
+      });
     } catch (err) {
       dispatch({ type: SET_PRODUCTS_ERROR });
     }
@@ -60,6 +65,7 @@ export const deleteProduct = productId => {
 export const createProduct = (title, description, imageUrl, price) => {
   return async (dispatch, getState) => {
     const token = getState().auth.token;
+    const userId = getState().auth.userId;
     const response = await fetch(
       `https://shopper-e5714.firebaseio.com/product.json?auth=${token}`,
       {
@@ -71,7 +77,8 @@ export const createProduct = (title, description, imageUrl, price) => {
           title,
           description,
           imageUrl,
-          price
+          price,
+          ownerId: userId
         })
       }
     );
