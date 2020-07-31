@@ -16,7 +16,7 @@ export const fetchProducts = () => {
       );
 
       if (!response.ok) {
-        throw new Error("something went wrongg!");
+        throw new Error("something went wrong!");
       }
 
       const resData = await response.json();
@@ -27,7 +27,7 @@ export const fetchProducts = () => {
           key =>
             new Product(
               key,
-              resData[key].ownerId,
+              "u1",
               resData[key].title,
               resData[key].imageUrl,
               resData[key].description,
@@ -35,24 +35,22 @@ export const fetchProducts = () => {
             )
         );
       };
-      console.log(loadedProducts(), "??????????>>>>>>>>>>?????");
 
       dispatch({
         type: SET_PRODUCTS_SUCCESS,
-        products: loadedProducts(),
-        userProducts: loadedProducts().filter(prod => prod.ownerId === userId)
+        products: loadedProducts()
       });
     } catch (err) {
       dispatch({ type: SET_PRODUCTS_ERROR });
     }
   };
 };
+y;
 
 export const deleteProduct = productId => {
-  return async (dispatch, getState) => {
-    const token = getState().auth.token;
+  return async dispatch => {
     await fetch(
-      `https://shopper-e5714.firebaseio.com/product/${productId}.json?auth=${token}`,
+      `https://shopper-e5714.firebaseio.com/product/${productId}.json`,
       {
         method: "DELETE"
       }
@@ -88,16 +86,22 @@ export const createProduct = (title, description, imageUrl, price) => {
 
     dispatch({
       type: CREATE_PRODUCT,
-      productData: { id: resData.name, title, description, imageUrl, price }
+      productData: {
+        id: resData.name,
+        title,
+        description,
+        imageUrl,
+        price,
+        ownerId: userId
+      }
     });
   };
 };
 
 export const updatedProduct = (id, title, description, imageUrl) => {
   return async dispatch => {
-    const token = getState().auth.token;
     const response = await fetch(
-      `https://shopper-e5714.firebaseio.com/product/${id}.json?auth=${token}`,
+      `https://shopper-e5714.firebaseio.com/product/${id}.json`,
       {
         method: "PATCH",
         headers: {

@@ -65,6 +65,10 @@ const ShopHomeScreen = ({ navigation, route }) => {
     console.log("I was called");
   }, []);
   console.log(error, "^^^^^^^^^^^^^^666666666");
+  console.log(
+    availableProduct,
+    "<<<<<<<<<<<<<<<<<<<?????:?:?:?:?>>>>>>>>>>>>>>>>>>s"
+  );
 
   if (error === true) {
     return (
