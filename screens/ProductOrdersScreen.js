@@ -31,6 +31,14 @@ const ProductOrdersScreen = () => {
     );
   }
 
+  if (orders.length === 0) {
+    return (
+      <View style={styles.content}>
+        <Text>No products found, maybe order some?</Text>
+      </View>
+    );
+  }
+
   return (
     <FlatList
       keyExtractor={item => item.id}

@@ -29,7 +29,7 @@ const ProductManagerScreen = ({ navigation, route }) => {
 
   if (userProducts.length === 0) {
     return (
-      <View>
+      <View style={styles.screen}>
         <Text>No Products Found, you should add some !</Text>
       </View>
     );

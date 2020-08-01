@@ -41,7 +41,7 @@ export const fetchOrders = () => {
         );
       };
 
-      dispatch({ type: SET_ORDER, orders: loadedOrders });
+      dispatch({ type: SET_ORDER, orders: loadedOrders() });
     } catch (err) {
       throw err;
     }
@@ -69,7 +69,7 @@ export const addOrder = (cartItems, totalAmount) => {
     );
 
     if (!response.ok) {
-      throw new Error("something went wrong!");
+      throw new Error("something went wrongGG!");
     }
 
     const resData = await response.json();
