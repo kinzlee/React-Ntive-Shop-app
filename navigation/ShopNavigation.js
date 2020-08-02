@@ -16,6 +16,7 @@ import ProductManagerScreen from "../screens/ProductManagerScreen";
 import ProductOrdersScreen from "../screens/ProductOrdersScreen";
 import ProductDetailScreen from "../screens/ProductDetailScreen";
 import EditProductScreen from "../screens/EditProductScreen";
+import StartupScreen from "../screens/StartupScreen";
 import colors from "../constants/colors";
 import { State } from "react-native-gesture-handler";
 
@@ -27,13 +28,15 @@ const headerCustom = {
 };
 
 const Stack = createStackNavigator();
-let isAuthenticated;
-isAuthenticated = AsyncStorage.getItem("userData");
+// let isAuthenticated;
+const isAuthenticated = !!AsyncStorage.getItem("userData");
 
 const ShopNavigation = () => {
   return (
     <Stack.Navigator initialRouteName="Shop" screenOptions={headerCustom}>
-      {!isAuthenticated ? (
+      {isAuthenticated ? (
+        <Stack.Screen name="Authentication" component={AutthenticationScreen} />
+      ) : (
         <>
           <Stack.Screen
             name="Shop"
@@ -62,8 +65,6 @@ const ShopNavigation = () => {
             options={{ title: "Cart" }}
           />
         </>
-      ) : (
-        <Stack.Screen name="Authentication" component={AutthenticationScreen} />
       )}
     </Stack.Navigator>
   );
