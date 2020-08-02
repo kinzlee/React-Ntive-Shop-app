@@ -1,5 +1,5 @@
 import React from "react";
-import { Platform } from "react-native";
+import { Platform, AsyncStorage } from "react-native";
 import { useSelector } from "react-redux";
 import { NavigationContainer, DrawerActions } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -27,12 +27,13 @@ const headerCustom = {
 };
 
 const Stack = createStackNavigator();
-const isAuthenticated = true;
+let isAuthenticated;
+isAuthenticated = AsyncStorage.getItem("userData");
 
 const ShopNavigation = () => {
   return (
     <Stack.Navigator initialRouteName="Shop" screenOptions={headerCustom}>
-      {isAuthenticated ? (
+      {!isAuthenticated ? (
         <>
           <Stack.Screen
             name="Shop"
