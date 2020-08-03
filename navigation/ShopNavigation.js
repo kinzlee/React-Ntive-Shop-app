@@ -28,7 +28,6 @@ const headerCustom = {
 };
 
 const Stack = createStackNavigator();
-// const authenticate = useSelector(state => state.auth.auth);
 // let isAuthenticated;
 const isAuthenticated = !!AsyncStorage.getItem("userData");
 
@@ -51,15 +50,18 @@ const ShopNavigation = () => {
     tryLogin();
   }, []);
   const auth = AsyncStorage.getItem("userData");
+  const authenticate = useSelector(state => state.auth.token);
   return (
     <Stack.Navigator screenOptions={headerCustom}>
-      {authenticated && !loading ? (
+      {loading && (
+        <Stack.Screen
+          name="splash"
+          component={StartupScreen}
+          options={{ headerShown: null }}
+        />
+      )}
+      {!!authenticate && authenticated && !loading ? (
         <>
-          <Stack.Screen
-            name="splash"
-            component={StartupScreen}
-            options={{ headerShown: null }}
-          />
           <Stack.Screen
             name="Shop"
             component={ShopHomeScreen}
@@ -88,7 +90,7 @@ const ShopNavigation = () => {
           />
         </>
       ) : (
-        <Stack.Screen name="Authentication" component={AutthenticationScreen} />
+        <Stack.Screen name="Auth" component={AutthenticationScreen} />
       )}
     </Stack.Navigator>
   );

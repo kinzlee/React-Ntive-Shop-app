@@ -5,22 +5,38 @@ import {
   StyleSheet,
   ActivityIndicator
 } from "react-native";
+import * as authAction from "../store/actions/auth";
+import { useDispatch } from "react-redux";
 
 import colors from "../constants/colors";
 
 const StartupScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
   useEffect(() => {
     const tryLogin = async () => {
       const userData = await AsyncStorage.getItem("userData");
+      console.log(userData, "kklklklklkkkk");
       if (!userData) {
-        navigation.navigate("Authentication");
+        navigation.navigate("Auth");
         return;
       }
       const transformedData = JSON.parse(userData);
+      const { token, userId, expiryDate } = transformedData;
+      const expirationDatee = new Date(expiryDate);
+
+      console.log(expirationDatee, "eeeefefefefe");
+
+      if (!token || !userId) {
+        navigation.navigate("Auth");
+        return;
+      }
+
+      navigation.navigate("Shop");
+      dispatch(authAction.authenticate(userId, token));
     };
 
     tryLogin();
-  }, []);
+  }, [dispatch]);
 
   return (
     <View style={styles.screen}>
