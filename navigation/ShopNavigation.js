@@ -1,5 +1,5 @@
-import React from "react";
-import { Platform, AsyncStorage } from "react-native";
+import React, { useState, useEffect } from "react";
+import { Platform, AsyncStorage, ActivityIndicator } from "react-native";
 import { useSelector } from "react-redux";
 import { NavigationContainer, DrawerActions } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -28,16 +28,38 @@ const headerCustom = {
 };
 
 const Stack = createStackNavigator();
+// const authenticate = useSelector(state => state.auth.auth);
 // let isAuthenticated;
 const isAuthenticated = !!AsyncStorage.getItem("userData");
 
+// const tryLogin = async () => {
+//   return await AsyncStorage.getItem("userData");
+//};
+
 const ShopNavigation = () => {
+  const [loading, setLoading] = useState(true);
+  const [authenticated, setAuthenticated] = useState(false);
+  useEffect(() => {
+    const tryLogin = async () => {
+      const auth = await AsyncStorage.getItem("userData");
+      setLoading(false);
+
+      if (auth !== null) {
+        setAuthenticated(true);
+      }
+    };
+    tryLogin();
+  }, []);
+  const auth = AsyncStorage.getItem("userData");
   return (
-    <Stack.Navigator initialRouteName="Shop" screenOptions={headerCustom}>
-      {isAuthenticated ? (
-        <Stack.Screen name="Authentication" component={AutthenticationScreen} />
-      ) : (
+    <Stack.Navigator screenOptions={headerCustom}>
+      {authenticated && !loading ? (
         <>
+          <Stack.Screen
+            name="splash"
+            component={StartupScreen}
+            options={{ headerShown: null }}
+          />
           <Stack.Screen
             name="Shop"
             component={ShopHomeScreen}
@@ -65,6 +87,8 @@ const ShopNavigation = () => {
             options={{ title: "Cart" }}
           />
         </>
+      ) : (
+        <Stack.Screen name="Authentication" component={AutthenticationScreen} />
       )}
     </Stack.Navigator>
   );
