@@ -8,6 +8,7 @@ import productReducer from "./store/reducers/product";
 import cartReducer from "./store/reducers/cart";
 import ordersReducer from "./store/reducers/orders";
 import authReducer from "./store/reducers/auth";
+import NavigationContainer from "./navigation/NavigationContainer";
 import { Provider } from "react-redux";
 // import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";

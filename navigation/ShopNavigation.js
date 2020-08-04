@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   Platform,
   AsyncStorage,
@@ -171,7 +171,7 @@ const Signout = props => {
           color={colors.primaryColor}
           onPress={() => {
             dispatch(authActions.logout());
-            props.navigation.navigate("Shop");
+            // props.navigation.navigate("Shop");
           }}
         />
       </SafeAreaView>
@@ -180,8 +180,16 @@ const Signout = props => {
 };
 
 const MyDrawer = () => {
+  const navRef = useRef();
+  const isAuth = useSelector(state => !!state.auth.token);
+
+  useEffect(() => {
+    if (!isAuth) {
+      // navRef.current.navigate("Shop");
+    }
+  });
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navRef}>
       <Drawer.Navigator
         drawerContentOptions={{
           activeTintColor: colors.primaryColor
