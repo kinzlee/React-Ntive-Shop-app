@@ -165,13 +165,13 @@ const Signout = props => {
   return (
     <View style={{ flex: 1, paddingTop: 20 }}>
       <SafeAreaView forceInset={{ top: "always", horizontal: "never" }}>
-        <DrawerItem label={logOut} {...props} />
+        <DrawerItem label="logout" {...props} />
         <Button
           title="Log Out"
           color={colors.primaryColor}
           onPress={() => {
             dispatch(authActions.logout());
-            props.navigation.navigate("Auth");
+            props.navigation.navigate("Shop");
           }}
         />
       </SafeAreaView>
