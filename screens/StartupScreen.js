@@ -26,7 +26,7 @@ const StartupScreen = ({ navigation }) => {
 
       console.log(expirationDatee, "eeeefefefefe");
 
-      if (!token || !userId) {
+      if (expirationDatee <= new Date() || !token || !userId) {
         navigation.navigate("Auth");
         return;
       }

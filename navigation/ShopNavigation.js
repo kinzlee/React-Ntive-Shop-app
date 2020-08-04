@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Platform, AsyncStorage, ActivityIndicator } from "react-native";
+import {
+  Platform,
+  AsyncStorage,
+  SafeAreaView,
+  View,
+  Button
+} from "react-native";
 import { useSelector } from "react-redux";
 import { NavigationContainer, DrawerActions } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createDrawerNavigator, DrawerItem } from "@react-navigation/drawer";
 import { Ionicons } from "@expo/vector-icons";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
 import PRODUCTS from "../data/dummy-data";
@@ -19,6 +25,7 @@ import EditProductScreen from "../screens/EditProductScreen";
 import StartupScreen from "../screens/StartupScreen";
 import colors from "../constants/colors";
 import { State } from "react-native-gesture-handler";
+import { logOut } from "../store/actions/auth";
 
 const headerCustom = {
   headerStyle: {
@@ -153,6 +160,21 @@ const ManagerNavigator = () => {
 
 const Drawer = createDrawerNavigator();
 
+const Signout = props => {
+  return (
+    <View style={{ flex: 1 }}>
+      <SafeAreaView forceInset={{ top: "always", horizontal: "never" }}>
+        <DrawerItem label={logOut} {...props} />
+        <Button
+          title="Log Out"
+          color={colors.primaryColor}
+          onPress={() => {}}
+        />
+      </SafeAreaView>
+    </View>
+  );
+};
+
 const MyDrawer = () => {
   return (
     <NavigationContainer>
@@ -199,6 +221,7 @@ const MyDrawer = () => {
             )
           }}
         />
+        <Drawer.Screen name="logout" component={Signout} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
