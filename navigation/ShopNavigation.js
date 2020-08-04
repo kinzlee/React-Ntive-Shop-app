@@ -6,7 +6,7 @@ import {
   View,
   Button
 } from "react-native";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { NavigationContainer, DrawerActions } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator, DrawerItem } from "@react-navigation/drawer";
@@ -25,7 +25,7 @@ import EditProductScreen from "../screens/EditProductScreen";
 import StartupScreen from "../screens/StartupScreen";
 import colors from "../constants/colors";
 import { State } from "react-native-gesture-handler";
-import { logOut } from "../store/actions/auth";
+import * as authActions from "../store/actions/auth";
 
 const headerCustom = {
   headerStyle: {
@@ -161,14 +161,18 @@ const ManagerNavigator = () => {
 const Drawer = createDrawerNavigator();
 
 const Signout = props => {
+  const dispatch = useDispatch();
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, paddingTop: 20 }}>
       <SafeAreaView forceInset={{ top: "always", horizontal: "never" }}>
         <DrawerItem label={logOut} {...props} />
         <Button
           title="Log Out"
           color={colors.primaryColor}
-          onPress={() => {}}
+          onPress={() => {
+            dispatch(authActions.logout());
+            props.navigation.navigate("Auth");
+          }}
         />
       </SafeAreaView>
     </View>
@@ -221,7 +225,7 @@ const MyDrawer = () => {
             )
           }}
         />
-        <Drawer.Screen name="logout" component={Signout} />
+        <Drawer.Screen name={"Log Out"} component={Signout} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
