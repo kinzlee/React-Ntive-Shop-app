@@ -185,9 +185,9 @@ const MyDrawer = () => {
 
   useEffect(() => {
     if (!isAuth) {
-      // navRef.current.navigate("Shop");
+      navRef.current.navigate("Shop");
     }
-  });
+  }, [isAuth]);
   return (
     <NavigationContainer ref={navRef}>
       <Drawer.Navigator
