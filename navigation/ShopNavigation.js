@@ -12,7 +12,6 @@ import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator, DrawerItem } from "@react-navigation/drawer";
 import { Ionicons } from "@expo/vector-icons";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
-import PRODUCTS from "../data/dummy-data";
 import { availableProducts } from "../screens/ProductDetailScreen";
 import HeaderButton from "../components/HeaderButtton";
 import AutthenticationScreen from "../screens/AutthenticationScreen";
@@ -24,7 +23,6 @@ import ProductDetailScreen from "../screens/ProductDetailScreen";
 import EditProductScreen from "../screens/EditProductScreen";
 import StartupScreen from "../screens/StartupScreen";
 import colors from "../constants/colors";
-import { State } from "react-native-gesture-handler";
 import * as authActions from "../store/actions/auth";
 
 const headerCustom = {

@@ -68,7 +68,6 @@ const Authentication = ({ navigation }) => {
       setError(err.message);
     }
     setIsLoading(false);
-    // console.log(dispatch(action), "//////////////////");
   };
 
   const changeInputHandler = useCallback(
@@ -117,7 +116,6 @@ const Authentication = ({ navigation }) => {
             marginVertical: 50,
             backgroundColor: colors.secondaryColor,
             borderRadius: 20,
-            // width: "7  0%",
             padding: 22
           }}
         >

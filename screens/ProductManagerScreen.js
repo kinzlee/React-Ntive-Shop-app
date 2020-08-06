@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
-import PRODUCTS from "../data/dummy-data";
 import ProductManagerList from "../components/ProductMangerList";
 import HeaderButton from "../components/HeaderButtton";
 import { HeaderButtons, Item } from "react-navigation-header-buttons";
@@ -9,7 +8,6 @@ import orders from "../store/reducers/orders";
 
 const ProductManagerScreen = ({ navigation, route }) => {
   const userProducts = useSelector(state => state.products.userProducts);
-  // const selectedProducte = PRODUCTS.find(product => product.id === productId);
 
   React.useLayoutEffect(() => {
     navigation.setOptions({
