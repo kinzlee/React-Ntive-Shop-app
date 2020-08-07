@@ -17,7 +17,7 @@ const StartupScreen = ({ navigation }) => {
       const userData = await AsyncStorage.getItem("userData");
       console.log(userData, "kklklklklkkkk");
       if (!userData) {
-        navigation.navigate("Auth");
+        navigation.navigate("Shop");
         return;
       }
       const transformedData = JSON.parse(userData);
