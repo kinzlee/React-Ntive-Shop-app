@@ -58,13 +58,13 @@ const ShopNavigation = () => {
   const authenticate = useSelector(state => state.auth.token);
   return (
     <Stack.Navigator screenOptions={headerCustom}>
-      {loading && (
+      {/* {loading && (
         <Stack.Screen
           name="splash"
           component={StartupScreen}
           options={{ headerShown: null }}
         />
-      )}
+      )} */}
       {!!authenticate && authenticated && !loading ? (
         <>
           <Stack.Screen
