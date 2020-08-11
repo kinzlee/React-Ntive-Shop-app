@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useReducer } from "react";   
+import React, { useEffect, useCallback, useReducer } from "react";
 import {
   View,
   Text,
@@ -110,7 +110,7 @@ const EditProductScreen = ({ navigation, route }) => {
   }, [dispatch, prodId, formState]);
 
   const { productId } = route.params;
-
+  5;
   React.useLayoutEffect(() => {
     navigation.setOptions({
       title: productId ? "Edit Product" : "Add Product",
