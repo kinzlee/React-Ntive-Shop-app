@@ -24,11 +24,10 @@ const ProductItem = ({
       <TouchableOpacity onPress={onSelectProduct}>
         <View>
           <View style={{ ...styles.productRow, ...styles.productHeader }}>
-            <ImageBackground source={{ uri: image }} style={styles.bgImage}>
-              {/* <View style={styles.titleContainer} numberOfLines={1}>
-                <Text style={styles.title}>{productName}</Text>
-              </View> */}
-            </ImageBackground>
+            <ImageBackground
+              source={{ uri: image }}
+              style={styles.bgImage}
+            ></ImageBackground>
           </View>
         </View>
       </TouchableOpacity>
